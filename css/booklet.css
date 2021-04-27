@@ -1,6 +1,6 @@
 body.booklet {
-  position: absolute;
-  left: 18vw;
+  position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
+  left: 210px;
   font-family: "Century Goyhic";
   font-size: 18px;
 }
@@ -8,22 +8,21 @@ body.booklet {
 div.graphs {
   width: 70vw;
   display: block;
-  padding-left: 15%;
+  padding-left: 15%; /*così appaiono centrati*/
 }
 
 canvas {
   margin: 15px;
-  box-shadow: 3px 3px 4px 4px #88888855;
+  box-shadow: 3px 3px 4px 4px #88888855; /*Ombra*/
   border-radius: 5px;
 }
 
-table {
-  display: flexbox;
-  width: 73vw;
+table.grades-table {
+  width: 73vw; /*estendi per tutta la dimensione dello schermo*/
   margin-left: 20px;
   margin-top: 20px;
   padding: 10px;
-  box-shadow: 3px 3px 4px 4px #88888855;
+  box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/
   border-radius: 5px;
   border-color: transparent;
   text-align: center;
@@ -39,4 +38,12 @@ table td a {
 table th {
   border-color: transparent;
   border-bottom-color: #000000;
+}
+
+p table {
+  text-align: center;
+}
+
+p table td {
+  padding: 0px 10px;
 }

@@ -11,21 +11,22 @@ function drawGraph(graphData = {
     'max': 100,
     'min': 0
 }) {
-    /*This function takes as inputs a javascript object containing the data for the graph and the values to use aesthetic puposes.
-    data is an array used to build the graph: its elements must be objects with a 'value' and a 'description'
-    id is the canvas on which the graph will be drawn
-    ylevels is used to draw lines across the canvas. It is 1 by default (the entire height will be divided in ylevels sections)
-    padding is the space between the canvas border and the graph itself
-    r is the dot radius or the square side length if isCicle is set to false
-    isCircle is used to decide if the data-dots will be shown as circles or squares
-    lineColor and dotColor are used to chose the color of the lines and the data-dots of the graph
-    lineWidth is the width of the lines used to show the graph.
-    min is the smallest value to show on the graph
-    max is the biggest value to show on the graph
-    make sure that the values of the graph are all between min and max or the will not be shown
-    this function will also attach to the canvas element an event handler of type mousemove that will show the data information on hover
+    /*Questa funzione prende in ingresso un oggetto javascript contenente i dati per il grafico e i valori da usare per l'aspetto grafico.
+    {
+        data: è un array usato per costruire il grafico: i suoi elementi devono essere oggetti con un valore 'value' e una descrizione 'description'
+        id: è l'id del canvas sul quale disegnare il grafico
+        ylevels: è usato per le line sullo sfondo del grafico. Il suo valore è 1 di default (l'altezza sarà divisa per il numero di livelli)
+        padding: è lo spazio tra il bordo del canvas e il grafico stesso
+        r: è il raggio dei punti/quadrati usati per rappresentare i dati
+        isCircle: è un booleano usato per per indicare la forma dei punti che rappresentano i dati
+        lineColor, dotColor: sono i colori della linea e dei punti del grafico
+        lineWidth: è lo spessore della linea del grafico
+        min, max: sono i valori minimi e massimi rappresentabili sul grafico
+        Controlla sempre che i valori siano sempre compresi tra massimo e minimo altrimenti non saranno rappresentati correttamente
+        * Il metodo associa un eventListener che mostrerà la descrizione dei dati quando il mouse è posto sopra di essi
+    }
     */
-    //extraction of the values from the object
+    //estazione dei valori dall'oggetto
     var points = 'data' in graphData ? graphData['data'] : [];
     var canvasId = 'id' in graphData ? graphData['id'] : '';
     var ylevels = 'ylevels' in graphData ? graphData['ylevels'] : 1;
@@ -38,11 +39,11 @@ function drawGraph(graphData = {
     var min = 'min' in graphData ? graphData['min'] : 0;
     var max = 'max' in graphData ? graphData['max'] : 100;
 
-    //query to find the canvas html element
+    //query per trovare l'elemento canvas
     var canvas = document.getElementById(canvasId); //recupero il canvas dal documento tramite DOM
     var context = canvas.getContext('2d'); //prendo il contesto per disegnare
 
-    //creating the data structure that will hold the data positions and informations
+    //creazione della struttura dati che conterrà le posizioni di tutti i dati
     var data = [];
 
     for (var i = 0; i < points.length; i++) {
@@ -54,7 +55,7 @@ function drawGraph(graphData = {
         });
     }
 
-    //drawing the horizontal sections (background grid)
+    //disegno delle sezioni orizzontali
     with (context) {
         var step = (canvas.height - 2 * padding) / ylevels;
         for (var i = 0; i < ylevels + 1 + 1; i++) {
@@ -64,7 +65,7 @@ function drawGraph(graphData = {
         }
         stroke();
 
-        //drawing the graph
+        //disegno del grafico
         strokeStyle = lineColor;
         lineWidth = lineWidth;
         fillStyle = dotColor;
@@ -74,7 +75,7 @@ function drawGraph(graphData = {
             lineTo(tip.x, tip.y); //first the lines
         });
         stroke();
-        //then the data-dots
+        //poi i dati
         data.forEach(tip => {
             if (isCircle) {
                 beginPath();
@@ -86,7 +87,7 @@ function drawGraph(graphData = {
                 fillRect(tip.x - tip.r, tip.y - tip.r, 2 * tip.r, 2 * tip.r)
         });
     }
-    // attaching the mousemove event handler on the canvas specifing the data to show and the canvas
+    // associo il mousemove event handler e specifico i dati da mostrare sul canvas
     canvas.addEventListener('mousemove', e => handleTipEvent(e, data));
     canvas.addEventListener('mouseout', e => { e.currentTarget.title = ''; });
 }
@@ -100,10 +101,9 @@ function drawPieChart(graphData = {
         'lineWidth': 1
     }]
 }) {
-    /*this function is used to draw a piechart on a canvas.It accepts a javascript object as input that has to contain:
-    id: the id of the canvas on which the graph will be drown
-    data: an array which contains the data to show. Each element of the array must be a javascript object containing a value, a description, a color and a linewidth
-        that will be used to draw the data
+    /*Questa funzione è usata per disegnare un aerogramma su un canvas. Accetta un oggetto javascrip che contiene:
+    id: id del canvas sul quale sarà disegnato l'aerogramma
+    data: array che contiene i dati da mostrare. Ogni elemento deve essere un oggetto javascript contenete un valore, una descrizione, un colore e uno spessore
     */
     var data = 'data' in graphData ? graphData.data : [];
     var canvasId = 'id' in graphData ? graphData.id : '';
@@ -146,12 +146,12 @@ function drawPieChart(graphData = {
 
 function handlePieEvent(e, data, r) {
     var position = e.currentTarget.getBoundingClientRect();
-    var canvasX = position.x; //get the canvas x position
-    var canvasY = position.y; //get the canvas y position
-    var relativeX = e.clientX - (canvasX + e.currentTarget.width / 2); //get the cursor x position relative to the canvas' center position
-    var relativeY = e.clientY - (canvasY + e.currentTarget.height / 2); //get the cursor y position relative to the canvas' center position
-    var cursorAngle = Math.atan2(relativeY, relativeX); // calculate the angle from the center
-    cursorAngle = (cursorAngle < 0 ? cursorAngle + 2 * Math.PI : cursorAngle); //atan2 returns an angle between -pi and +pi, we need it between 0 and 2pi
+    var canvasX = position.x; //prendi la posizione x del canvas
+    var canvasY = position.y; //prendi la posizione y del canvas
+    var relativeX = e.clientX - (canvasX + e.currentTarget.width / 2); //prendi la posizione x del cursore rispetto al centro del canvas
+    var relativeY = e.clientY - (canvasY + e.currentTarget.height / 2); //prendi la posizione y del cursore rispetto al centro del canvas
+    var cursorAngle = Math.atan2(relativeY, relativeX); // calcola l'angolo
+    cursorAngle = (cursorAngle < 0 ? cursorAngle + 2 * Math.PI : cursorAngle); //atan2 da un angolo tra -pi and +pi, ci serve tra 0 e 2pi
     var dist = relativeX * relativeX + relativeY * relativeY;
     data.forEach(element => {
         var rm = r - element.lineWidth / 2;
@@ -159,7 +159,7 @@ function handlePieEvent(e, data, r) {
         if (cursorAngle >= element.angleStart
             && cursorAngle < element.angleFinish
             && dist >= rm * rm && dist <= rM * rM) {
-            //if the cursor is on an element
+            //se il cursore è su un elemento
             e.currentTarget.title = element.description;
         }
     });
@@ -169,21 +169,21 @@ function handlePieEvent(e, data, r) {
 
 function handleTipEvent(e, data) {
     var position = e.currentTarget.getBoundingClientRect();
-    var canvasX = position.x; //get the canvas x position
-    var canvasY = position.y; //get the canvas y position
-    var relativeX = e.clientX - canvasX; //get the cursor x position relative to the canvas' position
-    var relativeY = e.clientY - canvasY; //get the cursor y position relative to the canvas' position
+    var canvasX = position.x; //prendi la posizione x del canvas
+    var canvasY = position.y; //prendi la posizione y del canvas
+    var relativeX = e.clientX - canvasX; //prendi la posizione x del cursore relativa alla posizione del canvas
+    var relativeY = e.clientY - canvasY; //prendi la posizione y del cursore relativa alla posizione del canvas
     data.forEach(tip => {
-        var dx = relativeX - tip.x; //distance cursor -> data-dot
+        var dx = relativeX - tip.x; //distanza cursore -> data-dot
         var dy = relativeY - tip.y;
         if (dx * dx + dy * dy <= (tip.r + 1) * (tip.r + 1)) {
-            e.currentTarget.title = tip.text; //change the title so that the pop up shows data information
+            e.currentTarget.title = tip.text; //cambia il titolo del canvas così che il pop up mostri la descrizione
         }
     });
 }
 
 function scale(value, min, max, min1, max1) {
-    var range = max - min == 0 ? 1 : max - min; //if max-min is 0, the division that comes next would be impossible, in that case we set range to 1 (besides, if max=min then value has to be max or min, so the function returns 0 in any case)
-    var norm = (value - min) / range; //normalizing the value
-    return norm * (max1 - min1) + min1; //multipling the normalized value and then adding the minimum
+    var range = max - min == 0 ? 1 : max - min; //se max-min = 0, la divisione che segue non sarebbe possibile, in quel caso setto range = 1 (in ogni caso, se max=min allora il valore deve essere max o min, la funzione ritornerebbe 0 in ogni caso)
+    var norm = (value - min) / range; //normalizzo il valore
+    return norm * (max1 - min1) + min1; //moltiplico il valore normalizzato e aggiungo il minimo
 }

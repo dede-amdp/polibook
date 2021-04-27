@@ -4,6 +4,7 @@ var inputs = { matricola: matricola, type: 'grades' };
 var cfuCount;
 request('../php/getExamData.php', inputs).then(examData => {
     var examListDiv = document.getElementById('exam-list'); //recupera il div che conterrà la tabella
+    var statsDiv = document.getElementById('statistics');
     var examListString = ``; //stringa HTML da inserire nel div
     cfuCount = 0; //serve per l'areogramma dei cfu: conta i cfu degli esami superati
     if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
@@ -11,6 +12,7 @@ request('../php/getExamData.php', inputs).then(examData => {
         var meanGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento della media
         var sum = 0; //per il calcolo della media
         var count = 1; //per il calcolo della media
+        var mean = 0;
         examData.forEach(exam => {
             // inserisco il voto di ogni esame nel grafico
             var reg = new RegExp(`^${lang}:.*`, 'm'); // predii dalla lista di traduzioni quella che corrisponde alla lingua corrente
@@ -18,15 +20,15 @@ request('../php/getExamData.php', inputs).then(examData => {
             var nome = riga.slice(riga.indexOf(':') + 1);
             gradesGraphData.push({
                 value: exam['voto'],
-                description: `${exam['voto']}${'L'.repeat(exam['lode'])}\n${nome}\n${exam['cfu']}\n${exam['data']}`
+                description: `Voto: ${exam['voto']}${'L'.repeat(exam['lode'])}\nNome: ${nome}\nCFU: ${exam['cfu']}\nData: ${exam['data']}`
             });
             cfuCount += exam['cfu'];
             sum += exam['voto'];
-            var mean = sum / count;
+            mean = sum / count;
             meanGraphData.push({
                 //inserisco la media aritmetica dopo ogni esame nel grafico
                 value: mean,
-                description: `mean: ${mean}`
+                description: `Media: ${mean.toFixed(2)}`
             });
             count++;
         });
@@ -62,6 +64,7 @@ request('../php/getExamData.php', inputs).then(examData => {
         drawGraph(meanGraphStructure);
         drawGraph(gradesGraphStructure);
 
+
         // inizio a comporre la tabella dei risultati degli esami superati
         examListString += '<tr>';
         Object.keys(examData[0]).forEach(key => {
@@ -96,7 +99,7 @@ request('../php/getExamData.php', inputs).then(examData => {
             };
             examListString += '</tr>' // termina la riga della tabella
         });
-        examListDiv.innerHTML = `<table border=2px id='grades-table'>${examListString}</table>`; // inserisci la tabella nel div selezionato prima
+        examListDiv.innerHTML = `<table border=2px id='grades-table' class='grades-table'>${examListString}</table>`; // inserisci la tabella nel div selezionato prima
     } else if (examData.length == 0) { //se la richiesta non ha fallito ma ha un numero di esami pari a 0
         var examListDiv = document.getElementById('exam-list');
         examListDiv.innerHTML = "Non ci sono risultati da mostrare"; // non sono stati svolti esami
@@ -116,6 +119,12 @@ request('../php/getExamData.php', inputs).then(examData => {
                 id: 'cfu-canvas',
                 data: data
             });
+
+            statsDiv.innerHTML =
+                `<table>
+                <tr><th>Media</th><th>CFU</th></tr>
+                <tr><td>${mean == undefined ? 'No data' : mean.toFixed(2)}</td><td>${cfuCount}/${cfu_totali}</td></tr>
+                </table>`;
         }
     });
 });

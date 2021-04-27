@@ -8,8 +8,8 @@
                     from frequentato f JOIN attivita_didattica a ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id 
                     WHERE matricola_studente=? AND superato=1';
         // seleziona i dati degli esami da mostrare nel libretto
-        $conn = openConn();
-        $results = fetchDB($conn, $query, $matricola); 
+        $conn = open_conn();
+        $results = fetch_DB($conn, $query, $matricola); 
         $data = [];
         while($results && $row = mysqli_fetch_assoc($results)){
             array_push($data,$row); //aggiungi ad un array tutte le righe risultanti dalla query
@@ -17,8 +17,8 @@
     }elseif($input['type'] == 'cfu'){ //se la richiesta chiede il numero di cfu totali
         $query = 'SELECT cfu_totali from cdl c JOIN studente s ON c.id=s.id_cdl WHERE matricola=?';
         // seleziona il numero di cfu totali del cdl
-        $conn = openConn();
-        $results = fetchDB($conn, $query, $matricola); 
+        $conn = open_conn();
+        $results = fetch_DB($conn, $query, $matricola); 
         $data = [];
         while($results && $row = mysqli_fetch_assoc($results)){
             array_push($data,$row); //aggiungi ad un array tutte le righe risultanti dalla query

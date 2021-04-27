@@ -11,14 +11,15 @@
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
         $matricola = '000000'; //!! prendere da login
-        $conn = openConn();
+        $conn = open_conn();
         $query = 'SELECT * FROM studente WHERE matricola=?';
-        $result = fetchDB($conn, $query, $matricola);
-        $conn -> close();
+        $result = fetch_DB($conn, $query, $matricola);
+        //$conn -> close();
         if($result && $row = mysqli_fetch_assoc($result)){
             echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato</p>';
         }
     ?>
+    <p id='statistics' class='statistics'></p>
     <div class='graphs'>
         <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>
         <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi cfu</canvas>

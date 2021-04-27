@@ -5,11 +5,12 @@
 div.sidenav {
   text-align: left;
   height: 100%;
-  width: 200px; /* ho usato un valore assoluto altrimenti si rimpicciolisce al cambiare delle dimensioni della finestra*/
+  /* ho usato un valore assoluto altrimenti si rimpicciolisce al cambiare delle dimensioni della finestra*/
+  width: 200px;
   background-color: #009999;
   box-sizing: border-box;
   position: fixed; /*serve per mantenere la sua posizione fissa sullo schermo*/
-  z-index: 1; /*permette alla barra di navigazione di rimanere sopra contenuto e non essere coperta*/
+  /*z-index: 1; /*permette alla barra di navigazione di rimanere sopra contenuto e non essere coperta*/
   top: 0; /*top e left servono per evitare che la barra appaia lontano dai bordi*/
   left: 0;
   overflow-x: hidden; /* tutto ciò che esce dalla barra di navigazion è nascosto*/
@@ -60,7 +61,7 @@ div.sidenav button.logout-button {
 }
 
 div.sidenav button.logout-button:hover {
-  box-shadow: 3px 3px 4px 4px #00000055;
+  box-shadow: 3px 3px 4px 4px #00000055; /*quando il mouse è sul pulsante sembra sollevarsi*/
   cursor: pointer;
 }
 
