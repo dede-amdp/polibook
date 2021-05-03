@@ -50,4 +50,20 @@
         }
         return null;
     }
+
+    function delete_DB($conn, $query, ...$vals){
+        $statement = mysqli_stmt_init($conn); // inizializza lo statement
+        if(!mysqli_stmt_prepare($statement, $query)){ // se c'è un problema con la query
+            echo 'Errore nell\' eliminazione dei dati\n';
+            return false;
+        }else{
+            if($vals != null && count($vals) > 0){
+                $bindings = str_repeat('s', count($vals)); // serve per indicare quanti valori deve aspettarsi la il processo di collegamento
+                mysqli_stmt_bind_param($statement, $bindings, ...$vals); // collega i valori inseriti con quelli indicati nella query 
+            }
+            mysqli_stmt_execute($statement); // esegui la query
+            return mysqli_stmt_get_result($statement); // prendi i risultati
+        }
+        return null;
+    }
 ?>
