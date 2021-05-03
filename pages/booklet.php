@@ -14,10 +14,12 @@
         $conn = open_conn();
         $query = 'SELECT * FROM studente WHERE matricola=?';
         $result = fetch_DB($conn, $query, $matricola);
-        //$conn -> close();
+        $conn -> close();
+        echo '<p>';
         if($result && $row = mysqli_fetch_assoc($result)){
-            echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato</p>';
+            echo 'Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>';
         }
+        echo 'questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato</p>';
     ?>
     <p id='statistics' class='statistics'></p>
     <div class='graphs'>
