@@ -10,16 +10,15 @@
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
         $matricola = '000000'; //!! prendere da login
-        $conn = openConn();
+        $conn = open_conn();
         $query = 'SELECT * FROM studente WHERE matricola=?';
-        $result = fetchDB($conn, $query, $matricola);
+        $result = fetch_DB($conn, $query, $matricola);
         $conn -> close();
         if($result && $row = mysqli_fetch_assoc($result)){
             echo '<p> Analisi della carriera di: <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font></br>';
         }
     ?>
     <div class="text">
-       <p> Analisi della carrira di: Daniele Corrado </p>
     <p> Questa pagina visualizza la situazione dello studente in relazione alle regole previste dal percorso formativo intrapreso nell'ateneo.<br>
         Ogni riga nella tabella rappresenta un certo tipo di crediti che lo studente deve ottenere mediante le attività didattiche. <br>
         Quando tutti i crediti richiesti sono ottenuti, lo studente può conseguire il titolo previsto dal corso di studio.
