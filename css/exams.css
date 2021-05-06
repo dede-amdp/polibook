@@ -1,0 +1,66 @@
+body.exams-body {
+  position: absolute;
+  left: 210px; /* serve per evitare che il testo vada sotto la barra di navigazione*/
+  width: 78%;
+}
+/* setup iniziale delle div che conterranno le tabelle, saranno controllate in seguito tramite javascript*/
+div.prenotabili {
+  display: block;
+}
+div.prenotati {
+  display: none;
+}
+
+div.buttons > button {
+  background-color: #009999;
+  color: white;
+  padding: 20px;
+  border-color: transparent;
+}
+
+div.buttons > button.prenotati {
+  cursor: pointer;
+}
+
+div.buttons > button.prenotabili {
+  background-color: #e7e7e7;
+  color: #000000;
+}
+/* fine setup*/
+
+table {
+  /*table-layout: fixed; /**/
+  word-wrap: break-word;
+  width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  margin-left: 20px;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/
+  border-radius: 5px;
+  border-color: transparent;
+  text-align: center;
+}
+
+table td {
+  border-color: transparent;
+  /*vertical-align: top; /* non sembra fare nulla */ /* !! da verificare: serve per non far apparire tutto al centro se il messaggio è lungo ?*/
+}
+
+/* se l'esame è selezionabile mostralo con il cursore*/
+table tr.exam.selectable {
+  cursor: pointer;
+}
+
+table tr.exam {
+  cursor: not-allowed;
+}
+
+table tr.exam.selectable:hover {
+  /*box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/ /*!! da lasciare? Trovare altro modo per mostrare l'interattibilità*/
+  color: #009999;
+}
+
+table th {
+  border-color: transparent;
+  border-bottom-color: #000000;
+}

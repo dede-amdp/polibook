@@ -85,7 +85,7 @@ request('../php/getExamData.php', inputs).then(examData => {
                         examListString += `${'L'.repeat(value)}</td>` //se il voto ha la lode aggiungi L altrimenti chiudi il td
                         break;
                     case 'nome':
-                        var reg = new RegExp(`^${lang}:.*`, 'm'); // predii dalla lista di traduzioni quella che corrisponde alla lingua corrente
+                        var reg = new RegExp(`^${lang}:.*`, 'm'); // predi dalla lista di traduzioni quella che corrisponde alla lingua corrente
                         var riga = value.match(reg)[0];
                         var nome = riga.slice(riga.indexOf(':') + 1); //prendi solo il contenuto e non l'etichetta della lingua
                         examListString += `<td>${nome}</td>`; // aggiungi alla tabella il nome dell'esame
