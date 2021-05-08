@@ -64,3 +64,52 @@ table th {
   border-color: transparent;
   border-bottom-color: #000000;
 }
+
+tabel tr.msg {
+  width: 75%;
+}
+
+div.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #00000055; /* sfondo grigio poco opaco */
+}
+
+div.modal-content {
+  text-align: center;
+  font: "Century-Gothic" 18px;
+  border-radius: 5px;
+  background-color: #fefefe; /* sfondo grigio poco opaco */
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 2%;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-color: transparent;
+}
+
+div.modal button {
+  background-color: #009999;
+  color: white;
+  padding: 5px;
+  margin-right: 10px;
+  border-color: transparent;
+  cursor: pointer;
+  min-width: 100px;
+  min-height: 30px;
+}
+
+div.modal button.cancel-button {
+  background-color: #e7e7e7;
+  color: #000000;
+}
+
+div.modal button:hover,
+div.modal button:focus {
+  box-shadow: 2px 2px 3px 3px #88888855;
+}
