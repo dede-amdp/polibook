@@ -30,6 +30,6 @@
     <div class='prenotati' id='prenotati-tab'></div>
 </body>
 <script src='../javascript/methods.js'></script>
-<script src='../javascript/changeTab.js'></script>
+<script src='../javascript/exams.js'></script>
 
 </html>

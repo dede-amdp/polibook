@@ -29,7 +29,7 @@ div.buttons > button.prenotabili {
 /* fine setup*/
 
 table {
-  /*table-layout: fixed; /**/
+  table-layout: fixed; /**/
   word-wrap: break-word;
   width: 100%; /*estendi per tutta la dimensione dello schermo*/
   margin-left: 20px;
@@ -65,32 +65,33 @@ table th {
   border-bottom-color: #000000;
 }
 
-tabel tr.msg {
-  width: 75%;
-}
-
+/* style del modal per confermare le scelte*/
 div.modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 1; /* il modal appare sopra al contenuto della pagina*/
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100%; /* copre tutto il contenuto*/
   height: 100%;
   overflow: auto;
   background-color: #00000055; /* sfondo grigio poco opaco */
 }
 
 div.modal-content {
-  text-align: center;
+  text-align: center; /* allinea il contenuto al centro*/
   font: "Century-Gothic" 18px;
   border-radius: 5px;
-  background-color: #fefefe; /* sfondo grigio poco opaco */
+  background-color: #fefefe; /* sfondo bianco */
   margin: 15% auto; /* 15% from the top and centered */
   padding: 2%;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   border-color: transparent;
+}
+
+div.modal-content p {
+  text-align: left; /* allinea il testo a sinistra*/
 }
 
 div.modal button {
@@ -99,17 +100,17 @@ div.modal button {
   padding: 5px;
   margin-right: 10px;
   border-color: transparent;
-  cursor: pointer;
-  min-width: 100px;
+  cursor: pointer; /* cambia il cursore per mostrare interattività*/
+  min-width: 100px; /*dimensione minima dei pulsanti*/
   min-height: 30px;
 }
 
 div.modal button.cancel-button {
-  background-color: #e7e7e7;
+  background-color: #e7e7e7; /* il tasto annulla appare di colore diverso rispetto al tasto ok*/
   color: #000000;
 }
 
 div.modal button:hover,
 div.modal button:focus {
-  box-shadow: 2px 2px 3px 3px #88888855;
+  box-shadow: 2px 2px 3px 3px #88888855; /* aggiungi ombra quando il cursore è sopra al pulsante per comunicare interattività*/
 }

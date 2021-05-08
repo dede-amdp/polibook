@@ -30,5 +30,5 @@
 </body>
 <script src='../javascript/drawOnCanvas.js'></script>
 <script src='../javascript/methods.js'></script>
-<script src='../javascript/showExamData.js'></script>
+<script src='../javascript/booklet.js'></script>
 </html>
