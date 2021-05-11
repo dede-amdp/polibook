@@ -142,12 +142,6 @@ function createTable(result, tableElement, confirm, lang) {
     }
 }
 
-function translated(lang, toTranslate) {
-    var reg = new RegExp(`^${lang}:.*`, 'm'); // prende dalla lista di traduzioni quella che corrisponde alla lingua corrente
-    var riga = toTranslate.match(reg)[0];
-    return nome = riga.slice(riga.indexOf(':') + 1);
-}
-
 function insertExam(matricola, id) {
     request('../php/insertExam.php', { matricola: matricola, dataString: id }).then(result => {
         if (result) {

@@ -15,9 +15,7 @@ request('../php/getPassedExams.php', inputs).then(examData => {
         var mean = 0;
         examData.forEach(exam => {
             // inserisco il voto di ogni esame nel grafico
-            var reg = new RegExp(`^${lang}:.*`, 'm'); // predii dalla lista di traduzioni quella che corrisponde alla lingua corrente
-            var riga = exam['attività didattica'].match(reg)[0];
-            var nome = riga.slice(riga.indexOf(':') + 1);
+            var nome = translated(lang, exam['attività didattica']);
             nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
             gradesGraphData.push({
                 value: exam['voto'],
@@ -72,7 +70,8 @@ request('../php/getPassedExams.php', inputs).then(examData => {
             if (key != 'lode')
                 examListString += `<th>${key.charAt(0).toUpperCase() + key.slice(1)}</th>`; //creo gli header
             /* // !! TODO: trovare un modo per tradurre i titoli in altre lingue (si può usare uno switch statement per capire la chiave che consideriamo,
-                !! il problema è dove conserviamo tutte le traduzioni dei titoli? in un txt nella root di altervista?)*/
+                !! il problema è dove conserviamo tutte le traduzioni dei titoli? in un txt nella root di altervista?)
+                !! conviene tradurre tutto in inglese (solo i titoli) o tutto in italiano */
         });
         examListString += '</tr>';
         examData.forEach(exam => {
@@ -80,15 +79,16 @@ request('../php/getPassedExams.php', inputs).then(examData => {
             for (var [key, value] of Object.entries(exam)) { //itera su ogni coppia chiave valore
                 switch (key) {
                     case 'voto':
-                        examListString += `<td>${value}`; //il voto potrebbe avere la lode quindi non chiudiamo il td
+                        if (value == null)
+                            examListString += `<td>IDN`; //se l'esame è superato ma senza voto è un'idoneità
+                        else
+                            examListString += `<td>${value}`; //il voto potrebbe avere la lode quindi non chiudiamo il td
                         break;
                     case 'lode':
                         examListString += `${'L'.repeat(value)}</td>` //se il voto ha la lode aggiungi L altrimenti chiudi il td
                         break;
                     case 'attività didattica':
-                        var reg = new RegExp(`^${lang}:.*`, 'm'); // predi dalla lista di traduzioni quella che corrisponde alla lingua corrente
-                        var riga = value.match(reg)[0];
-                        var nome = riga.slice(riga.indexOf(':') + 1); //prendi solo il contenuto e non l'etichetta della lingua
+                        var nome = translated(lang, value);
                         examListString += `<td>${nome}</td>`; // aggiungi alla tabella il nome dell'esame
                         break;
                     case 'id':

@@ -11,3 +11,10 @@ async function request(url = '', data = {}) {
             return result.json(); //se ho risposta corretta
         }).catch(error => console.log(error)); //errore è loggato e non è mostrato all'utente
 }
+
+function translated(lang, toTranslate) {
+    // una stringa contenente più traduzioni è suddivisa e la funzione ritorna solo il valore con la traduzione corretta
+    var reg = new RegExp(`^${lang}:.*`, 'm'); // prende dalla lista di traduzioni quella che corrisponde alla lingua corrente
+    var riga = toTranslate.match(reg)[0];
+    return riga.slice(riga.indexOf(':') + 1);
+}
