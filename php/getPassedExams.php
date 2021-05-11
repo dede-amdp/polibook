@@ -4,7 +4,7 @@
     // !! posso prenderli direttamente da $_SESSION?
     $matricola = $input['matricola'];
     if($input['type'] == 'grades'){ //se la richiesta chiede i voti
-        $query = 'SELECT id, nome, cfu, data_svolgimento as data, voto, lode
+        $query = 'SELECT id, nome as \'attività didattica\', cfu, data_svolgimento as data, voto, lode
                     from frequentato f JOIN attivita_didattica a ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id 
                     WHERE matricola_studente=? AND superato=1';
         // seleziona i dati degli esami da mostrare nel libretto

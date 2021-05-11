@@ -2,7 +2,7 @@ var matricola = "000000"; // !! TODO temporanteo: Prendi la matricola dal login
 var lang = 'ita'; // !! TODO temporaneo: Prendi il settaggio della lingua dalla pagina
 var inputs = { matricola: matricola, type: 'grades' };
 var cfuCount;
-request('../php/getExamData.php', inputs).then(examData => {
+request('../php/getPassedExams.php', inputs).then(examData => {
     var examListDiv = document.getElementById('exam-list'); //recupera il div che conterrà la tabella
     var statsDiv = document.getElementById('statistics');
     var examListString = ``; //stringa HTML da inserire nel div
@@ -16,11 +16,12 @@ request('../php/getExamData.php', inputs).then(examData => {
         examData.forEach(exam => {
             // inserisco il voto di ogni esame nel grafico
             var reg = new RegExp(`^${lang}:.*`, 'm'); // predii dalla lista di traduzioni quella che corrisponde alla lingua corrente
-            var riga = exam['nome'].match(reg)[0];
+            var riga = exam['attività didattica'].match(reg)[0];
             var nome = riga.slice(riga.indexOf(':') + 1);
+            nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
             gradesGraphData.push({
                 value: exam['voto'],
-                description: `Voto: ${exam['voto']}${'L'.repeat(exam['lode'])}\nNome: ${nome}\nCFU: ${exam['cfu']}\nData: ${exam['data']}`
+                description: `Voto: ${exam['voto']}${'L'.repeat(exam['lode'])}\nAD: ${nome}\nCFU: ${exam['cfu']}\nData: ${exam['data']}`
             });
             cfuCount += exam['cfu'];
             sum += exam['voto'];
@@ -69,7 +70,7 @@ request('../php/getExamData.php', inputs).then(examData => {
         examListString += '<tr>';
         Object.keys(examData[0]).forEach(key => {
             if (key != 'lode')
-                examListString += `<th>${key}</th>`; //creo gli header
+                examListString += `<th>${key.charAt(0).toUpperCase() + key.slice(1)}</th>`; //creo gli header
             /* // !! TODO: trovare un modo per tradurre i titoli in altre lingue (si può usare uno switch statement per capire la chiave che consideriamo,
                 !! il problema è dove conserviamo tutte le traduzioni dei titoli? in un txt nella root di altervista?)*/
         });
@@ -84,7 +85,7 @@ request('../php/getExamData.php', inputs).then(examData => {
                     case 'lode':
                         examListString += `${'L'.repeat(value)}</td>` //se il voto ha la lode aggiungi L altrimenti chiudi il td
                         break;
-                    case 'nome':
+                    case 'attività didattica':
                         var reg = new RegExp(`^${lang}:.*`, 'm'); // predi dalla lista di traduzioni quella che corrisponde alla lingua corrente
                         var riga = value.match(reg)[0];
                         var nome = riga.slice(riga.indexOf(':') + 1); //prendi solo il contenuto e non l'etichetta della lingua
@@ -109,7 +110,7 @@ request('../php/getExamData.php', inputs).then(examData => {
         examListDiv.innerHTML = "Please retry later"; // c'è un errore nella richiesta
     }
 
-    request('../php/getExamData.php', { matricola: matricola, type: 'cfu' }).then(result => { //richiesta per sapere il numero totale di cfu
+    request('../php/getPassedExams.php', { matricola: matricola, type: 'cfu' }).then(result => { //richiesta per sapere il numero totale di cfu
         if (result != undefined && result.length > 0) { //se la richiesta non fallisce e il numero di risultati è maggiore di 0
             cfu_totali = result[0]['cfu_totali'];
             data = [{ value: cfuCount, description: `CFU Esami sostenuti: ${cfuCount}`, color: '#009999', lineWidth: 50 },

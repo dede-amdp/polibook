@@ -87,7 +87,7 @@ function createTable(result, tableElement, confirm, lang) {
     var htmlString = ''; // conterrà la struttura ed i dati della tabella
     if (result.length > 0) { //se effettivamente result è accettabile
         ids = []; // inizializza una lista di id di righe selezionabili
-        htmlString += '<tr>' + createTableHeaders(Object.keys(result[0]), ['id_docente', 'cognome_docente', 'messaggio']) + '</tr>'; // header della tabella
+        htmlString += '<tr>' + createTableHeaders(Object.keys(result[0]), ['id_docente', 'cognome_docente', 'messaggio', 'numero massimo di iscritti']) + '</tr>'; // header della tabella
         result.forEach(row => {
             var dt = new Date(); // serve per la data di oggi
             var today = Date.parse(dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate()); // scrive la data di oggi (Gennaio = 0)
@@ -101,7 +101,7 @@ function createTable(result, tableElement, confirm, lang) {
             var msg = ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
             for (var [key, element] of Object.entries(row)) {
                 switch (key) {
-                    case 'nome':
+                    case 'attività didattica':
                         var nome = translated(lang, element) // traduce il nome
                         htmlString += `<td>${nome}</td>`;
                         break;
@@ -116,11 +116,14 @@ function createTable(result, tableElement, confirm, lang) {
                     case 'messaggio':
                         msg = element;
                         break;
-                    case 'Numero massimo di iscritti': // se 0 ignora perchè indica che il numero di iscritti non ha limite
+                    case 'numero iscritti':
+                        htmlString += `<td>${element} `;
+                        break;
+                    case 'numero massimo di iscritti': // se 0 ignora perchè indica che il numero di iscritti non ha limite
                         if (element == 0) {
-                            htmlString += `<td>Nessun Limite</td>`;
+                            htmlString += `</td>`;
                         } else {
-                            htmlString += `<td>${element}</td>`;
+                            htmlString += `su ${element}</td>`;
                         }
                         break;
                     default:
