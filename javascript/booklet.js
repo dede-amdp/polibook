@@ -1,115 +1,126 @@
+var superatiTab = document.getElementById('superati-tab'); //recupera il div che conterrà la tabella degli esami superati
+var pianificatiTab = document.getElementById('pianificati-tab'); //recupera il div che conterrà la tabella degli esami preparati
+var superatiButton = document.getElementById('superati');  // recupera i pulsanti per cambiare tab
+var pianificatiButton = document.getElementById('pianificati');
+var statsDiv = document.getElementById('statistics'); // recupera il div che conterrà media e cfu
+
 var matricola = "000000"; // !! TODO temporanteo: Prendi la matricola dal login
 var lang = 'ita'; // !! TODO temporaneo: Prendi il settaggio della lingua dalla pagina
-var inputs = { matricola: matricola, type: 'grades' };
 var cfuCount;
-request('../php/getPassedExams.php', inputs).then(examData => {
-    var examListDiv = document.getElementById('exam-list'); //recupera il div che conterrà la tabella
-    var statsDiv = document.getElementById('statistics');
-    var examListString = ``; //stringa HTML da inserire nel div
+
+//richiede gli esami superati
+request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', passed: true }).then(examData => {
     cfuCount = 0; //serve per l'areogramma dei cfu: conta i cfu degli esami superati
     if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
-        var gradesGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento dei voti
-        var meanGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento della media
-        var sum = 0; //per il calcolo della media
-        var count = 1; //per il calcolo della media
-        var mean = 0;
+        graphs(examData, lang); // disegna i grafici (dato che non è collegato al resto, la funzione è asincrona quindi non bloccante)
+
+        // inizia a comporre la tabella dei risultati degli esami superati
+        var examListString = '<tr><th>ID</th><th>Attività Didattica</th><th>CFU</th><th>Docente</th><th>Data</th><th>Voto</th></tr>'; // crea gli header della tabella
         examData.forEach(exam => {
-            // inserisco il voto di ogni esame nel grafico
-            var nome = translated(lang, exam['attività didattica']);
-            nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
-            gradesGraphData.push({
-                value: exam['voto'],
-                description: `Voto: ${exam['voto']}${'L'.repeat(exam['lode'])}\nAD: ${nome}\nCFU: ${exam['cfu']}\nData: ${exam['data']}`
-            });
-            cfuCount += exam['cfu'];
-            sum += exam['voto'];
-            mean = sum / count;
-            meanGraphData.push({
-                //inserisco la media aritmetica dopo ogni esame nel grafico
-                value: mean,
-                description: `Media: ${mean.toFixed(2)}`
-            });
-            count++;
+            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td><td>${exam.data}</td><td>${exam.voto || 'IDN' + 'L'.repeat(exam.lode)}</td></tr>`; //aggiungi le inforazioni dell'esame alla tabella
+            // il link associato all'id dell'esame serve per poter visualizzare le informazioni dell'esame con un click
         });
-        // sono le strutture dei grafici
-        const gradesGraphStructure = {
-            data: gradesGraphData,
-            id: 'grade-canvas',
-            min: 18,
-            max: 30,
-            isCircle: true,
-            lineWidth: 1.3,
-            ylevels: 12,
-            r: 5,
-            lineColor: '#009999',
-            dotColor: '#009999',
-            padding: 8
-        };
-
-        const meanGraphStructure = {
-            data: meanGraphData,
-            id: 'grade-canvas',
-            min: 18,
-            max: 30,
-            isCircle: false,
-            lineWidth: 1.3,
-            ylevels: 12,
-            r: 5,
-            lineColor: '#004D4D',
-            dotColor: '#004D4D',
-            padding: 8
-        };
-        // disegno i grafici
-        drawGraph(meanGraphStructure);
-        drawGraph(gradesGraphStructure);
-
-
-        // inizio a comporre la tabella dei risultati degli esami superati
-        examListString += '<tr>';
-        Object.keys(examData[0]).forEach(key => {
-            if (key != 'lode')
-                examListString += `<th>${key.charAt(0).toUpperCase() + key.slice(1)}</th>`; //creo gli header
-            /* // !! TODO: trovare un modo per tradurre i titoli in altre lingue (si può usare uno switch statement per capire la chiave che consideriamo,
-                !! il problema è dove conserviamo tutte le traduzioni dei titoli? in un txt nella root di altervista?)
-                !! conviene tradurre tutto in inglese (solo i titoli) o tutto in italiano */
-        });
-        examListString += '</tr>';
-        examData.forEach(exam => {
-            examListString += '<tr>'
-            for (var [key, value] of Object.entries(exam)) { //itera su ogni coppia chiave valore
-                switch (key) {
-                    case 'voto':
-                        if (value == null)
-                            examListString += `<td>IDN`; //se l'esame è superato ma senza voto è un'idoneità
-                        else
-                            examListString += `<td>${value}`; //il voto potrebbe avere la lode quindi non chiudiamo il td
-                        break;
-                    case 'lode':
-                        examListString += `${'L'.repeat(value)}</td>` //se il voto ha la lode aggiungi L altrimenti chiudi il td
-                        break;
-                    case 'attività didattica':
-                        var nome = translated(lang, value);
-                        examListString += `<td>${nome}</td>`; // aggiungi alla tabella il nome dell'esame
-                        break;
-                    case 'id':
-                        examListString += `<td><a href='#'>${value}</a></td>`;
-                        break;
-                    default:
-                        examListString += `<td>${value}</td>`; // gli altri dati dell'esame non hanno casi particolari e quindi possono essere inseriti direttamente
-                }
-            };
-            examListString += '</tr>' // termina la riga della tabella
-        });
-        examListDiv.innerHTML = `<table border=2px id='grades-table' class='grades-table'>${examListString}</table>`; // inserisci la tabella nel div selezionato prima
-    } else if (examData.length == 0) { //se la richiesta non ha fallito ma ha un numero di esami pari a 0
-        var examListDiv = document.getElementById('exam-list');
-        examListDiv.innerHTML = "Non ci sono risultati da mostrare"; // non sono stati svolti esami
+        superatiTab.innerHTML = `<table border=2px id='grades-table' class='exam-table'>${examListString}</table>`; // inserisce la tabella nel div selezionato prima
+    } else if (examData != undefined && examData.length == 0) { //se la richiesta non ha fallito ma ha un numero di esami pari a 0
+        superatiTab.innerHTML = "Non ci sono risultati da mostrare"; // non sono stati svolti esami
     }
     else { //se la richiesta ha fallito
-        var examListDiv = document.getElementById('exam-list');
-        examListDiv.innerHTML = "Please retry later"; // c'è un errore nella richiesta
+        superatiTab.innerHTML = "Please retry later"; // c'è un errore nella richiesta
     }
 
+});
+// richiede gli esami pianificati
+request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', passed: false }).then(examData => {
+    if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
+
+        // inizia a comporre la tabella degli esami pianificati
+        var examListString = '<tr><th>ID</th><th>Attività Didattica</th><th>CFU</th><th>Docente</th></tr>'; //crea gli header
+        examData.forEach(exam => {
+            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td></tr>`; // popolo la tabella
+            // come prima: il link serve per accedere all'informazioni dell'esame
+        });
+        pianificatiTab.innerHTML = `<table border=2px id='programmed-table' class='exam-table'>${examListString}</table>`; // inserisce la tabella nel div selezionato prima
+    } else if (examData != undefined && examData.length == 0) { //se la richiesta non ha fallito ma ha un numero di esami pari a 0
+        pianificatiTab.innerHTML = "Non ci sono risultati da mostrare"; // non ci sono esami da fare
+    }
+    else { //se la richiesta ha fallito
+        pianificatiTab.innerHTML = "Please retry later"; // c'è un errore nella richiesta
+    }
+});
+
+// le seguenti callback associate ai pulsanti servono per scambiare le due tabelle (esami superati e pianificati)
+superatiButton.onclick = function () {
+    superatiTab.style.display = 'block';
+    pianificatiTab.style.display = 'none';
+    pianificatiButton.classList.add('active');
+    superatiButton.classList.remove('active');
+}
+
+pianificatiButton.onclick = function () {
+    pianificatiTab.style.display = 'block';
+    superatiTab.style.display = 'none';
+    superatiButton.classList.add('active');
+    pianificatiButton.classList.remove('active');
+}
+
+
+async function graphs(examData, lang) {
+    var gradesGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento dei voti
+    var meanGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento della media
+    var sum = 0; //per il calcolo della media
+    var count = 1; //per il calcolo della media
+    var mean = 0;
+    examData.forEach(exam => {
+        // inserisce il voto di ogni esame nel grafico
+        var nome = translated(lang, exam.nome);
+        nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
+        gradesGraphData.push({
+            value: exam.voto,
+            description: `Voto: ${exam.voto}${'L'.repeat(exam.lode)}\nAD: ${nome}\nCFU: ${exam.cfu}\nData: ${exam.data}`
+        });
+        cfuCount += exam.cfu;
+        sum += exam.voto;
+        mean = sum / count;
+        meanGraphData.push({
+            //inserisce la media aritmetica dopo ogni esame nel grafico
+            value: mean,
+            description: `Media: ${mean.toFixed(2)}`
+        });
+        count++;
+    });
+    // sono le strutture dei grafici
+    const gradesGraphStructure = {
+        data: gradesGraphData,
+        id: 'grade-canvas',
+        min: 18,
+        max: 30,
+        isCircle: true,
+        lineWidth: 1.3,
+        ylevels: 12,
+        r: 5,
+        lineColor: '#009999',
+        dotColor: '#009999',
+        padding: 8
+    };
+
+    const meanGraphStructure = {
+        data: meanGraphData,
+        id: 'grade-canvas',
+        min: 18,
+        max: 30,
+        isCircle: false,
+        lineWidth: 1.3,
+        ylevels: 12,
+        r: 5,
+        lineColor: '#004D4D',
+        dotColor: '#004D4D',
+        padding: 8
+    };
+    // disegno i grafici
+    drawGraph(meanGraphStructure);
+    drawGraph(gradesGraphStructure);
+
+    // richiede il numero di cfu totali
     request('../php/getPassedExams.php', { matricola: matricola, type: 'cfu' }).then(result => { //richiesta per sapere il numero totale di cfu
         if (result != undefined && result.length > 0) { //se la richiesta non fallisce e il numero di risultati è maggiore di 0
             cfu_totali = result[0]['cfu_totali'];
@@ -120,7 +131,7 @@ request('../php/getPassedExams.php', inputs).then(examData => {
                 id: 'cfu-canvas',
                 data: data
             });
-
+            // inserisce in formato testuale media e cfu conseguiti (così da evitare la dipendenza dal grafico)
             statsDiv.innerHTML =
                 `<table>
                 <tr><th>Media</th><th>CFU</th></tr>
@@ -128,4 +139,4 @@ request('../php/getPassedExams.php', inputs).then(examData => {
                 </table>`;
         }
     });
-});
+}

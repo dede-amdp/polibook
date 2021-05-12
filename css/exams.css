@@ -1,5 +1,6 @@
 body.exams-body {
   position: absolute;
+  font-size: 18px;
   left: 210px; /* serve per evitare che il testo vada sotto la barra di navigazione*/
   width: 78%;
 }
@@ -12,19 +13,22 @@ div.prenotati {
 }
 
 div.buttons > button {
-  background-color: #009999;
-  color: white;
   padding: 20px;
   border-color: transparent;
 }
 
-div.buttons > button.prenotati {
+div.buttons > button.prenotati.active,
+div.buttons > button.prenotabili.active {
+  background-color: #009999;
+  color: white;
   cursor: pointer;
 }
 
+div.buttons > button.prenotati,
 div.buttons > button.prenotabili {
   background-color: #e7e7e7;
   color: #000000;
+  cursor: default;
 }
 /* fine setup*/
 

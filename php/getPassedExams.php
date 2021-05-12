@@ -4,12 +4,13 @@
     // !! posso prenderli direttamente da $_SESSION?
     $matricola = $input['matricola'];
     if($input['type'] == 'grades'){ //se la richiesta chiede i voti
-        $query = 'SELECT id, nome as \'attività didattica\', cfu, data_svolgimento as data, voto, lode
-                    from frequentato f JOIN attivita_didattica a ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id 
-                    WHERE matricola_studente=? AND superato=1';
+        $superato = $input['passed'];
+        $query = 'SELECT a.id, a.nome, cfu, data_svolgimento as data, voto, lode, d.nome as docente, d.cognome
+                    from frequentato f JOIN attivita_didattica a JOIN docente d ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id AND f.id_docente_esame = d.id
+                    WHERE matricola_studente=? AND superato=?';
         // seleziona i dati degli esami da mostrare nel libretto
         $conn = open_conn();
-        $results = fetch_DB($conn, $query, $matricola); 
+        $results = fetch_DB($conn, $query, $matricola, $superato); 
         $data = [];
         while($results && $row = mysqli_fetch_assoc($results)){
             array_push($data,$row); //aggiungi ad un array tutte le righe risultanti dalla query

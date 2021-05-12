@@ -1,6 +1,7 @@
 body.booklet {
   position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
   left: 210px;
+  width: 78%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
   font-family: "Century Goyhic";
   font-size: 18px;
 }
@@ -16,11 +17,40 @@ canvas {
   box-shadow: 3px 3px 4px 4px #88888855; /*Ombra*/
   border-radius: 5px;
 }
+/* setup dei tab: bottoni e tabelle*/
+div.superati {
+  display: block;
+}
+div.pianificati {
+  display: none;
+}
 
-table.grades-table {
-  width: 73vw; /*estendi per tutta la dimensione dello schermo*/
+div.buttons > button {
+  padding: 20px;
+  border-color: transparent;
+}
+
+div.buttons > button.superati.active,
+div.buttons > button.pianificati.active {
+  background-color: #009999;
+  color: white;
+  cursor: pointer;
+}
+
+div.buttons > button.superati,
+div.buttons > button.pianificati {
+  background-color: #e7e7e7;
+  color: #000000;
+  cursor: default;
+}
+
+table.exam-table {
+  table-layout: fixed; /**/
+  word-wrap: break-word;
+  width: 100%; /*estendi per tutta la dimensione dello schermo*/
   margin-left: 20px;
   margin-top: 20px;
+  margin-bottom: 100px; /* serve a non far apparire la tabella troppo attaccata al bordo inferiore della finestra */
   padding: 10px;
   box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/
   border-radius: 5px;
@@ -28,13 +58,14 @@ table.grades-table {
   text-align: center;
 }
 
-table td {
+table.exam-table table td {
   border-color: transparent;
 }
 
 table td a {
   color: #009999;
 }
+
 table th {
   border-color: transparent;
   border-bottom-color: #000000;

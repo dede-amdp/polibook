@@ -9,137 +9,100 @@ var lang = 'eng'; // !! Da cambiare
 request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result => {
     if (result != undefined) {
         // creare la tabella che conterrà gli esami prenotabili
-        ids = createTable(result, prenotabiliTab, '</br><font color=\'#009999\'>Confermi l\'iscrizione all\'esame?</font>', lang);
-        if (ids != null) {
-            // per ciascun id di riga selezionabile
-            ids.forEach(id => {
-                var row = document.getElementById(id);
-                var modal = document.getElementById('modal-' + id); // trova il modal associato alla tabella
-                var okButton = document.getElementById('confirm-button-' + id); // trova il pulsante di conferma
-                var cancelButton = document.getElementById('cancel-button-' + id); // trova il pulsante ANNULLA
-                okButton.addEventListener('click', () => insertExam(matricola, id)); // aggiunge gli event listeners per l'inserimento dell'iscrizione all'esame 
-                cancelButton.addEventListener('click', () => modal.style.display = 'none'); // e per nascondere il modal 
-                row.classList.add('selectable'); // aggiungi selectable alla classe di ciascuna riga selezionabile
-                row.addEventListener('click', () => modal.style.display = 'block'); //mostra il modal
+        if (result.length > 0) {
+            var ids = [];
+            var header = `<tr><th>Corso</th><th>Docente</th><th>ID</th><th>Attività Didattica</th><th>Ordinamento</th><th>Data Svolgimento</th><th>Valido entro il</th><th>Aula</th><th>Iscritti</th></tr>`;
+            var htmlString = '';
+            result.forEach(row => {
+                var id = createId(row);
+                if (isLegal(row)) {
+                    ids.push(id);
+                }
+                htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
+                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${translated(lang, row.nome)}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.scadenza}</td><td>${row.aula}</td><td>${row.iscritti + (row.max_iscritti > 0 ? (' su ' + row.max_iscritti) : '')}</td></tr>`;
+                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
+                htmlString += createModal(id, toShow + `<br><font color=#009999>Sei sicuro di voler continuare?</font>`);
             });
-        }
+            prenotabiliTab.innerHTML = `<table border=2px>${header + htmlString}</table>`; // costruisce effettivamente la tabella
+            //ids = createTable(result, prenotabiliTab, '</br><font color=\'#009999\'>Confermi l\'iscrizione all\'esame?</font>', lang);
+            if (ids != null) {
+                ids.forEach(id => {
+                    assignCallback(id, insertExam);
+                });
+            }
+        } else
+            prenotabiliTab.innerHTML = '<p>No result found</p>';
     }
 }).catch(error => console.log(error));
 
 // richiesta degli esami prenotati
-request('../php/fetchPrenotatiData.php', { matricola: '000000' }).then(result => {
+request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result => {
     if (result != undefined) {
-        // crea la tabellache conterrà ciascuna prenotazione effettuata dall'utente
-        ids = createTable(result, prenotatiTab, '</br><font color=\'#009999\'>Sei sicuro di voler annullare l\' iscrizione?</font>', lang);
-        if (ids != null) { //per ciascuna riga selezionabile
-            ids.forEach(id => {
-                row = document.getElementById(id);
-                var modal = document.getElementById('modal-' + id); // trova il modal associato alla tabella
-                var okButton = document.getElementById('confirm-button-' + id); // trova il pulsante di conferma
-                var cancelButton = document.getElementById('cancel-button-' + id); // trova il pulsante ANNULLA
-                okButton.addEventListener('click', () => deleteExam(matricola, id)); // aggiunge gli event listeners per l'inserimento dell'iscrizione all'esame 
-                cancelButton.addEventListener('click', () => modal.style.display = 'none'); // e per nascondere il modal 
-                row.classList.add('selectable'); // modifica la classe della riga
-                row.addEventListener('click', () => modal.style.display = 'block'); //mostra il modal
+        // crea la tabella che conterrà ciascuna prenotazione effettuata dall'utente
+        if (result.length > 0) {
+            var ids = [];
+            var header = `<tr><th>Corso</th><th>Docente</th><th>ID</th><th>Attività Didattica</th><th>Ordinamento</th><th>Data Svolgimento</th><th>Aula</th></tr>`;
+            var htmlString = '';
+            result.forEach(row => {
+                var id = createId(row);
+                if (isLegal(row)) {
+                    ids.push(id);
+                }
+                htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
+                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${translated(lang, row.nome)}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.aula}</td></tr>`;
+                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
+                htmlString += createModal(id, toShow + `<br><font color=#009999>Sei sicuro di voler annullare l'iscrizione?</font>`);
             });
-        }
+            prenotatiTab.innerHTML = `<table border=2px>${header + htmlString}</table>`; // costruisce effettivamente la tabella
+            //ids = createTable(result, prenotatiTab, '</br><font color=\'#009999\'>Sei sicuro di voler annullare l\' iscrizione?</font>', lang);
+            if (ids != null) { //per ciascuna riga selezionabile
+                ids.forEach(id => {
+                    assignCallback(id, deleteExam);
+                });
+            }
+        } else
+            prenotatiTab.innerHTML = '<p>No result found</p>';
     }
 }).catch(error => console.log(error));
-
 
 
 prenotatiButton.onclick = function () {
     // scambia il colore di testo e sfondo ai tasti delle schede e rendi visibile la div corretta
     prenotatiTab.style.display = 'block';
     prenotabiliTab.style.display = 'none';
-    prenotatiButton.style.backgroundColor = '#e7e7e7';
-    prenotatiButton.style.color = '#000000';
-    prenotabiliButton.style.backgroundColor = '#009999';
-    prenotabiliButton.style.color = 'white';
-    prenotabiliButton.style.cursor = 'pointer';
-    prenotatiButton.style.cursor = 'default';
+    prenotabiliButton.classList.add('active');
+    prenotatiButton.classList.remove('active');
 };
 prenotabiliButton.onclick = function () {
     // scambia il colore di testo e sfondo ai tasti delle schede e rendi visibile la div corretta
     prenotatiTab.style.display = 'none';
     prenotabiliTab.style.display = 'block';
-    prenotabiliButton.style.backgroundColor = '#e7e7e7';
-    prenotabiliButton.style.color = '#000000';
-    prenotatiButton.style.backgroundColor = '#009999';
-    prenotatiButton.style.color = 'white';
-    prenotatiButton.style.cursor = 'pointer';
-    prenotabiliButton.style.cursor = 'default';
+    prenotatiButton.classList.add('active');
+    prenotabiliButton.classList.remove('active');
 };
 
-function createTableHeaders(keys, excluded = []) {
-    // costruisci l'header di una tabella a partire da delle chiavi, eliminando alcune chiavi indicate in excluded
-    // ** perchè non inserire direttamente le chiavi escludendo quelle da escludere? così posso fare tutto in una funzione e ho tutto in ordine
-    var header_row = '';
-    keys.forEach(key => {
-        if (!excluded.includes(key)) {
-            header_row += `<th>${key.charAt(0).toUpperCase() + key.slice(1)}</th>`; // prima di usare la chiave metto la prima lettera in maiuscolo
-        }
-    });
-    return header_row;
+function assignCallback(id, callback = (matricola, id) => { }) {
+    row = document.getElementById(id);
+    var modal = document.getElementById('modal-' + id); // trova il modal associato alla tabella
+    var okButton = document.getElementById('confirm-button-' + id); // trova il pulsante di conferma
+    var cancelButton = document.getElementById('cancel-button-' + id); // trova il pulsante ANNULLA
+    okButton.addEventListener('click', () => callback(matricola, id)); // aggiunge gli event listeners per l'inserimento dell'iscrizione all'esame 
+    cancelButton.addEventListener('click', () => modal.style.display = 'none'); // e per nascondere il modal 
+    row.classList.add('selectable'); // modifica la classe della riga
+    row.addEventListener('click', () => modal.style.display = 'block'); //mostra il modal
+
 }
 
-function createTable(result, tableElement, confirm, lang) {
-    var htmlString = ''; // conterrà la struttura ed i dati della tabella
-    if (result.length > 0) { //se effettivamente result è accettabile
-        ids = []; // inizializza una lista di id di righe selezionabili
-        htmlString += '<tr>' + createTableHeaders(Object.keys(result[0]), ['id_docente', 'cognome_docente', 'messaggio', 'numero massimo di iscritti']) + '</tr>'; // header della tabella
-        result.forEach(row => {
-            var dt = new Date(); // serve per la data di oggi
-            var today = Date.parse(dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate()); // scrive la data di oggi (Gennaio = 0)
-            var date = Date.parse(row['disponibile fino al'].split(' ')[0]); // traduce la data_fine dell'appello
-            id = `${row['corso']},${row['id']},${row['id_docente']},${row['ordinamento']},${row['data svolgimento']}`; //crea l'id unendo in una stringa tutte le chiavi
-            var iscrivibile = row['numero iscritti'] != undefined ? (row['numero iscritti'] == 0 || row['numero_iscritti'] > row['numero massimo di iscritti']) : true; // se serve il numero di iscritti
-            if (date >= today && iscrivibile) { // se la data di oggi precede quella di scadenza e il numero di iscritti è minore di quello massimo
-                ids.push(id); // inserisce l'id nella lista di id selezionabili
-            }
-            htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
-            var msg = ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
-            for (var [key, element] of Object.entries(row)) {
-                switch (key) {
-                    case 'attività didattica':
-                        var nome = translated(lang, element) // traduce il nome
-                        htmlString += `<td>${nome}</td>`;
-                        break;
-                    case 'docente':
-                        htmlString += `<td>${element} `; // unisce nome e cognome del docente in un'unica cella
-                        break;
-                    case 'cognome_docente':
-                        htmlString += `${element}</td>`;
-                        break;
-                    case 'id_docente': // non mostrare l'id docente
-                        break;
-                    case 'messaggio':
-                        msg = element;
-                        break;
-                    case 'numero iscritti':
-                        htmlString += `<td>${element} `;
-                        break;
-                    case 'numero massimo di iscritti': // se 0 ignora perchè indica che il numero di iscritti non ha limite
-                        if (element == 0) {
-                            htmlString += `</td>`;
-                        } else {
-                            htmlString += `su ${element}</td>`;
-                        }
-                        break;
-                    default:
-                        htmlString += `<td>${element}</td>`;
-                }
-            }
-            htmlString += `</tr>`;
-            var toShow = msg != null && msg != '' ? '<b>Messaggio:</b></br>' + msg : '';
-            htmlString += createModal(id, toShow + confirm); // aggiunge il modal alla pagina che poi verrà mostrato in seguito
-        });
-        tableElement.innerHTML = `<table border=2px>${htmlString}</table>`; // costruisce effettivamente la tabella
-        return ids; //ritorna i valori
-    } else { // result non è accettabile
-        tableElement.innerHTML = '<p>No result found</p>';
-        return null;
-    }
+function createId(row) {
+    return `${row.corso},${row.id},${row.id_docente},${row.ordinamento},${row.data}`; //crea l'id unendo in una stringa tutte le chiavi
+}
+
+function isLegal(row) {
+    var dt = new Date(); // serve per la data di oggi
+    var today = Date.parse(dt.getFullYear() + '-' + (dt.getMonth() + 1) + '-' + dt.getDate()); // scrive la data di oggi (Gennaio = 0)
+    var date = Date.parse(row.scadenza.split(' ')[0]); // traduce la data_fine dell'appello
+    var iscrivibile = row.iscritti != undefined ? (row.iscritti == 0 || row.iscritti > row.max_iscritti) : true; // se serve il numero di iscritti
+    return date >= today && iscrivibile;
 }
 
 function insertExam(matricola, id) {

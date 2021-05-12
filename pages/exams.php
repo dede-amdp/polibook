@@ -24,7 +24,7 @@
     ?>
     <div class='buttons'>
         <button id='prenotabili' class='prenotabili'>PRENOTABILI</button>
-        <button id='prenotati' class='prenotati'>PRENOTÀTI</button>
+        <button id='prenotati' class='prenotati active'>PRENOTÀTI</button>
     </div>
     <div class='prenotabili' id='prenotabili-tab'></div>
     <div class='prenotati' id='prenotati-tab'></div>
