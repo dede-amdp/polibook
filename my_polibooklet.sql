@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mag 03, 2021 alle 17:09
+-- Generation Time: Mag 12, 2021 alle 21:31
 -- Versione del server: 8.0.21
 -- PHP Version: 5.6.40
 
@@ -37,10 +37,15 @@ CREATE TABLE IF NOT EXISTS `appello` (
   `aula` text NOT NULL,
   `messaggio` text CHARACTER SET utf8  NOT NULL,
   `max_iscritti` int NOT NULL,
-  PRIMARY KEY (`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`,`data_svolgimento`),
-  KEY `fk_esame` (`id_attdid_esame`,`ord_attdid_esame`,`id_corso_esame`,`id_docente_esame`),
-  KEY `fk_appello` (`id_attdid_esame`,`id_corso_esame`,`id_docente_esame`,`ord_attdid_esame`,`data_svolgimento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`,`data_svolgimento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+--
+-- Dump dei dati per la tabella `appello`
+--
+
+INSERT INTO `appello` (`id_corso_esame`, `id_attdid_esame`, `ord_attdid_esame`, `id_docente_esame`, `data_svolgimento`, `data_inizio`, `data_fine`, `aula`, `messaggio`, `max_iscritti`) VALUES
+('A', 'ANLMAT', '2020/2021', '000022', '2021-05-26 00:00:00', '2021-05-03 00:00:00', '2021-05-25 00:00:00', 'H', 'TEST TEST TEST', 50);
 
 -- --------------------------------------------------------
 
@@ -55,9 +60,15 @@ CREATE TABLE IF NOT EXISTS `attdid_cdl` (
   `anno` varchar(1) NOT NULL,
   `semestre` varchar(1) NOT NULL,
   `percorso` tinytext CHARACTER SET utf8  NOT NULL,
-  PRIMARY KEY (`id_attdid`,`ord_attdid`,`id_cdl`),
-  KEY `fk_cdl` (`id_cdl`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_attdid`,`ord_attdid`,`id_cdl`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+--
+-- Dump dei dati per la tabella `attdid_cdl`
+--
+
+INSERT INTO `attdid_cdl` (`id_attdid`, `ord_attdid`, `id_cdl`, `anno`, `semestre`, `percorso`) VALUES
+('ANLMAT', '2020/2021', 'INGINF', '1', '1', 'AUTOMAZIONE');
 
 -- --------------------------------------------------------
 
@@ -69,20 +80,19 @@ CREATE TABLE IF NOT EXISTS `attivita_didattica` (
   `id` varchar(10) NOT NULL,
   `ordinamento` varchar(10) CHARACTER SET utf8  NOT NULL,
   `cfu` int NOT NULL,
-  `nome` blob NOT NULL,
-  `descrizione` blob NOT NULL,
+  `nome` text NOT NULL,
+  `descrizione` text NOT NULL,
   `programma` blob NOT NULL,
   `SSD` tinytext NOT NULL,
-  PRIMARY KEY (`id`,`ordinamento`),
-  KEY `fk_attdid` (`id`,`ordinamento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`,`ordinamento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --
 -- Dump dei dati per la tabella `attivita_didattica`
 --
 
 INSERT INTO `attivita_didattica` (`id`, `ordinamento`, `cfu`, `nome`, `descrizione`, `programma`, `SSD`) VALUES
-('ANLMAT', '2020/2021', 12, 0x6974613a416e616c697369204d6174656d61746963613c2f62723e6369616f3a736f6e6f20756e6120726967612061206361706f0d0a656e673a416476616e6365642043616c63756c7573, 0x3c6974613e70726f76613c2f6974613e0d0a3c656e673e746573743c2f656e673e, 0x3c6974613e70726f76613c2f6974613e0d0a3c656e673e746573743c2f656e673e, '');
+('ANLMAT', '2020/2021', 12, 'ita:Analisi Matematica</br>ciao:sono una riga a capo\r\neng:Advanced Calculus', 'ita:prova\r\neng:test', 0x3c6974613e70726f76613c2f6974613e0d0a3c656e673e746573743c2f656e673e, 'MAT03');
 
 -- --------------------------------------------------------
 
@@ -93,9 +103,9 @@ INSERT INTO `attivita_didattica` (`id`, `ordinamento`, `cfu`, `nome`, `descrizio
 CREATE TABLE IF NOT EXISTS `avvisi` (
   `timestamp` datetime NOT NULL,
   `titolo` tinytext NOT NULL,
-  `contenuto` blob NOT NULL,
+  `contenuto` text NOT NULL,
   PRIMARY KEY (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -105,22 +115,19 @@ CREATE TABLE IF NOT EXISTS `avvisi` (
 
 CREATE TABLE IF NOT EXISTS `cdl` (
   `id` varchar(6) NOT NULL,
-  `nome` blob NOT NULL,
-  `descrizione` blob NOT NULL,
+  `nome` text NOT NULL,
+  `descrizione` text NOT NULL,
   `cfu_totali` int NOT NULL,
   `id_facolta` varchar(10) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cdl` (`id`),
-  KEY `fk_facolta` (`id_facolta`),
-  KEY `fk_cdl1` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --
 -- Dump dei dati per la tabella `cdl`
 --
 
 INSERT INTO `cdl` (`id`, `nome`, `descrizione`, `cfu_totali`, `id_facolta`) VALUES
-('INFING', 0x3c6974613e496e6765676e6572696120496e666f7261746963613c2f6974613e0d0a3c656e673e496e666f726d6174696f6e20456e67696e656572696e673c2f656e673e, 0x3c6974613e70726f76613c2f6974613e0d0a3c656e673e746573743c2f656e673e, 180, 'INGELEINF');
+('INFING', '<ita>Ingegneria Inforatica</ita>\r\n<eng>Information Engineering</eng>', '<ita>prova</ita>\r\n<eng>test</eng>', 180, 'INGELEINF');
 
 -- --------------------------------------------------------
 
@@ -132,19 +139,17 @@ CREATE TABLE IF NOT EXISTS `docente` (
   `id` varchar(6) NOT NULL,
   `nome` tinytext NOT NULL,
   `cognome` tinytext NOT NULL,
-  `CV` blob,
+  `CV` text,
   `cellulare` varchar(13) CHARACTER SET utf8  NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `cellulare` (`cellulare`),
-  KEY `fk_docente` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --
 -- Dump dei dati per la tabella `docente`
 --
 
 INSERT INTO `docente` (`id`, `nome`, `cognome`, `CV`, `cellulare`) VALUES
-('000001', 'Maria', 'Rottermaier', NULL, '333000000');
+('000022', 'Maria', 'Rottermaier', NULL, '333000000');
 
 -- --------------------------------------------------------
 
@@ -157,11 +162,8 @@ CREATE TABLE IF NOT EXISTS `esame` (
   `id_attdid` varchar(10) CHARACTER SET utf8  NOT NULL,
   `ord_attdid` varchar(10) NOT NULL,
   `id_docente` varchar(6) NOT NULL,
-  PRIMARY KEY (`id_corso`,`id_attdid`,`ord_attdid`,`id_docente`),
-  KEY `fk_esame_attdid` (`id_attdid`,`ord_attdid`),
-  KEY `fk_docente` (`id_docente`),
-  KEY `fk_esame` (`id_corso`,`id_attdid`,`ord_attdid`,`id_docente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id_corso`,`id_attdid`,`ord_attdid`,`id_docente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -172,10 +174,9 @@ CREATE TABLE IF NOT EXISTS `esame` (
 CREATE TABLE IF NOT EXISTS `facolta` (
   `id` varchar(10) NOT NULL,
   `nome` text NOT NULL,
-  `descrizione` blob,
-  PRIMARY KEY (`id`),
-  KEY `fk_facolta` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  `descrizione` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --
 -- Dump dei dati per la tabella `facolta`
@@ -197,14 +198,19 @@ CREATE TABLE IF NOT EXISTS `frequentato` (
   `ord_attdid_esame` varchar(10) NOT NULL,
   `id_docente_esame` varchar(6) NOT NULL,
   `superato` tinyint(1) NOT NULL DEFAULT '0',
-  `data_svolgimento` date NOT NULL,
+  `data_svolgimento` date DEFAULT NULL,
   `voto` int DEFAULT NULL,
   `lode` tinyint(1) DEFAULT NULL,
-  `questionario` tinyint(1) NOT NULL,
-  PRIMARY KEY (`matricola_studente`,`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`),
-  KEY `fk_frequentato` (`id_attdid_esame`,`id_corso_esame`,`id_docente_esame`,`ord_attdid_esame`,`data_svolgimento`),
-  KEY `fk_esame` (`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  `questionario` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`matricola_studente`,`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+--
+-- Dump dei dati per la tabella `frequentato`
+--
+
+INSERT INTO `frequentato` (`matricola_studente`, `id_corso_esame`, `id_attdid_esame`, `ord_attdid_esame`, `id_docente_esame`, `superato`, `data_svolgimento`, `voto`, `lode`, `questionario`) VALUES
+('000000', 'A', 'ANLMAT', '2020/2021', '000022', 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -215,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `frequentato` (
 CREATE TABLE IF NOT EXISTS `questionario` (
   `id` int NOT NULL AUTO_INCREMENT,
   `data_compilazione` datetime NOT NULL,
-  `risposte` blob NOT NULL,
+  `risposte` text NOT NULL,
   `id_esame_corso` varchar(6) NOT NULL,
   `id_esame_attdid` varchar(10) NOT NULL,
   `ord_esame_attdid` varchar(10) NOT NULL,
@@ -242,10 +248,8 @@ CREATE TABLE IF NOT EXISTS `risultato` (
   `verbalizzazione` tinyint(1) NOT NULL DEFAULT '0',
   `data_scadenza` datetime NOT NULL,
   `data_iscrizione` datetime NOT NULL,
-  PRIMARY KEY (`matricola_studente`,`id_attdid_esame_appello`,`ord_attdid_esame_appello`,`id_docente_esame_appello`,`id_corso_esame_appello`,`data_svolgimento_appello`),
-  KEY `fk_risultato` (`data_svolgimento_appello`,`id_attdid_esame_appello`,`id_corso_esame_appello`,`id_docente_esame_appello`,`matricola_studente`,`ord_attdid_esame_appello`),
-  KEY `fk_appello` (`id_attdid_esame_appello`,`id_corso_esame_appello`,`id_docente_esame_appello`,`ord_attdid_esame_appello`,`data_svolgimento_appello`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`matricola_studente`,`id_attdid_esame_appello`,`ord_attdid_esame_appello`,`id_docente_esame_appello`,`id_corso_esame_appello`,`data_svolgimento_appello`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 -- --------------------------------------------------------
 
@@ -265,67 +269,17 @@ CREATE TABLE IF NOT EXISTS `studente` (
   `foto` blob,
   `id_cdl` varchar(6) CHARACTER SET utf8  NOT NULL,
   `percorso` tinytext CHARACTER SET utf8  NOT NULL,
-  PRIMARY KEY (`matricola`),
-  KEY `fk_studente` (`matricola`),
-  KEY `fk_cdl1` (`id_cdl`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8  AUTO_INCREMENT=1 ;
+  `anno_iscrizione` varchar(9) NOT NULL,
+  `anno_di_corso` int NOT NULL,
+  PRIMARY KEY (`matricola`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
 --
 -- Dump dei dati per la tabella `studente`
 --
 
-INSERT INTO `studente` (`matricola`, `password`, `email`, `nome`, `cognome`, `cf`, `data_nascita`, `indirizzo`, `foto`, `id_cdl`, `percorso`) VALUES
-('000000', 'PASSWORD', 'a.dellealpi@studenti.fake.it', 'Adelaide', 'Delle Alpi', 'AAAABBBBCCCCDDDD', '1997-10-10', 'Via dei monti sorridenti 9', NULL, 'INFING', 'AUTOMAZIONE');
-
---
--- Limiti per le tabelle scaricate
---
-
---
--- Limiti per la tabella `appello`
---
-ALTER TABLE `appello`
-  ADD CONSTRAINT `fk_appello_esame` FOREIGN KEY (`id_attdid_esame`, `ord_attdid_esame`, `id_corso_esame`, `id_docente_esame`) REFERENCES `esame` (`id_corso`, `id_attdid`, `ord_attdid`, `id_docente`);
-
---
--- Limiti per la tabella `attdid_cdl`
---
-ALTER TABLE `attdid_cdl`
-  ADD CONSTRAINT `fk_attdid` FOREIGN KEY (`id_attdid`, `ord_attdid`) REFERENCES `attivita_didattica` (`id`, `ordinamento`),
-  ADD CONSTRAINT `fk_attdid_cdl` FOREIGN KEY (`id_attdid`, `ord_attdid`) REFERENCES `attivita_didattica` (`id`, `ordinamento`),
-  ADD CONSTRAINT `fk_cdl` FOREIGN KEY (`id_cdl`) REFERENCES `cdl` (`id`);
-
---
--- Limiti per la tabella `cdl`
---
-ALTER TABLE `cdl`
-  ADD CONSTRAINT `fk_facolta` FOREIGN KEY (`id_facolta`) REFERENCES `facolta` (`id`);
-
---
--- Limiti per la tabella `esame`
---
-ALTER TABLE `esame`
-  ADD CONSTRAINT `fk_esame_attdid` FOREIGN KEY (`id_attdid`, `ord_attdid`) REFERENCES `attivita_didattica` (`id`, `ordinamento`),
-  ADD CONSTRAINT `fk_esame_docente` FOREIGN KEY (`id_docente`) REFERENCES `docente` (`id`);
-
---
--- Limiti per la tabella `frequentato`
---
-ALTER TABLE `frequentato`
-  ADD CONSTRAINT `fk_esame` FOREIGN KEY (`id_corso_esame`, `id_attdid_esame`, `ord_attdid_esame`, `id_docente_esame`) REFERENCES `esame` (`id_corso`, `id_attdid`, `ord_attdid`, `id_docente`),
-  ADD CONSTRAINT `fk_studente` FOREIGN KEY (`matricola_studente`) REFERENCES `studente` (`matricola`);
-
---
--- Limiti per la tabella `risultato`
---
-ALTER TABLE `risultato`
-  ADD CONSTRAINT `fk_appello` FOREIGN KEY (`id_attdid_esame_appello`, `id_corso_esame_appello`, `id_docente_esame_appello`, `ord_attdid_esame_appello`, `data_svolgimento_appello`) REFERENCES `appello` (`id_attdid_esame`, `id_corso_esame`, `id_docente_esame`, `ord_attdid_esame`, `data_svolgimento`);
-
---
--- Limiti per la tabella `studente`
---
-ALTER TABLE `studente`
-  ADD CONSTRAINT `fk_cdl1` FOREIGN KEY (`id_cdl`) REFERENCES `cdl` (`id`);
+INSERT INTO `studente` (`matricola`, `password`, `email`, `nome`, `cognome`, `cf`, `data_nascita`, `indirizzo`, `foto`, `id_cdl`, `percorso`, `anno_iscrizione`, `anno_di_corso`) VALUES
+('000000', 'PASSWORD', 'a.dellealpi@studenti.fake.it', 'Adelaide', 'Delle Alpi', 'AAAABBBBCCCCDDDD', '1997-10-10', 'Via dei monti sorridenti 9', NULL, 'INFING', 'AUTOMAZIONE', '2020', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
