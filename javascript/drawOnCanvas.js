@@ -165,8 +165,6 @@ function handlePieEvent(e, data, r) {
     });
 }
 
-
-
 function handleTipEvent(e, data) {
     var position = e.currentTarget.getBoundingClientRect();
     var canvasX = position.x; //prendi la posizione x del canvas

@@ -17,7 +17,7 @@ request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', pas
         // inizia a comporre la tabella dei risultati degli esami superati
         var examListString = '<tr><th>ID</th><th>Attività Didattica</th><th>CFU</th><th>Docente</th><th>Data</th><th>Voto</th></tr>'; // crea gli header della tabella
         examData.forEach(exam => {
-            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td><td>${exam.data}</td><td>${exam.voto || 'IDN' + 'L'.repeat(exam.lode)}</td></tr>`; //aggiungi le inforazioni dell'esame alla tabella
+            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td><td>${exam.data}</td><td>${(exam.voto || 'IDN') + 'L'.repeat(exam.lode)}</td></tr>`; //aggiungi le inforazioni dell'esame alla tabella
             // il link associato all'id dell'esame serve per poter visualizzare le informazioni dell'esame con un click
         });
         superatiTab.innerHTML = `<table border=2px id='grades-table' class='exam-table'>${examListString}</table>`; // inserisce la tabella nel div selezionato prima

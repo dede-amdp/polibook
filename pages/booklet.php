@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>Libretto</title>
     <link href='../css/booklet.css' type='text/css' rel='Stylesheet'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'> <!-- serve per far si che su uno schermo più piccolo appaia a dimensioni sensate-->
 </head>
