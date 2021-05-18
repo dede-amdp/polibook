@@ -4,7 +4,7 @@ let prenotabiliTab = document.getElementById('prenotabili-tab');
 let prenotatiTab = document.getElementById('prenotati-tab');
 
 const matricola = '000000'; //!!Da cambiare
-var lang = 'eng'; // !! Da cambiare
+var lang = 'ita'; // !! Da cambiare
 // richiesta degli esami prenotabili
 request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result => {
     if (result != undefined) {
@@ -108,9 +108,15 @@ function isLegal(row) {
 function insertExam(matricola, id) {
     request('../php/insertExam.php', { matricola: matricola, dataString: id }).then(result => {
         if (result) {
+            if (result == 'inc')
+                alert('Iscrizione non effettuata: i dati inseriti sono incoerenti');
             // avverti l'utente che l'iscrizione è avvenuta con successo
-            alert('Iscrizione Effettuata');
-            document.location.reload(); //ricarica la pagina
+            else if (result) {
+                alert('Iscrizione Effettuata');
+                document.location.reload(); //ricarica la pagina
+            } else {
+                alert('Iscrizione non effettuata');
+            }
         } else {
             alert('Qualcosa è andato storto');
         }
