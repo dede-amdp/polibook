@@ -49,7 +49,7 @@ function buildSection(data, title) {
                 else cfuMancanti += exam.cfu;
                 htmlData += `<tr><td>${exam.SSD} - ${translated(lang, exam.nome)} (${exam.id})</td><td>${exam.cfu}</td><td>${exam.superato ? exam.cfu : 0}</td><td>${exam.superato ? 0 : exam.cfu}</td><td><img width=30 alt='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' title='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${exam.superato ? 'green' : 'red'}.svg'></img></td></tr>`;
             });
-            htmlHeader = `<tr><td><b>${title}</b></td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td>${cfuMancanti == 0}</td></tr>`;
+            htmlHeader = `<tr><td><b>${title}</b></td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`;
             htmlString += htmlHeader + htmlData; // aggiungi subheader e dati alla sezione
             toReturn['htmlString'] = htmlString;
             toReturn['con'] = cfuConseguiti;
