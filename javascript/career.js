@@ -11,7 +11,7 @@ request('../php/getCarrerExams.php', { type: 'A' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-});
+}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
 //CARATTERIZZANTI - richiede gli esami caratterizzanti
 request('../php/getCarrerExams.php', { type: 'B' }).then(result => {
     var data = buildSection(result, 'B - Caratterizzanti');
@@ -19,7 +19,7 @@ request('../php/getCarrerExams.php', { type: 'B' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-});
+}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
 //LINGUA,PROVA FINALE E TIROCINIO/STAGE - richiede gli esami di lingua, prova finale e tirocinio
 request('../php/getCarrerExams.php', { type: 'C' }).then(result => {
     var data = buildSection(result, 'C - Lingua, Prova finale e Tirocinio/Stage');
@@ -27,7 +27,7 @@ request('../php/getCarrerExams.php', { type: 'C' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-});
+}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
 htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td>${cfuMancanti == 0}</td></tr>`; // aggiunge la riga del totale
 tabella.innerHTML = htmlString; // mostra i dati nella tabella
 
