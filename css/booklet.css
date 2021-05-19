@@ -43,11 +43,15 @@ div.buttons > button.pianificati {
   color: #000000;
   cursor: default;
 }
+@media only screen and (min-width: 800px) {
+  table.exam-table {
+    width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  }
+}
 
 table.exam-table {
   table-layout: fixed; /**/
   word-wrap: break-word;
-  width: 100%; /*estendi per tutta la dimensione dello schermo*/
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 100px; /* serve a non far apparire la tabella troppo attaccata al bordo inferiore della finestra */

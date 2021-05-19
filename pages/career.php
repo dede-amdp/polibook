@@ -9,13 +9,16 @@
     <?php
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
+        // !! VERIFICA LOGIN
         $matricola = '000000'; //!! prendere da login
         $conn = open_conn();
-        $query = 'SELECT * FROM studente WHERE matricola=?';
-        $result = fetch_DB($conn, $query, $matricola);
-        $conn -> close();
-        if($result && $row = mysqli_fetch_assoc($result)){
-            echo '<p> Analisi della carriera di: <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font></br>';
+        if($conn){
+            $query = 'SELECT * FROM studente WHERE matricola=?';
+            $result = fetch_DB($conn, $query, $matricola);
+            $conn -> close();
+            if($result && $row = mysqli_fetch_assoc($result)){
+                echo '<p> Analisi della carriera di: <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font></br>';
+            }
         }
     ?>
     <div class="text">
@@ -28,7 +31,8 @@
                 aggiungere controllo per il numero di CFU mancanti,
                 aggiungere controllo per completamento categoria (check)
                 aggiungere le categorie specifiche per il CdL  -->
-    <table class="table" border = 2px>
+    <table id='career-table' class="table" border = 2px>
+        <!--
         <tr><th>Regola</th><th>CFU Min</th><th>CFU Max</th><th>CFU Calcolati</th><th>CFU Validati</th><th>CFU Mancanti</th><th>Esito</th></tr>
        
         <tr><td>TOTALE CFU</td><td>180</td><td>999</td><td></td><td></td><td></td><td></td></tr>
@@ -45,7 +49,7 @@
         <tr><td>E - lingua</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr>
         <tr><td>F - Abilità informatiche e telematiche</td><td>6</td><td>6</td><td></td><td></td><td></td><td></td></tr>
         <tr><td>G - Stage e tirocini</td><td>0</td><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>H - Prova finale</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>H - Prova finale</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr> -->
     </table>
     </body>
 </html>

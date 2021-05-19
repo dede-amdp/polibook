@@ -7,7 +7,7 @@ const matricola = '000000'; //!!Da cambiare
 var lang = 'ita'; // !! Da cambiare
 // richiesta degli esami prenotabili
 request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result => {
-    if (result != undefined) {
+    if (result != undefined && result != null) {
         // creare la tabella che conterrà gli esami prenotabili
         if (result.length > 0) {
             var ids = [];
@@ -31,13 +31,15 @@ request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result
                 });
             }
         } else
-            prenotabiliTab.innerHTML = '<p>No result found</p>';
+            prenotabiliTab.innerHTML = '<p>Nessun risultato trovato</p>';
+    } else {
+        prenotabiliTab.innerHTML = '<p>Riprova più tardi</p>';
     }
 }).catch(error => console.log(error));
 
 // richiesta degli esami prenotati
 request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result => {
-    if (result != undefined) {
+    if (result != undefined && result != null) {
         // crea la tabella che conterrà ciascuna prenotazione effettuata dall'utente
         if (result.length > 0) {
             var ids = [];
@@ -61,9 +63,11 @@ request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result =
                 });
             }
         } else
-            prenotatiTab.innerHTML = '<p>No result found</p>';
+            prenotatiTab.innerHTML = '<p>Nessun risultato trovato</p>';
+    } else {
+        prenotatiTab.innerHTML = '<p>Riprova più tardi</p>';
     }
-}).catch(error => console.log(error));
+}).catch(error => console.log(`C'è stato un errore nella richiesta dei dati, le chiediamo di riprovare più tardi`));
 
 
 prenotatiButton.onclick = function () {
@@ -120,7 +124,7 @@ function insertExam(matricola, id) {
         } else {
             alert('Qualcosa è andato storto');
         }
-    }).catch(error => console.log(error)); // !! che succede se è il trigger a impedire la query? Dobbiamo saperlo per avvisare l'utente che non può iscriversi causa numero di iscritti
+    }).catch(error => console.log(`C'è stato un errore durante l'iscrizione all'esame, la preghiamo di riprovare più tardi`));
 }
 
 function deleteExam(matricola, id) {
@@ -131,7 +135,7 @@ function deleteExam(matricola, id) {
             //!! per le delete queries mysql ritorna sempre false (anche se avviene con successo): come vedere se la disinscrizione non è avvenuta?
             alert('Hai annullato l\'iscrizione');
             document.location.reload(); //ricarica il documento
-        });
+        }).catch(error => console.log(`C'è stato un errore durante l'annullamento dell'iscrizione all'esame, la preghiamo di riprovare più tardi`));;
     }
 }
 

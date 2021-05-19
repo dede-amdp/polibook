@@ -31,11 +31,15 @@ div.buttons > button.prenotabili {
   cursor: default;
 }
 /* fine setup*/
-
+@media only screen and (min-width: 800px) {
+  /* Per dispositivi con uno schermo largo setta una dimensione massima alla tabella*/
+  table {
+    width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  }
+}
 table {
   table-layout: fixed; /**/
   word-wrap: break-word;
-  width: 100%; /*estendi per tutta la dimensione dello schermo*/
   margin-left: 20px;
   margin-top: 20px;
   padding: 10px;

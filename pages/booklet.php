@@ -11,17 +11,19 @@
     <?php
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
+        // !! VERIFICA LOGIN
         $matricola = '000000'; //!! prendere da login
         $conn = open_conn();
-        $query = 'SELECT * FROM studente WHERE matricola=?';
-        $result = fetch_DB($conn, $query, $matricola);
-        $conn -> close();
-        echo '<p>';
-        if($result && $row = mysqli_fetch_assoc($result)){
-            echo 'Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>';
+        if($conn){
+            $query = 'SELECT * FROM studente WHERE matricola=?';
+            $result = fetch_DB($conn, $query, $matricola);
+            $conn -> close();
+            if($result && $row = mysqli_fetch_assoc($result)){
+                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
+            }
         }
-        echo 'questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato e gli esami ancora da superare</p>';
     ?>
+    <p>questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato e gli esami ancora da superare</p>
     <p id='statistics' class='statistics'></p>
     <div class='graphs'>
         <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>

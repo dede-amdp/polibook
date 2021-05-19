@@ -8,6 +8,7 @@
     <?php
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
+        // !! VERIFICA LOGIN
     ?>
 <div class="text">
     Il servizio di segreteria non è al momento disponible.

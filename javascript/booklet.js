@@ -11,7 +11,7 @@ var cfuCount;
 //richiede gli esami superati
 request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', passed: true }).then(examData => {
     cfuCount = 0; //serve per l'areogramma dei cfu: conta i cfu degli esami superati
-    if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
+    if (examData != undefined && examData != null && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
         graphs(examData, lang); // disegna i grafici (dato che non è collegato al resto, la funzione è asincrona quindi non bloccante)
 
         // inizia a comporre la tabella dei risultati degli esami superati
@@ -25,7 +25,7 @@ request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', pas
         superatiTab.innerHTML = "Non ci sono risultati da mostrare"; // non sono stati svolti esami
     }
     else { //se la richiesta ha fallito
-        superatiTab.innerHTML = "Please retry later"; // c'è un errore nella richiesta
+        superatiTab.innerHTML = "<p>Riprova più tardi<p>"; // c'è un errore nella richiesta
     }
 
 });
@@ -44,7 +44,7 @@ request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', pas
         pianificatiTab.innerHTML = "Non ci sono risultati da mostrare"; // non ci sono esami da fare
     }
     else { //se la richiesta ha fallito
-        pianificatiTab.innerHTML = "Please retry later"; // c'è un errore nella richiesta
+        pianificatiTab.innerHTML = "<p>Riprova più tardi<p>"; // c'è un errore nella richiesta
     }
 });
 
