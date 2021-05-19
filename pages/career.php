@@ -52,4 +52,6 @@
         <tr><td>H - Prova finale</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr> -->
     </table>
     </body>
+    <script src='../javascript/methods.js'></script>
+    <script src='../javascript/career.js'></script>
 </html>

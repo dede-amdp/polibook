@@ -9,7 +9,7 @@ var lang = 'ita'; // !! TODO temporaneo: Prendi il settaggio della lingua dalla 
 var cfuCount;
 
 //richiede gli esami superati
-request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', passed: true }).then(examData => {
+request('../php/fetchPassedExams.php', { matricola: matricola, type: 'grades', passed: true }).then(examData => {
     cfuCount = 0; //serve per l'areogramma dei cfu: conta i cfu degli esami superati
     if (examData != undefined && examData != null && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
         graphs(examData, lang); // disegna i grafici (dato che non è collegato al resto, la funzione è asincrona quindi non bloccante)
@@ -30,7 +30,7 @@ request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', pas
 
 });
 // richiede gli esami pianificati
-request('../php/getPassedExams.php', { matricola: matricola, type: 'grades', passed: false }).then(examData => {
+request('../php/fetchPassedExams.php', { matricola: matricola, type: 'grades', passed: false }).then(examData => {
     if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
 
         // inizia a comporre la tabella degli esami pianificati
@@ -121,7 +121,7 @@ async function graphs(examData, lang) {
     drawGraph(gradesGraphStructure);
 
     // richiede il numero di cfu totali
-    request('../php/getPassedExams.php', { matricola: matricola, type: 'cfu' }).then(result => { //richiesta per sapere il numero totale di cfu
+    request('../php/fetchPassedExams.php', { matricola: matricola, type: 'cfu' }).then(result => { //richiesta per sapere il numero totale di cfu
         if (result != undefined && result.length > 0) { //se la richiesta non fallisce e il numero di risultati è maggiore di 0
             cfu_totali = result[0]['cfu_totali'];
             data = [{ value: cfuCount, description: `CFU Esami sostenuti: ${cfuCount}`, color: '#009999', lineWidth: 50 },

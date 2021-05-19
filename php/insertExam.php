@@ -19,6 +19,7 @@
 
     function verify($conn, $id){
         // verifica se i dati in ingresso sono coerenti (per evitare che l'utente possa inserire iscrizioni ad appelli di esami che non fanno parte del corso di studi)
+        // !! VERIFICA LA DATA DI PRENOTAZIONE ANCHE, NEL CASO QUALCUNO VOGLIA ISCRIVERSI AD UN ESAME FUORI DAL PERIODO DI ISCRIZIONE
         array_pop($id); // elimina la data dell'appello che non mi interessa
         $matricola = '000000'; //da prendere da $_SESSION
         $query = 'SELECT id_corso_esame, id_attdid_esame, id_docente_esame, ord_attdid_esame FROM frequentato WHERE matricola_studente = ? AND superato = 0 AND id_corso_esame = ? AND id_attdid_esame = ? AND id_docente_esame = ? AND ord_attdid_esame = ?';

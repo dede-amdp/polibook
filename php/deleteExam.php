@@ -10,3 +10,4 @@
     if($result) echo json_encode($result);
     else echo json_encode('Fail'); 
 ?>
+// !! VERIFICA LA DATA DI DISINSCRIZIONE NEL CASO QUALCUNO VOGLIA DISINSCRIVERSI DA UN ESAME FUORI DAL PERIODO DI ISCRIZIONE!
