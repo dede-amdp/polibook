@@ -22,7 +22,7 @@ request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result
                 var msg = '';
                 var legal = isLegal(row);
                 if (legal.isLegal) {
-                    msg = toShow + `<br><font color=#009999>Sei sicuro di voler continuare?</font>`;
+                    msg = toShow + `<br><font color=#009999>Sei sicuro di volerti iscrivere all'esame?</font>`;
                     ids.push(id);
                 } else {
                     msg = toShow + `<br><font color=#009999>Non puoi iscriverti all'esame perché ${legal.cause}</font>`;
