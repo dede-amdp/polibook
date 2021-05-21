@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='ita'>
+<html lang='it'>
 
 <head>
     <link href='../css/exams.css' rel='Stylesheet' type='text/css'>

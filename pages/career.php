@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='it'>
 <head>
     <link href='../css/career.css' type='text/css' rel='Stylesheet'/>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
