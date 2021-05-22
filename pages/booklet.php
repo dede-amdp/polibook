@@ -4,7 +4,9 @@
 <head>
     <title>Libretto</title>
     <link href='../css/booklet.css' type='text/css' rel='Stylesheet'/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'> <!-- serve per far si che su uno schermo più piccolo appaia a dimensioni sensate-->
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' 
+          description='Questa pagina permette di vedere tutti gli esami superati e la media di laurea'
+          keywords='esami laurea media'> <!-- serve per far si che su uno schermo più piccolo appaia a dimensioni sensate-->
 </head>
 
 <body class='booklet'>
@@ -25,16 +27,16 @@
     ?>
     <p>questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato e gli esami ancora da superare</p>
     <p id='statistics' class='statistics'></p>
-    <div class='graphs'>
-        <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>
-        <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi cfu</canvas>
-    </div>
-    <div class='buttons'>
-        <button id='superati' class='superati'>SUPERATI</button>
-        <button id='pianificati' class='pianificati active'>PIANIFICATI</button>
-    </div>
-    <div class='superati' id='superati-tab'></div>
-    <div class='pianificati' id='pianificati-tab'></div>
+        <div class='graphs'>
+            <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>
+            <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi cfu</canvas>
+        </div>
+        <div class='buttons'>
+            <button id='superati' class='superati'>SUPERATI</button>
+            <button id='pianificati' class='pianificati active'>PIANIFICATI</button>
+        </div>
+        <div class='superati' id='superati-tab'></div>
+        <div class='pianificati' id='pianificati-tab'></div>
 </body>
 <script src='../javascript/drawOnCanvas.js'></script>
 <script src='../javascript/methods.js'></script>

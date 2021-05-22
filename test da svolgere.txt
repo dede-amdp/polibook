@@ -1,0 +1,54 @@
+Alpha Testing
+	cerca i bug presenti nele aree critiche
+	cerca problemi di usabilità
+	cerca funzionalità mancanti
+	cerca problemi di compatibilità
+	procedura
+		raccolta di tutti i requisiti funzionalità
+		stabilire un piano di test
+		effettuare cicli di controllo segnando ad ogni ciclo gli eventuali errori riscontrati
+		ripeti
+
+Accessibility Testing
+	controlla che il sito web sia accessibile anche ad utentoi con disabilità.
+	punti che devono essere controllati:
+	Se le etichette sono scritte e posizionate correttamente oppure no.
+	Se il contenuto audio / video è correttamente udibile/visibile o meno.
+	Se il rapporto di contrasto del colore viene mantenuto o meno.
+	Se le azioni di controllo per il video funzionano correttamente o no.
+	È necessario verificare se la navigazione tra le schede è un'operazione facile.
+	Se il testo del collegamento è scritto con la descrizione del contenuto invece di creare ambiguità.
+	Se viene fornita o meno una didascalia multimediale significativa.
+	Se le istruzioni sono fornite in modo chiaro o meno.
+	Se il contenuto è chiaro, conciso e comprensibile oppure no.
+	
+	I seguenti sono i punti chiave che il sito web dovrebbe soddisfare per l'accessibilità:
+	Il testo del link dovrebbe essere descrittivo per facilitare l'accesso agli utenti con disabilità visive.
+	Usa un linguaggio semplice per facilitare l'accesso agli utenti con disabilità cognitiva.
+	Implementare una navigazione coerente.
+	Dividere le frasi lunghe in frasi più brevi.
+	Evitare testo "luminoso".
+
+Beta Testing
+	Va eseguito dopo la conclusione dell'alpha test
+	Fornisce una panoramica completa dell'esperienza utente.
+
+	Elementi comuni per qualsiasi piano di beta test da includere:
+
+	Obiettivo: Indicare l'obiettivo del progetto in modo da spiegare perché è in fase di Beta Testing.
+	Campo di applicazione: menzionare chiaramente quali sono le aree da testare e quali non devono essere testate. Indica anche tutti i dati specifici da utilizzare per una funzione particolare (ad esempio, utilizza una carta di credito di prova per le convalide dei pagamenti: numero carta, CVV, data di scadenza, OTP, ecc.)
+	Approccio al test: menziona chiaramente su cosa concentrarti: funzionalità, interfaccia utente, risposta, ecc. Indica la procedura per registrare i bug e anche tutto ciò per fornire una prova (Screenshot / Video).
+	Pianificazione: specificare chiaramente le date di inizio e di fine con l'ora, il numero di cicli e la durata per ciclo.
+	Strumenti: strumento di registrazione dei bug e suo utilizzo.
+	Feedback: raccolta di feedback e metodi di valutazione.
+	Identificare e rivedere i criteri di ingresso e uscita.
+
+Black Box Testing
+	L'obiettivo principale di Black Box Testing è testare le funzionalità del sistema nel suo insieme.
+	
+Cross Browser Testing
+	Consiste nel testare il sito Web in più browser e assicurarti che funzioni come previsto senza compromessi in termini di qualità.
+	Effettuabile tramite software appositi
+
+White Box Testing
+	Consente di testare il codice e la struttura interna di un programma in modo da assicurarsi che le operazioni siano eseguite correttamente.

@@ -1,0 +1,29 @@
+body.examResult {
+  position: absolute;
+  left: 210px;
+  font-family: "Century Goyhic";
+  font-size: 18px;
+}
+
+div.text {
+  width: 80vw;
+  padding-left: 0%;
+  text-align: left;
+}
+
+table {
+  display: box;
+  width: 80vw;
+  margin-left: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 3px 3px 4px 4px #88888855;
+  border-radius: 5px;
+  border-color: transparent;
+  text-align: center;
+}
+
+table th {
+  border-color: transparent;
+  border-bottom-color: #000000;
+}

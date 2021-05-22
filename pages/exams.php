@@ -2,8 +2,11 @@
 <html lang='it'>
 
 <head>
+    <title> Esami </title>
     <link href='../css/exams.css' rel='Stylesheet' type='text/css'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'
+          description='La pagina mostra gli appelli e gli esoneri ai quali puoi prenotarti'
+          keywords='appeli prenotazione esoneri'>
 </head>
 
 
@@ -23,7 +26,7 @@
             }
         }
     ?>
-    <p>Qui puoi visualizzare gli appelli e gli esoneri ai quali puoi prenotarti o ai quali ti sei già prenotatə.</br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disinscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b></p>
+    <p>La pagina mostra gli appelli e gli esoneri ai quali puoi prenotarti o ai quali ti sei già prenotatə.</br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disinscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b></p>
     <div class='buttons'>
         <button id='prenotabili' class='prenotabili'>PRENOTABILI</button>
         <button id='prenotati' class='prenotati active'>PRENOTÀTI</button>
