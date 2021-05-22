@@ -49,28 +49,22 @@ table {
   text-align: center;
 }
 
+table th {
+  border-color: transparent;
+  border-bottom-color: #000000;
+}
 table td {
   border-color: transparent;
-  /*vertical-align: top; /* non sembra fare nulla */ /* !! da verificare: serve per non far apparire tutto al centro se il messaggio è lungo ?*/
-}
-
-/* se l'esame è selezionabile mostralo con il cursore*/
-table tr.exam.selectable {
-  cursor: pointer;
 }
 
 table tr.exam {
   cursor: not-allowed;
 }
 
+/* se l'esame è selezionabile mostralo con il cursore*/
 table tr.exam.selectable:hover {
-  /*box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/ /*!! da lasciare? Trovare altro modo per mostrare l'interattibilità*/
   color: #009999;
-}
-
-table th {
-  border-color: transparent;
-  border-bottom-color: #000000;
+  cursor: pointer;
 }
 
 /* style del modal per confermare le scelte*/

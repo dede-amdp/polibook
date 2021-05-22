@@ -29,7 +29,6 @@ table th {
 }
 
 table tr.exam-selectable:hover {
-  /*box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/ /*!! da lasciare? Trovare altro modo per mostrare l'interattibilità*/
   color: #009999;
   cursor: pointer;
 }
@@ -88,4 +87,11 @@ body.examResult img.no-result {
   display: block;
   margin: 0px auto;
   text-align: center;
+}
+
+@media only screen and (min-width: 800px) {
+  /* Per dispositivi con uno schermo largo setta una dimensione massima alla tabella*/
+  table {
+    width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  }
 }

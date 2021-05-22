@@ -20,12 +20,12 @@ request('../php/fetchResults.php').then(result => {
             div.innerHTML = `<p>Non ci sono risultati da mostrare</p><img class='no-result' width=250 src='../assets/nonPidove.svg'></img>`;
         }
     }
-});
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 
 
 function createModal(id, msg) {
     // costruisce il modal con l'id specificato e con il messaggio specificato nel corpo del modal
-    return `<div id='modal-${id}' class='modal'><div class='modal-content'><p align='center'>${msg}</p><button id='confirm-button-${id}'>ACCETTA</button><button id='refuse-button-${id}'>RIFIUTA</button><button id='cancel-button-${id}' class='cancel-button'>ANNULLA</button></div></div>`;
+    return `<div id='modal-${id}' class='modal'><div class='modal-content'><p>${msg}</p><button id='confirm-button-${id}'>ACCETTA</button><button id='refuse-button-${id}'>RIFIUTA</button><button id='cancel-button-${id}' class='cancel-button'>ANNULLA</button></div></div>`;
 }
 
 function assignCallback(id) {
@@ -35,7 +35,7 @@ function assignCallback(id) {
     var refuseButton = document.getElementById('refuse-button-' + id);
     var cancelButton = document.getElementById('cancel-button-' + id);
     acceptButton.addEventListener('click', () => accept(id, true));
-    refuseButton.addEventListener('click', () => accept(id, false));
+    refuseButton.addEventListener('click', () => { if (confirm('Vuoi davvero rifiutare il voto?')) accept(id, false); });
     cancelButton.addEventListener('click', () => modal.style.display = 'none');
     row.classList.add('selectable');
     row.addEventListener('click', () => modal.style.display = 'block');
