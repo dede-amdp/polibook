@@ -7,13 +7,17 @@ request('../php/fetchResults.php').then(result => {
             var ids = [];
             result.forEach(exam => {
                 var id = `${exam.corso},${exam.id},${exam.docente},${exam.ordinamento},${exam.data_svolgimento}`;
-                var grade = exam.status == 'IDONEO' || exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO' ? (exam.risultato) + 'L'.repeat(exam.lode) : exam.status;
-                htmlString += `<tr id='${id}' class='exam'><td>${exam.id}</td><td>${translated(lang, exam.nome)}</td><td>${exam.data_svolgimento}</td><td>${exam.data_scadenza}</td><td>${grade + (exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO' ? ` <img alt='${exam.status}' src='../assets/icons/${exam.status == 'ACCETTATO' ? 'green' : 'red'}.svg' width=20></img>` : '')}</td></tr>`;
-                htmlString += exam.status == 'IDONEO' || exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO' ? createModal(id, '<p><font color=#009999>Vuoi accettare il risultato?</font></p>') : '';
+                var idoneo = exam.status == 'IDONEO' || exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO';
+                var grade = idoneo ? (exam.risultato) + 'L'.repeat(exam.lode) : exam.status;
+                htmlString += `<tr id='${id}' class='exam${idoneo ? '-selectable' : ''}'><td>${exam.id}</td><td>${translated(lang, exam.nome)}</td><td>${exam.data_svolgimento}</td><td>${exam.data_scadenza}</td><td>${grade + (exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO' ? ` <img alt='${exam.status}' src='../assets/icons/${exam.status == 'ACCETTATO' ? 'green' : 'red'}.svg' width=20></img>` : '')}</td></tr>`;
+                htmlString += idoneo ? createModal(id, '<p><font color=#009999>Vuoi accettare il risultato?</font></p>') : '';
                 ids.push(id);
             });
             tabella.innerHTML = htmlString;
             ids.forEach(id => assignCallback(id));
+        } else {
+            var div = document.getElementById('exam-result-div');
+            div.innerHTML = `<p>Non ci sono risultati da mostrare</p><img class='no-result' width=250 src='../assets/nonPidove.svg'></img>`;
         }
     }
 });
@@ -21,7 +25,7 @@ request('../php/fetchResults.php').then(result => {
 
 function createModal(id, msg) {
     // costruisce il modal con l'id specificato e con il messaggio specificato nel corpo del modal
-    return `<div id='modal-${id}' class='modal'><div class='modal-content'><p>${msg}</p><button id='confirm-button-${id}'>ACCETTA</button><button id='refuse-button-${id}'>RIFIUTA</button><button id='cancel-button-${id}' class='cancel-button'>ANNULLA</button></div></div>`;
+    return `<div id='modal-${id}' class='modal'><div class='modal-content'><p align='center'>${msg}</p><button id='confirm-button-${id}'>ACCETTA</button><button id='refuse-button-${id}'>RIFIUTA</button><button id='cancel-button-${id}' class='cancel-button'>ANNULLA</button></div></div>`;
 }
 
 function assignCallback(id) {
@@ -39,6 +43,7 @@ function assignCallback(id) {
 
 function accept(id, acpt) {
     request('../php/acceptResult.php', { "dataString": id, "status": acpt ? 'ACCETTATO' : 'RIFIUTATO' }).then(result => {
+        console.log(result);
         if (result != null && result != undefined) {
             var message = 'Qualcosa è andato storto...';
             if (result) message = `L'operazione è avvenuta con successo`;

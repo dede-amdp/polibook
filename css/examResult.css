@@ -28,7 +28,7 @@ table th {
   border-bottom-color: #000000;
 }
 
-table tr.exam:hover {
+table tr.exam-selectable:hover {
   /*box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/ /*!! da lasciare? Trovare altro modo per mostrare l'interattibilità*/
   color: #009999;
   cursor: pointer;
@@ -82,4 +82,10 @@ div.modal button.cancel-button {
 div.modal button:hover,
 div.modal button:focus {
   box-shadow: 2px 2px 3px 3px #88888855; /* aggiungi ombra quando il cursore è sopra al pulsante per comunicare interattività*/
+}
+
+body.examResult img.no-result {
+  display: block;
+  margin: 0px auto;
+  text-align: center;
 }
