@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mag 12, 2021 alle 21:31
+-- Generation Time: Mag 22, 2021 alle 10:15
 -- Versione del server: 8.0.21
 -- PHP Version: 5.6.40
 
@@ -47,6 +47,16 @@ CREATE TABLE IF NOT EXISTS `appello` (
 INSERT INTO `appello` (`id_corso_esame`, `id_attdid_esame`, `ord_attdid_esame`, `id_docente_esame`, `data_svolgimento`, `data_inizio`, `data_fine`, `aula`, `messaggio`, `max_iscritti`) VALUES
 ('A', 'ANLMAT', '2020/2021', '000022', '2021-05-26 00:00:00', '2021-05-03 00:00:00', '2021-05-25 00:00:00', 'H', 'TEST TEST TEST', 50);
 
+--
+-- Trigger `appello`
+--
+DROP TRIGGER IF EXISTS `aggdata`;
+DELIMITER //
+CREATE TRIGGER `aggdata` AFTER UPDATE ON `appello`
+ FOR EACH ROW UPDATE risultato r SET data_svolgimento_appello=NEW.data_svolgimento WHERE r.id_docente_esame_appello=OLD.id_docente_esame AND r.id_attdid_esame_appello=OLD.id_attdid_esame AND r.ord_attdid_esame_appello=OLD.ord_attdid_esame AND r.data_svolgimento_appello=OLD.data_svolgimento AND r.id_corso_esame_appello=OLD.id_corso_esame
+//
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `attdid_cdl` (
   `anno` varchar(1) NOT NULL,
   `semestre` varchar(1) NOT NULL,
   `percorso` tinytext CHARACTER SET utf8  NOT NULL,
+  `caratterizzante` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_attdid`,`ord_attdid`,`id_cdl`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
@@ -67,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `attdid_cdl` (
 -- Dump dei dati per la tabella `attdid_cdl`
 --
 
-INSERT INTO `attdid_cdl` (`id_attdid`, `ord_attdid`, `id_cdl`, `anno`, `semestre`, `percorso`) VALUES
-('ANLMAT', '2020/2021', 'INGINF', '1', '1', 'AUTOMAZIONE');
+INSERT INTO `attdid_cdl` (`id_attdid`, `ord_attdid`, `id_cdl`, `anno`, `semestre`, `percorso`, `caratterizzante`) VALUES
+('ANLMAT', '2020/2021', 'INGINF', '1', '1', 'AUTOMAZIONE', 0);
 
 -- --------------------------------------------------------
 
@@ -270,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `studente` (
   `id_cdl` varchar(6) CHARACTER SET utf8  NOT NULL,
   `percorso` tinytext CHARACTER SET utf8  NOT NULL,
   `anno_iscrizione` varchar(9) NOT NULL,
-  `anno_di_corso` int NOT NULL,
+  `anno_corso` int NOT NULL,
   PRIMARY KEY (`matricola`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
@@ -278,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `studente` (
 -- Dump dei dati per la tabella `studente`
 --
 
-INSERT INTO `studente` (`matricola`, `password`, `email`, `nome`, `cognome`, `cf`, `data_nascita`, `indirizzo`, `foto`, `id_cdl`, `percorso`, `anno_iscrizione`, `anno_di_corso`) VALUES
+INSERT INTO `studente` (`matricola`, `password`, `email`, `nome`, `cognome`, `cf`, `data_nascita`, `indirizzo`, `foto`, `id_cdl`, `percorso`, `anno_iscrizione`, `anno_corso`) VALUES
 ('000000', 'PASSWORD', 'a.dellealpi@studenti.fake.it', 'Adelaide', 'Delle Alpi', 'AAAABBBBCCCCDDDD', '1997-10-10', 'Via dei monti sorridenti 9', NULL, 'INFING', 'AUTOMAZIONE', '2020', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
