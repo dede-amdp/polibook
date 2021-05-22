@@ -26,7 +26,7 @@
             }
         }
     ?>
-    <p>La pagina mostra gli appelli e gli esoneri ai quali puoi prenotarti o ai quali ti sei già prenotatə.</br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disinscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b></p>
+    <p>La pagina mostra gli appelli e gli esoneri ai quali puoi prenotarti o ai quali ti sei già prenotatə.</br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disiscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b></p>
     <div class='buttons'>
         <button id='prenotabili' class='prenotabili'>PRENOTABILI</button>
         <button id='prenotati' class='prenotati active'>PRENOTÀTI</button>

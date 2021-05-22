@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang='it'>
-<<<<<<< HEAD
 
-=======
->>>>>>> 9f0797918a36d6c3f075ee7ea4c197dc93eff3a1
 <head>
     <title> Carriera </title>
     <link href='../css/career.css' type='text/css' rel='Stylesheet'/>
