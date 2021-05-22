@@ -64,6 +64,26 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // permette a mysqli 
         return null;
     }
 
+    function update_DB($conn, $query, ...$vals){
+        try{
+            $statement = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($statement, $query)){ // se c'è un problema con la query
+                echo 'Errore nell\' update dei dati';
+                return false;
+            }else{
+                if($vals != null && count($vals) > 0){
+                    $bindings = str_repeat('s', count($vals)); // serve per indicare quanti valori deve aspettarsi la il processo di collegamento
+                    mysqli_stmt_bind_param($statement, $bindings, ...$vals); // collega i valori inseriti con quelli indicati nella query 
+                }
+                mysqli_stmt_execute($statement); // esegui la query
+                return true; //se la query va a buon fine la funzione ritorna 'vero'
+            }
+        }catch(mysqli_sql_exception $e){
+            return null;
+        }
+        return null;
+    }
+
     function delete_DB($conn, $query, ...$vals){
         try{
             $statement = mysqli_stmt_init($conn); // inizializza lo statement
