@@ -26,7 +26,7 @@
         echo '<p>';
     ?>
     <div class='text'>
-        <p>Questa sezione permette di selezionare i questionari delle unita didattiche previste per la materia.</p>
+        <p>Questa sezione permette di selezionare i questionari delle unità didattiche previste per la materia.</p>
         <p>Questionari di valutazione </p>
     </div>
     <table id='didactic-unit-table' class="table" borde = 2px>

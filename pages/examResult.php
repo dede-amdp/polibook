@@ -25,7 +25,7 @@
     ?>
     <div class='text'>
         <p>La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
-           Per accedere alla funzione di verbalizzazione on-line cliccare l'icona mostrata a fianco di ogni esito.</p>
+           Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attivita didattica.</p>
         <p>Elenco esami superato </p>
     </div>
     <table id='exam-result-table' class="table" border = 2px>

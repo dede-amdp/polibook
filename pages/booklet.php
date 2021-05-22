@@ -29,7 +29,7 @@
     <p id='statistics' class='statistics'></p>
         <div class='graphs'>
             <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>
-            <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi cfu</canvas>
+            <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi CFU</canvas>
         </div>
         <div class='buttons'>
             <button id='superati' class='superati'>SUPERATI</button>
