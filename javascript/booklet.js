@@ -28,7 +28,8 @@ request('../php/fetchPassedExams.php', { matricola: matricola, type: 'grades', p
         superatiTab.innerHTML = "<p>Riprova più tardi<p>"; // c'è un errore nella richiesta
     }
 
-});
+}).catch(error => alert('C\'è stato un errore imprevisto'));
+
 // richiede gli esami pianificati
 request('../php/fetchPassedExams.php', { matricola: matricola, type: 'grades', passed: false }).then(examData => {
     if (examData != undefined && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
@@ -46,7 +47,7 @@ request('../php/fetchPassedExams.php', { matricola: matricola, type: 'grades', p
     else { //se la richiesta ha fallito
         pianificatiTab.innerHTML = "<p>Riprova più tardi<p>"; // c'è un errore nella richiesta
     }
-});
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 
 // le seguenti callback associate ai pulsanti servono per scambiare le due tabelle (esami superati e pianificati)
 superatiButton.onclick = function () {

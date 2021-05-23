@@ -59,7 +59,7 @@ div.modal-content {
 }
 
 div.modal-content p {
-  text-align: left; /* allinea il testo a sinistra*/
+  text-align: center; /* allinea il testo a sinistra*/
 }
 
 div.modal button {

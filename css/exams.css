@@ -57,10 +57,6 @@ table td {
   border-color: transparent;
 }
 
-table tr.exam {
-  cursor: not-allowed;
-}
-
 /* se l'esame è selezionabile mostralo con il cursore*/
 table tr.exam.selectable:hover {
   color: #009999;

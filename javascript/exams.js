@@ -22,7 +22,7 @@ request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result
                 var msg = '';
                 var legal = isLegal(row);
                 if (legal.isLegal) {
-                    msg = toShow + `<br><font color=#009999>Sei sicuro di volerti iscrivere all'esame?</font>`;
+                    msg = toShow + `<br><font color=#009999><b>Sei sicuro di volerti iscrivere all'esame?</b></font>`;
                     ids.push(id);
                 } else {
                     msg = toShow + `<br><font color=#009999>Non puoi iscriverti all'esame perché ${legal.cause}</font>`;
@@ -47,7 +47,7 @@ request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result
     } else {
         prenotabiliTab.innerHTML = '<p>Riprova più tardi</p>';
     }
-}).catch(error => console.log(error));
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 
 // richiesta degli esami prenotati
 request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result => {
@@ -66,7 +66,7 @@ request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result =
                 var msg = '';
                 var legal = isLegal(row);
                 if (legal.isLegal) {
-                    msg = toShow + `<br><font color=#009999>Sei sicuro di voler annullare l'iscrizione?</font>`;
+                    msg = toShow + `<br><font color=#009999><b>Sei sicuro di voler annullare l'iscrizione?</b></font>`;
                     ids.push(id);
                 } else {
                     msg = toShow + `<br><font color=#009999>Non puoi annullare l'iscrizione all'esame perché ${legal.cause}</font>`;
@@ -91,7 +91,7 @@ request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result =
     } else {
         prenotatiTab.innerHTML = '<p>Riprova più tardi</p>';
     }
-}).catch(error => console.log(`C'è stato un errore nella richiesta dei dati, le chiediamo di riprovare più tardi`));
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 
 
 prenotatiButton.onclick = function () {

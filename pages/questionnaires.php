@@ -25,7 +25,7 @@
         <p>Questa pagina consente di compilare il questionario di valutazione della didattica.</p>
         <p>Elenco Attività didattiche da valutare </p>
     </div>
-    <table id='questionnaires-table' class="table" borde = 2px>
+    <table id='questionnaires-table' class="table" border = 2px>
         <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Anno frequentazione</th><th>Stato</th></tr>
         <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td>
         

@@ -12,7 +12,7 @@ request('../php/getCareerExams.php', { type: 'A' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 //CARATTERIZZANTI - richiede gli esami caratterizzanti
 request('../php/getCareerExams.php', { type: 'B' }).then(result => {
     var data = buildSection(result, 'B - Caratterizzanti');
@@ -20,7 +20,7 @@ request('../php/getCareerExams.php', { type: 'B' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 //LINGUA,PROVA FINALE E TIROCINIO/STAGE - richiede gli esami di lingua, prova finale e tirocinio
 request('../php/getCareerExams.php', { type: 'C' }).then(result => {
     var data = buildSection(result, 'C - Lingua, Prova finale e Tirocinio/Stage');
@@ -28,7 +28,7 @@ request('../php/getCareerExams.php', { type: 'C' }).then(result => {
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
-}).catch(error => console.log('Errore nella richiesta, riprova più tardi'));
+}).catch(error => alert('C\'è stato un errore imprevisto'));
 htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`; // aggiunge la riga del totale
 tabella.innerHTML = htmlString; // mostra i dati nella tabella
 

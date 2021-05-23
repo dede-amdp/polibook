@@ -14,14 +14,16 @@
         require_once '../php/dbh.inc.php';
         $matricola = '000000'; //!! prendere da login
         $conn = open_conn();
-        $query = 'SELECT * FROM studente WHERE matricola=?';
-        $result = fetch_DB($conn, $query, $matricola);
-        $conn -> close();
-        echo '<p>';
-        if($result && $row = mysqli_fetch_assoc($result)){
-            echo 'Risultati degli esami di <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>';
+        if($conn){
+            $query = 'SELECT * FROM studente WHERE matricola=?';
+            $result = fetch_DB($conn, $query, $matricola);
+            $conn -> close();
+            echo '<p>';
+            if($result && $row = mysqli_fetch_assoc($result)){
+                echo 'Risultati degli esami di <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>';
+            }
+            echo '<p>';
         }
-        echo '<p>';
     ?>
     <div class='text'>
         <p>La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
