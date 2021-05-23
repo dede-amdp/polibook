@@ -26,7 +26,6 @@
             echo '<p>';
         }
     ?>
-<<<<<<< HEAD
     <section aria-label="Analisi della carriera">
         <div class='text'>
             <h4><span style="font-weight:normal;">La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
@@ -38,11 +37,11 @@
             <tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td>
         </table>
     </section>
-=======
+
     <div class='text'>
         <p>La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
            Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attivita didattica.</p>
-        <p>Elenco esami superati </p>
+        <p>Elenco esami sostenuti </p>
     </div>
     <div id='exam-result-div'>
         <table id='exam-result-table' class="table" border = 2px>
@@ -51,7 +50,6 @@
         </table>
     </div>
 
->>>>>>> 5af5c232c96377c0d3fdcb23588cb04d7d0adab5
 </body>
 <script src='../javascript/methods.js'></script>
 <script src='../javascript/results.js'></script>

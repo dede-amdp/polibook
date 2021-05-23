@@ -24,14 +24,14 @@
         }
         echo '<p>';
     ?>
-<<<<<<< HEAD
+
     <section aria-label="Analisi della carriera">
         <div class='text'>
             <p>Questa pagina consente di compilare il questionario di valutazione della didattica.</p>
             <h4><span style="font-weight:normal;">Elenco Attività didattiche da valutare </span></h4>
         </div>
         <table id='questionnaires-table' class="table" borde = 2px>
-            <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Anno frequentazione</th><th>Complilato</th></tr>
+            <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Docente</th><th>Complilato</th></tr>
             <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td>
         </table>
     </section>
@@ -42,7 +42,7 @@
     </div>
     <table id='questionnaires-table' class="table" border = 2px>
         <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Anno frequentazione</th><th>Stato</th></tr>
-        <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td>
+        <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>Agostino Marcello Mangini</td><td>si</td>
         
     </table>
 
