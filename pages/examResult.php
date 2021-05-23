@@ -4,9 +4,10 @@
 <head>
     <title> Risultati esami </title>
     <link href='../css/examResult.css' type='text/css' rel='Stylesheet'/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' 
-          desctipion= 'la pagina mostra  i risultati degli esami a cui ci si è iscritti'
-          keywords ='esami'>
+    <meta name='viewport' 
+          content='width=device-width, initial-scale=1.0' >
+    <meta name="description" 
+          content="la pagina mostra  i risultati degli esami a cui ci si è iscritti">
 </head>
 <body class='examResult'>
 <?php
@@ -25,10 +26,27 @@
             echo '<p>';
         }
     ?>
+    <section aria-label="Analisi della carriera">
+        <div class='text'>
+            <h4><span style="font-weight:normal;">La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
+            Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attivita didattica.</span></p>
+            <p>Elenco esami superato </p>
+        </div>
+        <table id='exam-result-table' class="table" borde = 2px>
+            <tr><th>ID</th><th>Attivita didattica</th><th>Data svolgimento</th><th>Data verbalizzazione</th><th>risultato</th></tr>
+            <tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td>
+        </table>
+    </section>
+
     <div class='text'>
         <p>La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
+<<<<<<< HEAD
            Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</p>
         <p>Elenco esami superati </p>
+=======
+           Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</p>
+        <p>Elenco esami sostenuti </p>
+>>>>>>> 2507e80a10320447295d5c5df0a45607e10aa395
     </div>
     <div id='exam-result-div'>
         <table id='exam-result-table' class="table" border = 2px>

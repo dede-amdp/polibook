@@ -4,10 +4,10 @@
 <head>
     <title> Carriera </title>
     <link href='../css/career.css' type='text/css' rel='Stylesheet'/>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'
-          description='Questa pagina visualizza la situazione dello studente in relazione alle regole previste dal proprio percorso formativo'
-          keywords='carriera studente'>
-          
+    <meta name='viewport' 
+          content='width=device-width, initial-scale=1.0' >
+    <meta name="description" 
+          content="Questa pagina visualizza la situazione dello studente in relazione alle regole previste dal proprio percorso formativo">
 </head>
 
 <body class="career">
@@ -27,9 +27,10 @@
         }
     ?>
     <div class="text">
-    <p> Questa pagina visualizza la situazione dello studente in relazione alle regole previste dal percorso formativo intrapreso nell'ateneo.<br>
-        Ogni riga nella tabella rappresenta un certo tipo di crediti che lo studente deve ottenere mediante le attività didattiche. <br>
-        Quando tutti i crediti richiesti sono ottenuti, lo studente può conseguire il titolo previsto dal corso di studio.
+    <section aria-label="Analisi della carriera">
+    <h4><span style="font-weight:normal;"> Questa pagina visualizza la situazione dello studente in relazione alle regole previste dal percorso formativo intrapreso nell'ateneo.<br>
+        Ogni riga nella tabella rappresenta un certo tipo di crediti che lo studente deve ottenere mediante le attività didattiche.<br>
+        Quando tutti i crediti richiesti sono ottenuti, lo studente può conseguire il titolo previsto dal corso di studio.</span>
     </p>
     </div> 
     <!-- !! aggiungere metodo che inserica il totale dei CFU per ogni categoria,
@@ -56,6 +57,7 @@
         <tr><td>G - Stage e tirocini</td><td>0</td><td></td><td></td><td></td><td></td><td></td></tr>
         <tr><td>H - Prova finale</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr> -->
     </table>
+    <section aria-label="Analisi della carriera">
     </body>
     <script src='../javascript/methods.js'></script>
     <script src='../javascript/career.js'></script>
