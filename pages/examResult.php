@@ -29,31 +29,15 @@
     <section aria-label="Analisi della carriera">
         <div class='text'>
             <h4><span style="font-weight:normal;">La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
-            Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attivita didattica.</span></p>
+            Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</span></p>
             <p>Elenco esami superato </p>
         </div>
         <table id='exam-result-table' class="table" borde = 2px>
             <tr><th>ID</th><th>Attivita didattica</th><th>Data svolgimento</th><th>Data verbalizzazione</th><th>risultato</th></tr>
-            <tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td>
+            <!--tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td></tr-->
         </table>
     </section>
 
-    <div class='text'>
-        <p>La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
-<<<<<<< HEAD
-           Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</p>
-        <p>Elenco esami superati </p>
-=======
-           Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</p>
-        <p>Elenco esami sostenuti </p>
->>>>>>> 2507e80a10320447295d5c5df0a45607e10aa395
-    </div>
-    <div id='exam-result-div'>
-        <table id='exam-result-table' class="table" border = 2px>
-            <tr><th>ID</th><th>Attivita didattica</th><th>Data svolgimento</th><th>Data verbalizzazione</th><th>risultato</th></tr>
-            <!--<tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td>-->
-        </table>
-    </div>
 
 </body>
 <script src='../javascript/methods.js'></script>
