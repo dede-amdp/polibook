@@ -11,9 +11,10 @@
 </head>
 <body class='secretariat'>
     <?php
+        session_start();
+        if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
-        // !! VERIFICA LOGIN
     ?>
     <stection aria-label="Analisi della carriera">
         <div class="text">

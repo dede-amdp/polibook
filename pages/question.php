@@ -12,13 +12,14 @@
 
 <body class='question'>
 <?php
+        session_start();
+        if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
-        // !! VERIFICA LOGIN
-        $matricola = '000000'; //!! prendere da login
+        $matricola = $_SESSION['matricola'];
         $conn = open_conn();
         if($conn){
-            $query = 'SELECT * FROM studente WHERE matricola=?';
+            $query = 'SELECT nome, cognome FROM studente WHERE matricola=?';
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){

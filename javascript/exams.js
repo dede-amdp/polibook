@@ -3,10 +3,9 @@ let prenotatiButton = document.getElementById('prenotati');
 let prenotabiliTab = document.getElementById('prenotabili-tab');
 let prenotatiTab = document.getElementById('prenotati-tab');
 
-const matricola = '000000'; //!!Da cambiare
 var lang = 'ita'; // !! Da cambiare
 // richiesta degli esami prenotabili
-request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result => {
+request('../php/fetchPrenotabiliData.php').then(result => {
     if (result != undefined && result != null) {
         // creare la tabella che conterrà gli esami prenotabili
         if (result.length > 0) {
@@ -50,7 +49,7 @@ request('../php/fetchPrenotabiliData.php', { matricola: matricola }).then(result
 }).catch(error => alert('C\'è stato un errore imprevisto'));
 
 // richiesta degli esami prenotati
-request('../php/fetchPrenotatiData.php', { matricola: matricola }).then(result => {
+request('../php/fetchPrenotatiData.php').then(result => {
     if (result != undefined && result != null) {
         // crea la tabella che conterrà ciascuna prenotazione effettuata dall'utente
         if (result.length > 0) {
@@ -109,7 +108,7 @@ prenotabiliButton.onclick = function () {
     prenotabiliButton.classList.remove('active');
 };
 
-function assignCallback(id, callback = (matricola, id) => { }) {
+function assignCallback(id, callback = (id) => { }) {
     row = document.getElementById(id);
     var modal = document.getElementById('modal-' + id); // trova il modal associato alla tabella
     var okButton = document.getElementById('confirm-button-' + id); // trova il pulsante di conferma
@@ -117,7 +116,7 @@ function assignCallback(id, callback = (matricola, id) => { }) {
     if (callback == null || callback == undefined)
         okButton.style.display = 'none';
     else
-        okButton.addEventListener('click', () => callback(matricola, id)); // aggiunge gli event listeners per l'inserimento dell'iscrizione all'esame 
+        okButton.addEventListener('click', () => callback(id)); // aggiunge gli event listeners per l'inserimento dell'iscrizione all'esame 
     cancelButton.addEventListener('click', () => modal.style.display = 'none'); // e per nascondere il modal 
     row.classList.add('selectable'); // modifica la classe della riga
     row.addEventListener('click', () => modal.style.display = 'block'); //mostra il modal
@@ -137,8 +136,8 @@ function isLegal(row) {
     return { 'isLegal': date >= today && iscrivibile, 'cause': cause };
 }
 
-function insertExam(matricola, id) {
-    request('../php/insertExam.php', { matricola: matricola, dataString: id }).then(result => {
+function insertExam(id) {
+    request('../php/insertExam.php', { dataString: id }).then(result => {
         if (result) {
             if (result == 'inc')
                 alert('Iscrizione non effettuata: i dati inseriti sono incoerenti');
@@ -155,11 +154,11 @@ function insertExam(matricola, id) {
     }).catch(error => console.log(`C'è stato un errore durante l'iscrizione all'esame, la preghiamo di riprovare più tardi`));
 }
 
-function deleteExam(matricola, id) {
+function deleteExam(id) {
     if (confirm('Sei davvero sicuro di voler annullare l\'iscrizione?')) {
         // dato che il disiscriversi può essere irreparabile, la conferma è chiesta 2 volte
         // richiesta di eliminazione dell'iscrizione dalla tabella 'risultato'
-        request('../php/deleteExam.php', { matricola: matricola, dataString: id }).then(result => {
+        request('../php/deleteExam.php', { dataString: id }).then(result => {
             //!! per le delete queries mysql ritorna sempre false (anche se avviene con successo): come vedere se la disinscrizione non è avvenuta?
             alert('Hai annullato l\'iscrizione');
             document.location.reload(); //ricarica il documento

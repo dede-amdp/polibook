@@ -1,8 +1,10 @@
 <?php
     require_once './dbh.inc.php';
+    session_start();
+        if(!isset($_SESSION['id'])) header('Location: ../index.php');
     $input = json_decode(file_get_contents('php://input'), true); // prendi i dati dalla richiesta AJAX
     // !! posso prenderli direttamente da $_SESSION?
-    $matricola = $input['matricola'];
+    $matricola = $_SESSION['matricola'];
     if($input['type'] == 'grades'){ //se la richiesta chiede i voti
         $superato = $input['passed'];
         $query = 'SELECT a.id, a.nome, cfu, data_svolgimento as data, voto, lode, d.nome as docente, d.cognome

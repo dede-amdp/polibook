@@ -1,8 +1,10 @@
 <?php
 /* Inserisce nella tabella 'risultato' del database i dati indicati in $table*/
+    session_start();
+    if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once './dbh.inc.php';
     $inputs = json_decode(file_get_contents('php://input'), true);
-    $matricola = $inputs['matricola'];
+    $matricola = $_SESSION['matricola'];
     $conn = open_conn();
     $id = explode(',', mysqli_real_escape_string($conn, $inputs['dataString'])); // inserisce gli escaper characters per impedire SQLinjection
     if(verify($conn, $id)){

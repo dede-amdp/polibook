@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mag 22, 2021 alle 10:15
+-- Generation Time: Mag 23, 2021 alle 18:20
 -- Versione del server: 8.0.21
 -- PHP Version: 5.6.40
 
@@ -27,14 +27,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `appello` (
-  `id_corso_esame` varchar(6) CHARACTER SET utf8  NOT NULL,
+  `id_corso_esame` varchar(10) CHARACTER SET utf8  NOT NULL,
   `id_attdid_esame` varchar(10) CHARACTER SET utf8  NOT NULL,
   `ord_attdid_esame` varchar(10) CHARACTER SET utf8  NOT NULL,
   `id_docente_esame` varchar(6) CHARACTER SET utf8  NOT NULL,
   `data_svolgimento` datetime NOT NULL,
   `data_inizio` datetime NOT NULL,
   `data_fine` datetime NOT NULL,
-  `aula` text NOT NULL,
+  `aula` tinytext CHARACTER SET utf8  NOT NULL,
   `messaggio` text CHARACTER SET utf8  NOT NULL,
   `max_iscritti` int NOT NULL,
   PRIMARY KEY (`id_corso_esame`,`id_attdid_esame`,`ord_attdid_esame`,`id_docente_esame`,`data_svolgimento`)
@@ -108,15 +108,15 @@ INSERT INTO `attivita_didattica` (`id`, `ordinamento`, `cfu`, `nome`, `descrizio
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `avvisi`
+-- Struttura della tabella `avviso`
 --
 
-CREATE TABLE IF NOT EXISTS `avvisi` (
+CREATE TABLE IF NOT EXISTS `avviso` (
   `timestamp` datetime NOT NULL,
   `titolo` tinytext NOT NULL,
   `contenuto` text NOT NULL,
   PRIMARY KEY (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8  ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS `cdl` (
   `descrizione` text NOT NULL,
   `cfu_totali` int NOT NULL,
   `id_facolta` varchar(10) NOT NULL,
+  `tipologia` tinytext NOT NULL,
+  `durata` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
 
@@ -137,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `cdl` (
 -- Dump dei dati per la tabella `cdl`
 --
 
-INSERT INTO `cdl` (`id`, `nome`, `descrizione`, `cfu_totali`, `id_facolta`) VALUES
-('INFING', '<ita>Ingegneria Inforatica</ita>\r\n<eng>Information Engineering</eng>', '<ita>prova</ita>\r\n<eng>test</eng>', 180, 'INGELEINF');
+INSERT INTO `cdl` (`id`, `nome`, `descrizione`, `cfu_totali`, `id_facolta`, `tipologia`, `durata`) VALUES
+('INFING', '<ita>Ingegneria Inforatica</ita>\r\n<eng>Information Engineering</eng>', '<ita>prova</ita>\r\n<eng>test</eng>', 180, 'INGELEINF', 'TRIENNALE', 3);
 
 -- --------------------------------------------------------
 
@@ -169,7 +171,7 @@ INSERT INTO `docente` (`id`, `nome`, `cognome`, `CV`, `cellulare`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `esame` (
-  `id_corso` varchar(6) CHARACTER SET utf8  NOT NULL,
+  `id_corso` varchar(10) CHARACTER SET utf8  NOT NULL,
   `id_attdid` varchar(10) CHARACTER SET utf8  NOT NULL,
   `ord_attdid` varchar(10) NOT NULL,
   `id_docente` varchar(6) NOT NULL,
@@ -270,13 +272,13 @@ CREATE TABLE IF NOT EXISTS `risultato` (
 
 CREATE TABLE IF NOT EXISTS `studente` (
   `matricola` varchar(6) NOT NULL,
-  `password` text NOT NULL,
-  `email` text NOT NULL,
-  `nome` tinytext NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8  NOT NULL,
+  `email` text CHARACTER SET utf8  NOT NULL,
+  `nome` tinytext CHARACTER SET utf8  NOT NULL,
   `cognome` tinytext NOT NULL,
   `cf` varchar(16) NOT NULL,
   `data_nascita` date NOT NULL,
-  `indirizzo` mediumtext NOT NULL,
+  `indirizzo` text CHARACTER SET utf8  NOT NULL,
   `foto` blob,
   `id_cdl` varchar(6) CHARACTER SET utf8  NOT NULL,
   `percorso` tinytext CHARACTER SET utf8  NOT NULL,

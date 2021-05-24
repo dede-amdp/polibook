@@ -11,11 +11,13 @@
 </head>
 <body class='questionnaires'>
 <?php
+        session_start();
+        if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
-        $matricola = '000000'; //!! prendere da login
+        $matricola = $_SESSION['matricola']; //!! prendere da login
         $conn = open_conn();
-        $query = 'SELECT * FROM studente WHERE matricola=?';
+        $query = 'SELECT nome, cognome FROM studente WHERE matricola=?';
         $result = fetch_DB($conn, $query, $matricola);
         $conn -> close();
         echo '<p>';
@@ -32,20 +34,8 @@
         </div>
         <table id='questionnaires-table' class="table" borde = 2px>
             <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Docente</th><th>Complilato</th></tr>
-            <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td>
+            <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td></tr>
         </table>
     </section>
-=======
-    <div class='text'>
-        <p>Questa pagina consente di compilare il questionario di valutazione della didattica.</p>
-        <p>Elenco Attività didattiche da valutare </p>
-    </div>
-    <table id='questionnaires-table' class="table" border = 2px>
-        <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Anno frequentazione</th><th>Stato</th></tr>
-        <tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>Agostino Marcello Mangini</td><td>si</td>
-        
-    </table>
-
->>>>>>> 5af5c232c96377c0d3fdcb23588cb04d7d0adab5
 </body>
 </html>

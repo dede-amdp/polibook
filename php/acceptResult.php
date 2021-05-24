@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once '../php/dbh.inc.php';
     $inputs = json_decode(file_get_contents('php://input'), true);
     $matricola = '000000'; //!!DA CAMBIARE PER SESSION

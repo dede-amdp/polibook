@@ -1,5 +1,7 @@
 <?php
 /* Elimina dalla tabella 'risultato' l'esame selezionato dall'utente */
+    session_start();
+    if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once './dbh.inc.php';
     $inputs = json_decode(file_get_contents('php://input'), true);
     $matricola = $inputs['matricola'];
