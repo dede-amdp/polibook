@@ -18,7 +18,7 @@
             $_SESSION['error_msg'] = 'Compila tutti i campi';
             header('Location: ../index.php');
         } elseif ($isMatricolaValid == false) {
-            $_SESSION['error_msg'] = 'La matricola inserita non è valida!';
+            $_SESSION['error_msg'] = 'La matricola o la password inserite non sono valide!';
             header('Location: ../index.php');
         } else {
             $query = "
@@ -37,7 +37,7 @@
                         $_SESSION['matricola'] = $matricola;
                         header('Location: ../pages/booklet.php'); // vai al libretto
                     } else {
-                        $_SESSION['error_msg'] = "Password errata!";
+                        $_SESSION['error_msg'] = 'La matricola o la password inserite non sono valide!';
                         header('Location: ../index.php');
                     }
                 }

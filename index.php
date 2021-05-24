@@ -14,7 +14,7 @@
         <div class="header">
         <h2> <span style= 'color:#058394'> LOGIN </span> </h2>
        
-        <p class="imgcontainer" align="center">
+        <p class="imgcontainer">
         <img src="./assets/poliba_logo.svg" alt="logo" class="logo">
         <p>
         </div>
@@ -34,8 +34,6 @@
             <br><label>
                 <input type="checkbox" checked="checked" name="remember"> Ricordami
             </label>
-            
-            <br><button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
             <br><span class="psw">Forgot <a href="/php/resetPassword.php">password?</a></span>
         
         </div>
@@ -47,7 +45,7 @@
                                     <!-- form per la registrazione --> 
 
 <div id="id01" class="modal">
-    <form class="modal-content animate" form = "/php/registarti.php" method="post">
+    <form class="modal-content animate" action = "./php/registrazione.php" method="post">
         <div class="imgcontainer">
            <img src="./assets/poliba_logo.svg" alt="logo" class="logo">
            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -57,10 +55,6 @@
         </div>
         
     <div class="container">
-    <br><label><b>Matricola</b></label>
-    <input type="text" id="username" placeholder="Username" name="username" required>
- 
-  
     <br><label><b>Nome </b></label>
     <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlenght='50' required>
       
