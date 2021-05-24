@@ -35,8 +35,8 @@
         </div>
         <table id='didactic-unit-table' class="table" borde = 2px>
             <tr><th>unità didattica</th><th>Docente</th><th>tipo attività</th><th>partizione</th><th>Stato</th></tr>
-            <tr><td><a href=https://www.google.it>2633 - Automazione industriale</a></td><td>Agostino Marcello Mangini</td><td>Esercitazione</td><td>Nessun partizionamento</td><td>no</td>
-            <tr><td><a href=https://www.google.it>2633 - Automazione industriale</a></td><td>Agostino Marcello Mangini</td><td>Lezione</td><td>Nessun partizionamento</td><td>no</td>
+            <tr><td><a href=http://localhost/polibook/pages/question.php>2633 - Automazione industriale</a></td><td>Agostino Marcello Mangini</td><td>Esercitazione</td><td>Nessun partizionamento</td><td>no</td>
+            <tr><td><a href=http://localhost/polibook/pages/question.php>2633 - Automazione industriale</a></td><td>Agostino Marcello Mangini</td><td>Lezione</td><td>Nessun partizionamento</td><td>no</td>
         </table>
     </section>
 </body>

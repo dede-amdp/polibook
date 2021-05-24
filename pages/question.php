@@ -29,7 +29,7 @@
     ?>
     <section aria-label="Questionario">
     <h2><span style="font-weight:normal;"> Questionario di automazione industriale </span></h2>
-    <form>
+    <form class="domande">
         <div class='form-element radio-buttons'>
             <span> Le attivita didattiche (lezioni, esercitazioni, laboratori, ecc) online per questo insegnamento sono di facile utilizzo</span></br>
             <label for='firstAnswer'> 
@@ -136,7 +136,7 @@
             <textarea cols="100" rows="1"> </textarea>
             </label>
         </div>
-        <button type='Invia'>Invia questionario </button> 
+        <button class="pulsante" type='Invia'>Invia questionario </button> 
     </form>
     </region>
 </body>

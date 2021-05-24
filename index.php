@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang='it'>
 <head>
+    <title> Login </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='./css/login.css' rel='Stylesheet' type='text/css'>
+    <meta name="description" 
+          content="Questa pagina permette di effettuare il login e la registrazione al sito">
 </head>
 <body src="./assets/poliba_backgr.png">
     <!-- prima pagina del login al portale -->

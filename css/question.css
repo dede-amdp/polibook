@@ -1,29 +1,60 @@
 body.question {
-  position: absolute;
-  left: 210px;
-  font-family: "Century Goyhic";
-  font-size: 18px;
+    position:absolute;
+    top: 20px;
+    left: 260px;
+    width: 78%;
+    height: 100vh;
+    font-family: "Century Goyhic";
+    font-size: 18px;
+    background-color:#eee;
+    
+    align-items: center;
+    justify-content: center;
+  }
+
+.domande {
+    background-color: white;
+    padding: 60px;
+    width: 650px;
+    max-width: (100% - 60px);
+    border-radius: 5px;
+  }
+  
+.form-element {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 
-div.text {
-  width: 80vw;
-  padding-left: 0%;
-  text-align: left;
+.form-element span {
+  margin-bottom: 10px;
 }
 
-table {
-  display: box;
-  width: 80vw;
-  margin-left: 10px;
-  margin-top: 20px;
-  padding: 10px;
-  box-shadow: 3px 3px 4px 4px #88888855;
+input, textarea {
+  border: 1px solid #d0d2e2;
+  line-height: 1;
+  padding: 5px;
   border-radius: 5px;
-  border-color: transparent;
-  text-align: center;
+  resize: none;
+  cursor: pointer;
 }
 
-table th {
-  border-color: transparent;
-  border-bottom-color: #000000;
+.radio-buttons label {
+  cursor: pointer;
+}
+
+button.pulsante {
+  width: 30%;
+  padding: 20px;
+  color: white;
+  background-color: #009999;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.checkbox-button label {
+  cursor: pointer;
+  border-bottom: 50px;
+  border-radius: 0;
 }
