@@ -6,31 +6,35 @@ var cfuMancanti = 0; // i cfu mancanti al completamento della carriera
 var cfuTotali = 0; // cfu totali da avere per il conseguimento della carriera
 var htmlString = '<tr><th>Regola</th><th>CFU Totali</th><th>CFU Conseguiti</th><th>CFU Mancanti</th><th>Superato</th></tr>';
 //BASE - richiede gli esami non caratterizzanti
-request('../php/getCareerExams.php', { type: 'A' }).then(result => {
+request('../php/fetchCareer.php', { type: 'A' }).then(result => {
     var data = buildSection(result, 'A - Base');
     htmlString += data['htmlString']; // aggiunge la sezione alla tabella
     cfuMancanti += data['man'];
     cfuConseguiti += data['con'];
     cfuTotali += data['tot'];
+
+    //CARATTERIZZANTI - richiede gli esami caratterizzanti
+    request('../php/fetchCareer.php', { type: 'B' }).then(result => {
+        var data = buildSection(result, 'B - Caratterizzanti');
+        htmlString += data['htmlString']; // aggiunge la sezione alla tabella
+        cfuMancanti += data['man'];
+        cfuConseguiti += data['con'];
+        cfuTotali += data['tot'];
+
+        //LINGUA,PROVA FINALE E TIROCINIO/STAGE - richiede gli esami di lingua, prova finale e tirocinio
+        request('../php/fetchCareer.php', { type: 'C' }).then(result => {
+            var data = buildSection(result, 'C - Lingua, Prova finale e Tirocinio/Stage');
+            htmlString += data['htmlString']; // aggiunge la sezione alla tabella
+            cfuMancanti += data['man'];
+            cfuConseguiti += data['con'];
+            cfuTotali += data['tot'];
+
+            htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`; // aggiunge la riga del totale
+            tabella.innerHTML = htmlString; // mostra i dati nella tabella
+        }).catch(error => alert('C\'è stato un errore imprevisto'));
+    }).catch(error => alert('C\'è stato un errore imprevisto'));
 }).catch(error => alert('C\'è stato un errore imprevisto'));
-//CARATTERIZZANTI - richiede gli esami caratterizzanti
-request('../php/getCareerExams.php', { type: 'B' }).then(result => {
-    var data = buildSection(result, 'B - Caratterizzanti');
-    htmlString += data['htmlString']; // aggiunge la sezione alla tabella
-    cfuMancanti += data['man'];
-    cfuConseguiti += data['con'];
-    cfuTotali += data['tot'];
-}).catch(error => alert('C\'è stato un errore imprevisto'));
-//LINGUA,PROVA FINALE E TIROCINIO/STAGE - richiede gli esami di lingua, prova finale e tirocinio
-request('../php/getCareerExams.php', { type: 'C' }).then(result => {
-    var data = buildSection(result, 'C - Lingua, Prova finale e Tirocinio/Stage');
-    htmlString += data['htmlString']; // aggiunge la sezione alla tabella
-    cfuMancanti += data['man'];
-    cfuConseguiti += data['con'];
-    cfuTotali += data['tot'];
-}).catch(error => alert('C\'è stato un errore imprevisto'));
-htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`; // aggiunge la riga del totale
-tabella.innerHTML = htmlString; // mostra i dati nella tabella
+
 
 function buildSection(data, title) {
     /* Costruisce la sezione della tabella*/

@@ -9,7 +9,7 @@ async function request(url = '', data = {}) {
                 throw new Error('No result'); //ho un errore
             }
             return result.json(); //se ho risposta corretta
-        })//.catch(error => console.log(`C'è stato un errore nella richiesta, riprova più tardi`)); //errore è loggato e non è mostrato all'utente
+        }).catch(error => console.log(`C'è stato un errore nella richiesta, riprova più tardi`)); //errore è loggato e non è mostrato all'utente
 }
 
 function translated(lang, toTranslate) {
