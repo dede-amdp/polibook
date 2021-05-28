@@ -25,6 +25,7 @@ div.pianificati {
 }
 
 div.buttons > button {
+  border-radius: 5px;
   padding: 20px;
   border-color: transparent;
 }

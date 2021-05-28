@@ -1,0 +1,75 @@
+body.profile-body {
+  position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
+  left: 210px;
+  width: 78%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
+  font-size: 18px;
+}
+@media only screen and (min-width: 800px) {
+  table.exam-table {
+    width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  }
+}
+div#userData > table {
+  table-layout: fixed;
+  word-wrap: break-word;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 2em;
+  box-shadow: 3px 3px 4px 4px #88888855; /*ombra*/
+  border-radius: 5px;
+  padding: 10px;
+  border-color: transparent;
+  text-align: left;
+  border-width: 0px;
+}
+
+div#userData > table td {
+  /* fai apparire la sezione dei dati leggermente più scura rispetto agli header*/
+  background-color: #00000008;
+  padding: 10px;
+}
+
+div#UserData > table th {
+  /* più spazio negli header*/
+  padding-right: 3em;
+}
+
+button#password,
+button#email,
+button#address,
+button.submit {
+  padding: 10px;
+  margin-left: 2em;
+  margin-bottom: 3em;
+  border-color: transparent;
+  background-color: #009999;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button#password.active,
+button#email.active,
+button#address.active {
+  background-color: #e7e7e7;
+  color: #000000;
+  cursor: default;
+}
+
+button.submit {
+  border-radius: 5px;
+  margin-top: 1em;
+  margin-left: 0em;
+}
+
+div.profile input {
+  margin: 1em 0em 1em;
+  width: 30%;
+  height: 2em;
+}
+
+div.profile {
+  /* nascondi inizialmente le sezioni di modifica*/
+  display: none;
+  margin-left: 2em;
+}

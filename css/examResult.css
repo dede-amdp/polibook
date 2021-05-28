@@ -71,6 +71,7 @@ div.modal button {
   cursor: pointer; /* cambia il cursore per mostrare interattività*/
   min-width: 100px; /*dimensione minima dei pulsanti*/
   min-height: 30px;
+  border-radius: 5px;
 }
 
 div.modal button.cancel-button {

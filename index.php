@@ -71,10 +71,10 @@
     L'iscrizione a <font color=#009999><b>POLIBOOK</b></font> NON comporta l'iscrizione al <font color=#009999><b>Politecnico di Bari</b></font>: essa dovrà essere effettuata a seguito del superamento del <font color=#009999><b>test d'ingresso</b></font>.</br>
     <b>Il trattamento dei dati personali richiesti è finalizzato alla gestione della carriera universitaria: il conferimento di tali dati è obbligatorio ai fini della gestione della carriera universitaria.</b></p>
     <br><label><b>Nome </b></label>
-    <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlenght='50' required>
+    <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlength='50' required>
       
     <br><label><b>Cognome</b></label>
-    <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlenght='50' required>
+    <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlength='50' required>
     
     <br><label><b>Codice Fiscale</b></label>
     <input type="text" id="cf" placeholder="Inserire il Codice Fiscale" name="cf" size='16' required>
@@ -89,7 +89,7 @@
     <input type="date" id="data_n" placeholder="Data di nascita" name="data_n" required>
       
     <br><label><b>Indirizzo di Residenza</b></label>
-    <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlenght='100' required>
+    <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlength='100' required>
       
     <br><label><b>Foto</b></label>
     <input type="file" accept='image'id="foto" name="foto" required>

@@ -4,18 +4,20 @@
     if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once './dbh.inc.php';
     $inputs = json_decode(file_get_contents('php://input'), true);
-    $matricola = $_SESSION['matricola'];
     $conn = open_conn();
-    $id = explode(',', mysqli_real_escape_string($conn, $inputs['dataString'])); // inserisce gli escaper characters per impedire SQLinjection
-    if(verify($conn, $id)){
-        $table = 'risultato (data_iscrizione, matricola_studente, id_corso_esame_appello, id_attdid_esame_appello, id_docente_esame_appello, ord_attdid_esame_appello, data_svolgimento_appello)';
-        $result = insert_DB($conn, $table, date('Y-m-d'), $matricola, ...$id);
-        $conn ->close();
-        if($result) echo json_encode($result);
-        else echo json_encode(false);
-    }else{
-        $conn ->close();
-        echo json_encode("inc");
+    if($conn){
+        $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']);
+        $id = explode(',', mysqli_real_escape_string($conn, $inputs['dataString'])); // inserisce gli escaper characters per impedire SQLinjection
+        if(verify($conn, $id)){
+            $table = 'risultato (data_iscrizione, matricola_studente, id_corso_esame_appello, id_attdid_esame_appello, id_docente_esame_appello, ord_attdid_esame_appello, data_svolgimento_appello)';
+            $result = insert_DB($conn, $table, date('Y-m-d'), $matricola, ...$id);
+            $conn ->close();
+            if($result) echo json_encode($result);
+            else echo json_encode(false);
+        }else{
+            $conn ->close();
+            echo json_encode("inc");
+        }
     }
 
 
