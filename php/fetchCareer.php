@@ -23,8 +23,9 @@ if (isset($inputs['type'])){
 
 function getExams(){
     $conn = open_conn();
-    $matricola = $_SESSION['matricola'];
-    $query = 'SELECT id_cdl, percorso FROM studente WHERE matricola=?';
+    if(!$conn) return array(); //se la connessione al database non avviene non fare fermare lo script
+    $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']);
+    $query = 'SELECT id_cdl, percorso FROM studente WHERE matricola=?;';
     $result = fetch_DB($conn, $query,$matricola);
     $att_dids = array();
     $superati = array();
@@ -34,7 +35,7 @@ function getExams(){
         while ($result && $row=mysqli_fetch_assoc($result)){
             $array = array_merge($row,['superato'=> false]); //false
             array_push($att_dids,$array);
-        //assumo che tutti gli esami ottenuti non siano svolti così da poterli confrontare con quelli svolti
+        //assumo che tutti gli esami ottenuti non siano svolti così da poterli confrontare con quelli svolti in seguito
         }
 
         //prendo un array con le attività didattiche aventi suparato uguale a uno
@@ -45,7 +46,7 @@ function getExams(){
         }
 
     }
-    //ritono tutti gli esami
+    //correggo indicando se l'attività didattica è stata superata e ritono tutti gli esami
     foreach ($superati as $esameSuperato){
         for ($i=0;$i<count($att_dids);$i++){
             if ($esameSuperato['id_attdid_esame'] == $att_dids[$i]['id'] && $esameSuperato['ord_attdid_esame'] == $att_dids[$i]['ordinamento']){
@@ -63,7 +64,7 @@ function getCaratterizzanti(){
     $esami = getExams();
     $caratterizzanti = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
         if ($esame['caratterizzante'] && !$condizione){
             array_push($caratterizzanti,$esame);
         }
@@ -76,7 +77,7 @@ function getNonCaratterizzanti(){
     $esami = getExams();
     $non_caratterizzanti = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
         if (!$esame['caratterizzante'] && !$condizione){
             array_push($non_caratterizzanti,$esame);
         }
@@ -89,7 +90,7 @@ function getSezioneC(){
     $esami = getExams();
     $sez = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
         if ($condizione){
             array_push($sez,$esame);
         }

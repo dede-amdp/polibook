@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang='it'>
+<?php
+    session_start();
+    if(isset($_SESSION['error_msg'])){ // se contiene un messaggio
+        $message = $_SESSION['error_msg'];
+        unset($_SESSION['error_msg']); // togle il messaggio di errore dalla sessione
+        echo "<script type='text/javascript'>window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
+    }
+?>
 <head>
     <title> Login </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,6 +66,10 @@
         </div>
         
     <div class="container">
+    <p align=center><font color=#009999><b>REGISTRATI A POLIBOOK</b></font></p>
+    <p>Compila i seguenti campi per eseguire la registrazione: tutti i campi sono <font color=#009999><b>obbligatori</b></font>.</br>
+    L'iscrizione a <font color=#009999><b>POLIBOOK</b></font> NON comporta l'iscrizione al <font color=#009999><b>Politecnico di Bari</b></font>: essa dovrà essere effettuata a seguito del superamento del <font color=#009999><b>test d'ingresso</b></font>.</br>
+    <b>Il trattamento dei dati personali richiesti è finalizzato alla gestione della carriera universitaria: il conferimento di tali dati è obbligatorio ai fini della gestione della carriera universitaria.</b></p>
     <br><label><b>Nome </b></label>
     <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlenght='50' required>
       
@@ -100,12 +112,4 @@ window.onclick = function(event) {
 }
 </script>
 </body>
-<?php
-    session_start();
-    if(isset($_SESSION['error_msg'])){ // se contiene un messaggio
-        $message = $_SESSION['error_msg'];
-        unset($_SESSION['error_msg']); // togle il messaggio di errore dalla sessione
-        echo "<script type='text/javascript'>window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
-    }
-    ?>
 </html>

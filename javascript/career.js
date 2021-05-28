@@ -9,27 +9,27 @@ var htmlString = '<tr><th>Regola</th><th>CFU Totali</th><th>CFU Conseguiti</th><
 request('../php/fetchCareer.php', { type: 'A' }).then(result => {
     var data = buildSection(result, 'A - Base');
     htmlString += data['htmlString']; // aggiunge la sezione alla tabella
-    cfuMancanti += data['man'];
-    cfuConseguiti += data['con'];
-    cfuTotali += data['tot'];
+    cfuMancanti += data['man'] || 0;
+    cfuConseguiti += data['con'] || 0;
+    cfuTotali += data['tot'] || 0;
 
     //CARATTERIZZANTI - richiede gli esami caratterizzanti
     request('../php/fetchCareer.php', { type: 'B' }).then(result => {
         var data = buildSection(result, 'B - Caratterizzanti');
         htmlString += data['htmlString']; // aggiunge la sezione alla tabella
-        cfuMancanti += data['man'];
-        cfuConseguiti += data['con'];
-        cfuTotali += data['tot'];
+        cfuMancanti += data['man'] || 0;
+        cfuConseguiti += data['con'] || 0;
+        cfuTotali += data['tot'] || 0;
 
         //LINGUA,PROVA FINALE E TIROCINIO/STAGE - richiede gli esami di lingua, prova finale e tirocinio
         request('../php/fetchCareer.php', { type: 'C' }).then(result => {
             var data = buildSection(result, 'C - Lingua, Prova finale e Tirocinio/Stage');
             htmlString += data['htmlString']; // aggiunge la sezione alla tabella
-            cfuMancanti += data['man'];
-            cfuConseguiti += data['con'];
-            cfuTotali += data['tot'];
+            cfuMancanti += data['man'] || 0;
+            cfuConseguiti += data['con'] || 0;
+            cfuTotali += data['tot'] || 0;
 
-            htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`; // aggiunge la riga del totale
+            htmlString += `<tr><td>TOTALE</td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=20 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`; // aggiunge la riga del totale
             tabella.innerHTML = htmlString; // mostra i dati nella tabella
         }).catch(error => alert('C\'è stato un errore imprevisto'));
     }).catch(error => alert('C\'è stato un errore imprevisto'));
@@ -51,9 +51,9 @@ function buildSection(data, title) {
                 cfuTotali += exam.cfu;
                 if (exam.superato) cfuConseguiti += exam.cfu;
                 else cfuMancanti += exam.cfu;
-                htmlData += `<tr><td>${exam.SSD} - ${translated(lang, exam.nome)} (${exam.id})</td><td>${exam.cfu}</td><td>${exam.superato ? exam.cfu : 0}</td><td>${exam.superato ? 0 : exam.cfu}</td><td><img width=30 alt='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' title='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${exam.superato ? 'green' : 'red'}.svg'></img></td></tr>`;
+                htmlData += `<tr><td>${exam.SSD} - ${translated(lang, exam.nome)} (${exam.id})</td><td>${exam.cfu}</td><td>${exam.superato ? exam.cfu : 0}</td><td>${exam.superato ? 0 : exam.cfu}</td><td><img width=20 alt='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' title='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${exam.superato ? 'green' : 'red'}.svg'></img></td></tr>`;
             });
-            htmlHeader = `<tr><td><b>${title}</b></td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=30 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`;
+            htmlHeader = `<tr><td><b>${title}</b></td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=20 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`;
             htmlString += htmlHeader + htmlData; // aggiungi subheader e dati alla sezione
             toReturn['htmlString'] = htmlString;
             toReturn['con'] = cfuConseguiti;

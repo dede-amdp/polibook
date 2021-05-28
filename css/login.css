@@ -16,6 +16,11 @@ input[type="file"] {
   box-sizing: border-box;
 }
 
+.modal input {
+  width: 100%;
+  display: block;
+}
+
 .box {
   width: 50%;
   height: 80px;
@@ -68,6 +73,11 @@ button:hover {
   position: relative;
 }
 
+.modal .imgcontainer img {
+  margin: 12px;
+  width: 20%;
+}
+
 img.logo {
   width: 10%;
   border-radius: 10%;
@@ -101,8 +111,9 @@ span.psw {
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 100%; /* Could be more or less, depending on screen size */
+  /*border: 1px solid #888;*/
+  border-radius: 5px;
+  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
