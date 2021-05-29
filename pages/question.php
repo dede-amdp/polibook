@@ -136,7 +136,7 @@
             <textarea cols="100" rows="1"> </textarea>
             </label>
         </div>
-        <button class="pulsante" type='Invia'>Invia questionario </button> 
+        <button class="pulsante" type='Invia'>Invia questionario</button> 
     </form>
     </region>
 </body>
