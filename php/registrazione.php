@@ -53,8 +53,8 @@
 }else{
   // errore nella connessione al database
   session_start();
-      $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
-      header('Location: ../index.php');
+  $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
+  header('Location: ../index.php');
 }
 ?>
 
