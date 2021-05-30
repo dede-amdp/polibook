@@ -35,7 +35,7 @@
             <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi CFU</canvas>
         </div>
     </section>
-    <section aria-label="Lista sami">
+    <section aria-label="Lista esami">
         <div class='buttons'>
             <button id='superati' class='superati'>SUPERATI</button>
             <button id='pianificati' class='pianificati active'>PIANIFICATI</button>

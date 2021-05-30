@@ -41,6 +41,7 @@
                 <button id='password'>Modifica la tua Password</button>
                 <button id='email'>Modifica la tua email</button>
                 <button id='address'>Modifica il tuo indirizzo</button>
+                <button id='photo'>Modifica la tua foto profilo</button>
             </section>
             <!-- Form per modificare la password -->
             <section aria-label="Modifica password">
@@ -72,6 +73,16 @@
                 <label>Nuovo Indirizzo</label></br>
                 <input type='text' name='address' placeholder='Via nome civico' required></br>
                 <button type='submit' class='submit'>Cambia indirizzo</button>
+            </form></div>
+            </section>
+            <section aria-label="Modifica foto profilo">
+            <div id='photo-div' class='profile'>
+                <form action='../php/updatePhoto.php' method='POST' enctype="multipart/form-data">
+                <label>Password</label></br>
+                <input type='password' name='password' placeholder='Password' maxlength=50 minlength=6 required></br>
+                <label>Nuova Foto Profilo</label></br>
+                <input type='file' name='photo' required></br>
+                <button type='submit' class='submit'>Cambia Foto Profilo</button>
             </form></div>
             </section>
             <div id='userData'></div>

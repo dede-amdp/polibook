@@ -37,7 +37,7 @@
             <input type="text" placeholder="Inserire la Matricola" name="matricola" required>
 
             <br><label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Inserire la Password" name="password" required>
+            <input type="password" placeholder="Inserire la Password" name="password" maxlength=50 minlength=6 required>
         
             <br><button type="submit"> Login </button>
             <button type="button" onclick="document.getElementById('id01').style.display='block'"> Registrati </button>
@@ -56,7 +56,7 @@
                                     <!-- form per la registrazione --> 
 
 <div id="id01" class="modal">
-    <form class="modal-content animate" action = "./php/registrazione.php" method="post">
+    <form class="modal-content animate" action = "./php/registrazione.php" method="post" enctype="multipart/form-data" >
         <div class="imgcontainer">
            <img src="./assets/poliba_logo.svg" alt="logo" class="logo">
            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -71,13 +71,13 @@
     L'iscrizione a <font color=#009999><b>POLIBOOK</b></font> NON comporta l'iscrizione al <font color=#009999><b>Politecnico di Bari</b></font>: essa dovrà essere effettuata a seguito del superamento del <font color=#009999><b>test d'ingresso</b></font>.</br>
     <b>Il trattamento dei dati personali richiesti è finalizzato alla gestione della carriera universitaria: il conferimento di tali dati è obbligatorio ai fini della gestione della carriera universitaria.</b></p>
     <br><label><b>Nome </b></label>
-    <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlength='50' required>
+    <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlength=50 required>
       
     <br><label><b>Cognome</b></label>
-    <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlength='50' required>
+    <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlength=50 required>
     
     <br><label><b>Codice Fiscale</b></label>
-    <input type="text" id="cf" placeholder="Inserire il Codice Fiscale" name="cf" size='16' required>
+    <input type="text" id="cf" placeholder="Inserire il Codice Fiscale" name="cf" maxlength=16 minlength=16 required>
       
     <br><label><b>Password</b></label>
     <input type="password" id="password" placeholder="Inserire la password" name="password" required>
@@ -92,7 +92,7 @@
     <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlength='100' required>
       
     <br><label><b>Foto</b></label>
-    <input type="file" accept='image'id="foto" name="foto" required>
+    <input type="file" accept='image' id="foto" name="foto" required>
     <button type="submit" name ="registrati"> Registrati </button> 
     </div>
 

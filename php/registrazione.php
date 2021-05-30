@@ -12,7 +12,13 @@
   $cf = mysqli_real_escape_string($conn,$_POST['cf']);
   $indirizzo = mysqli_real_escape_string($conn,$_POST['indirizzo']);
   $data_n = mysqli_real_escape_string($conn,$_POST['data_n']);
-  $foto = mysqli_real_escape_string($conn,$_POST['foto']);
+  if(isset($_FILES['foto']['tmp_name'])){
+    $foto = file_get_contents($_FILES['foto']['tmp_name']);
+  }else {
+    session_start();
+    $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
+    header('Location: ../index.php');
+  }
 // verifico che la password sia in un formato corretto e di lunghezza minima 6 e massima 50
   $isPasswordValid = filter_var(
       $password,

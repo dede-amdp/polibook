@@ -23,32 +23,35 @@ div.sidenav > ul {
   font-size: 18px;
   list-style-type: none; /*non appaiono i bullet point della lista*/
   vertical-align: middle; /*allinea verticalmente al centro*/
-  padding-left: 0; /*serve per far in modo che il box che contiene l'elemento sia vicino al bordo sinistro: così facendo passandoci il mouse sopra il bacground cambia colore in modo sensato e non da metà barra*/
+  padding-left: unset; /*serve per far in modo che il box che contiene l'elemento sia vicino al bordo sinistro: così facendo passandoci il mouse sopra il bacground cambia colore in modo sensato e non da metà barra*/
 }
 
 /*queste modifiche interessano solo i link all'interno della lista contenuta nel sidenav*/
+
 div.sidenav > ul a {
   color: white; /*colora il testo di bianco*/
   transition: background-color 0.5s; /*permette di avere una transizione tra hover e non hover del colore del background di 0.5s, ovvero in 0.5s il background passa da 009999 a 4cb1b1 quando si passa il mouse sopra*/
   text-decoration: none; /*serve per evitare che i link siano evidenziati e sottolineati*/
-  padding-left: 15%; /*perve per far apparire la lista al centro della sidebar e non attaccata al bordo sinistro*/
+  padding: unset;
 }
 
 /*riguarda gli elementi della lista in sidenav*/
 div.sidenav li {
-  padding-top: 10px; /*serve per far in modo che quando passo il mouse sopra l'elemento non veda il testo attaccato al margine superiore del box che lo contiene*/
-  padding-bottom: 5px;
-  /*height: 30px;*/
+  vertical-align: center;
+  padding-left: 15%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 /*riguarda gli elementi della lista in sidenav quando ci passi il mouse sopra*/
-div.sidenav li:hover {
+div.sidenav a:hover > li {
   background-color: #4cb1b1;
   font-size: 105%; /*permette di ingrandire leggermente il testo così da evidenziare meglio la scelta*/
 }
 
 div.sidenav button.logout-button {
   margin: 15%;
+  margin-top: 5%;
   background-color: #fff;
   border-color: transparent;
   border-radius: 25px;
@@ -70,7 +73,7 @@ div.logo {
   text-align: center;
   vertical-align: middle;
   font-size: 26px;
-  margin-bottom: 10px;
+  margin-bottom: 0.1em;
   color: #fff;
 }
 

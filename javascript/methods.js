@@ -13,6 +13,7 @@ async function request(url = '', data = {}) {
 }
 
 function translated(lang, toTranslate) {
+    if (toTranslate == null || toTranslate == undefined) return null;
     // una stringa contenente più traduzioni è suddivisa e la funzione ritorna solo il valore con la traduzione corretta
     var reg = new RegExp(`^${lang}:.*`, 'm'); // prende dalla lista di traduzioni quella che corrisponde alla lingua corrente
     var riga = toTranslate.match(reg)[0];

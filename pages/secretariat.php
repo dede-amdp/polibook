@@ -33,25 +33,25 @@
         <div class= 'options'>
         <b>
         <ul>
-            <li><a href="../pages/profile.php">Visualizza Profilo</a></li>
-            <li><a href="#">Iscrizioni</a></li>
-            <li><a href="#">Test di ammissione/concorsi</a></li>
-            <li><a href="#">Test di valutazione</a></li>
-            <li><a href="#">Esami di Stato</a></li>
-            <li><a href="#">Immatricolazione</a></li>
-            <li><a href="#">Esoneri</a></li>
-            <li><a href="#">Autocertificazione</a></li>
-            <li><a href="#">Pagamenti</a></li>
-            <li><a href="#">Certificati</a></li>
-            <li><a href="#">Trasferimento</a></li>
-            <li><a href="#">Chiusura Carriera</a></li>
-            <li><a href="#">Collaborazioni Studentesche</a></li>
-            <li><a href="#">Borse di Studio</a></li>
-            <li><a href="#">Dichiarazione di Invalidità</a></li>
-            <li><a href="#">Documenti d’identità</a></li>
-            <li><a href="#">Richiesta Carta Enjoy</a></li>
-            <li><a href="#">Mobilità Internazionale</a></li>
-            <li><a href="#">Conseguimento titolo di studio</a></li>
+            <a href="../pages/profile.php"><li>Visualizza Profilo</li></a>
+            <a href="#"><li>Iscrizioni</li></a>
+            <a href="#"><li>Test di ammissione/concorsi</li></a>
+            <a href="#"><li>Test di valutazione</li></a>
+            <a href="#"><li>Esami di Stato</li></a>
+            <a href="#"><li>Immatricolazione</li></a>
+            <a href="#"><li>Esoneri</li></a>
+            <a href="#"><li>Autocertificazione</li></a>
+            <a href="#"><li>Pagamenti</li></a>
+            <a href="#"><li>Certificati</li></a>
+            <a href="#"><li>Trasferimento</li></a>
+            <a href="#"><li>Chiusura Carriera</li></a>
+            <a href="#"><li>Collaborazioni Studentesche</li></a>
+            <a href="#"><li>Borse di Studio</li></a>
+            <a href="#"><li>Dichiarazione di Invalidità</li></a>
+            <a href="#"><li>Documenti d’identità</li></a>
+            <a href="#"><li>Richiesta Carta Enjoy</li></a>
+            <a href="#"><li>Mobilità Internazionale</li></a>
+            <a href="#"><li>Conseguimento titolo di studio</li></a>
         </ul>
         </b>
         </div>

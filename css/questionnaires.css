@@ -27,3 +27,9 @@ table th {
   border-color: transparent;
   border-bottom-color: #000000;
 }
+
+@media only screen and (min-width: 800px) {
+  table {
+    width: 100%; /*estendi per tutta la dimensione dello schermo*/
+  }
+}
