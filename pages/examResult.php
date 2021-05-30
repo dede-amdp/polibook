@@ -32,7 +32,7 @@
         <div class='text'>
             <h4><span style="font-weight:normal;">La pagina mostra gli appelli già sostenuti per i quali è stato assegnato un esito da parte del docente.<br> 
             Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</span></p>
-            <p>Elenco esami superato </p>
+            <p>Elenco esami superati </p>
         </div>
         <div id='exam-result-div'>
             <table id='exam-result-table' class="table" borde = 2px>
