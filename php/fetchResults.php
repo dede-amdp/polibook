@@ -6,7 +6,7 @@
     AND SYSDATE() <= r.data_scadenza';
     $conn = open_conn();
     if($conn){
-        $matricola = mysqli_real_escape_string($conn,$_SESSION['matricola']);
+        $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']);
         $result = fetch_DB($conn, $query, $matricola);
         $data = [];
         while($result && $row = mysqli_fetch_assoc($result)){
