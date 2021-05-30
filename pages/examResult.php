@@ -34,10 +34,12 @@
             Per accedere alla funzione di verbalizzazione on-line cliccare il nome dell'attività didattica.</span></p>
             <p>Elenco esami superato </p>
         </div>
-        <table id='exam-result-table' class="table" borde = 2px>
-            <tr><th>ID</th><th>Attivita didattica</th><th>Data svolgimento</th><th>Data verbalizzazione</th><th>risultato</th></tr>
-            <!--tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td></tr-->
-        </table>
+        <div id='exam-result-div'>
+            <table id='exam-result-table' class="table" borde = 2px>
+                <tr><th>ID</th><th>Attivita didattica</th><th>Data svolgimento</th><th>Data verbalizzazione</th><th>risultato</th></tr>
+                <!--tr><td>2633</td><td><a href=http://localhost/polibook/pages/didacticUnit.php>Automazione industriale </a></td><td>25/06/2021</td><td>25/07/2021</td><td>20</td></tr-->
+            </table>
+        </div>
     </section>
 
 
