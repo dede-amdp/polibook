@@ -1,6 +1,7 @@
 <!DOCTYPE html> 
 <html lang = 'it'>
 <head>
+
     <title> Dashboard </title>
     <link href = '../css/dashboard.css' type='text/css' rel='Stylesheet'/>
     <meta name = 'viewport' 
@@ -18,58 +19,19 @@
         require_once '../php/dbh.inc.php';
         $conn = open_conn();
         if($conn){
+            $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']);
             $query = 'SELECT nome, cognome FROM studente WHERE matricola=?';
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p> Ciao  <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'];'</font></br>
-                          In questa bacheca potrai trovare tutti gli avvisi che il politecnico ha rilasciato.<br>
-                          Clicca su un avviso per visualizzare il contenuto. </p>
-                      
-                      ';
+                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
             }
         }
     ?>
-
+    <p>In questa bacheca potrai trovare tutti gli avvisi che il politecnico ha rilasciato.<br>Clicca su un avviso per visualizzarne il contenuto.</p>
    <!-- costruzione della tabella degli avvisi -->
-
-  <div classe = 'tabellone-avvisi'>
-  
-  
-  <?php
-  
-  $avvisi = getAvvisi();
-    foreach ($avvisi as $avviso){
-        $data = $avviso['timestamp'];
-        $titolo = $avviso['titolo'];
-        $contenuto = $avviso['contenuto'];
-        echo '  <div class= "avviso">
-        <div class = "headingAvviso">$data <b> $titolo </b>  <span onclick="document.getElementById("id01").style.display="block"" class="mex" title="Open Mex">&plus;</span></div>
-        <div class = "mex"> $contenuto </div>
-        </div>
-      ';
-    }
-  
-  
-  
-  ?>
-
-
-  </div>
-
-  <script>
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
-
-
-
+  <div id = 'dashboard-table' class='db-table'></div>
 </body>
+<script src='../javascript/methods.js'></script>
+<script src='../javascript/dashboard.js'></script>
 </html>

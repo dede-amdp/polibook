@@ -1,0 +1,45 @@
+body.dashboard {
+  position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
+  left: 210px;
+  width: 78%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
+  font-size: 18px;
+}
+button.db-interact {
+  background-color: #009999;
+  color: #fff;
+  border-color: transparent;
+  border-radius: 5px;
+  width: 100%;
+  text-align: left;
+  height: 3em; /* evita che il testo sia recluso in uno spazio piccolo*/
+  cursor: pointer; /* mostra che l'elemento è selezionabile*/
+}
+ul > div {
+  /* mostra un box ed un ombra intorno a ciascun messaggio*/
+  margin-top: 2em;
+  border: 2px solid #88888855;
+  border-radius: 5px;
+  box-shadow: 3px 3px 4px 4px #88888855; /*Ombra*/
+}
+/* nascondi il fatto che i messaggi sono in una lista s*/
+div.db-table ul {
+  list-style-type: none;
+}
+/* nascondi il contenuto del messaggio finchè l'utente non lo seleziona*/
+div.msg-modal {
+  display: none;
+  border-color: transparent;
+  padding: 1em;
+}
+/* mostra il contenuto del messaggio*/
+div.msg-modal.show {
+  display: block;
+}
+/* una freccia indica all'utente se il messaggio è mostrato o meno*/
+button.db-interact img.arrow {
+  margin-right: 1em;
+}
+/* ruota la freccia per indicare che il messaggio è aperto*/
+button.db-interact.active img.arrow {
+  transform: rotate(90deg);
+}
