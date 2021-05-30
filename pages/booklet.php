@@ -16,9 +16,9 @@
         if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';
-        $matricola = $_SESSION['matricola']; // prende la matricola dalla $_SESSION
         $conn = open_conn();
         if($conn){
+            $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']); // prende la matricola dalla $_SESSION
             $query = 'SELECT nome, cognome FROM studente WHERE matricola=?';
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();

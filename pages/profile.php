@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='it'>
-
     <head>
     <title>Profilo</title>
     <meta name='viewport' 
