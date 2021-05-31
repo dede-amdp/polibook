@@ -64,7 +64,7 @@ function getCaratterizzanti(){
     $esami = getExams();
     $caratterizzanti = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA') != false; 
         if ($esame['caratterizzante'] && !$condizione){
             array_push($caratterizzanti,$esame);
         }
@@ -77,7 +77,7 @@ function getNonCaratterizzanti(){
     $esami = getExams();
     $non_caratterizzanti = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA') != false; 
         if (!$esame['caratterizzante'] && !$condizione){
             array_push($non_caratterizzanti,$esame);
         }
@@ -90,7 +90,7 @@ function getSezioneC(){
     $esami = getExams();
     $sez = array();
     foreach($esami as $esame ){
-        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || str_contains($esame['id'],'LINGUA'); 
+        $condizione = $esame['id'] == 'TESILT' || $esame['id'] == 'TESILM' || $esame['id'] == 'TIROCINIO' || strpos($esame['id'],'LINGUA') != false; 
         if ($condizione){
             array_push($sez,$esame);
         }

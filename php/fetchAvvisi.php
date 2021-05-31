@@ -13,7 +13,7 @@
         $conn = open_conn();
         if($conn){
             $avvisi = array();
-            $query = 'SELECT * FROM avvisi ORDER BY timestamp DESC;'; // recupera tutti gli avvisi in ordine di data
+            $query = 'SELECT * FROM avviso ORDER BY timestamp DESC;'; // recupera tutti gli avvisi in ordine di data
             $result = fetch_DB($conn,$query);
             while ($result && $row=mysqli_fetch_assoc($result)){
                 array_push($avvisi,$row);

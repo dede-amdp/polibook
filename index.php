@@ -41,11 +41,8 @@
         
             <br><button type="submit"> Login </button>
             <button type="button" onclick="document.getElementById('id01').style.display='block'"> Registrati </button>
-            
-            <br><label>
-                <input type="checkbox" checked="checked" name="remember"> Ricordami
-            </label>
-            <br><span class="psw">Forgot <a href="/php/resetPassword.php">password?</a></span>
+
+            <br><span class="psw"><a href="../php/resetPassword.php">Password dimenticata?</a></span>
         
         </div>
     
@@ -56,7 +53,7 @@
                                     <!-- form per la registrazione --> 
 
 <div id="id01" class="modal">
-    <form class="modal-content animate" action = "./php/registrazione.php" method="post" enctype="multipart/form-data" >
+    <form class="modal-content animate" action = "./php/signup.php" method="post" enctype="multipart/form-data" >
         <div class="imgcontainer">
            <img src="./assets/poliba_logo.svg" alt="logo" class="logo">
            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -91,7 +88,7 @@
     <br><label><b>Indirizzo di Residenza</b></label>
     <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlength='100' required>
       
-    <br><label><b>Foto</b></label>
+    <br><label><b>Foto Profilo (.jpeg,.jpg,.png massimo 2MB)</b></label>
     <input type="file" accept='image' id="foto" name="foto" required>
     <button type="submit" name ="registrati"> Registrati </button> 
     </div>

@@ -80,7 +80,7 @@
                 <form action='../php/updatePhoto.php' method='POST' enctype="multipart/form-data">
                 <label>Password</label></br>
                 <input type='password' name='password' placeholder='Password' maxlength=50 minlength=6 required></br>
-                <label>Nuova Foto Profilo</label></br>
+                <label>Nuova Foto Profilo (.jpeg,.jpg,.png massimo 2MB)</label></br>
                 <input type='file' name='photo' required></br>
                 <button type='submit' class='submit'>Cambia Foto Profilo</button>
             </form></div>
@@ -106,6 +106,10 @@
                 case 'email':
                     echo '<script>document.getElementById(\'email-div\').style.display = \'block\';'.
                     'document.getElementById(\'email\').classList.toggle(\'active\');</script>';
+                    break;
+                case 'photo':
+                    echo '<script>document.getElementById(\'photo-div\').style.display = \'block\';'.
+                    'document.getElementById(\'photo\').classList.toggle(\'active\');</script>';
                     break;
             }
             unset($_SESSION['section']);

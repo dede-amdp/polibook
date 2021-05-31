@@ -27,9 +27,12 @@
                         if(password_verify($old, $fromdb)){ // verifica la password
                             $new_crypted = password_hash($new, PASSWORD_BCRYPT);
                             $query = 'UPDATE studente SET password=? WHERE matricola=?;';
-                            update_DB($conn, $query, $new_crypted, $matricola); // modifica la password dell'utente
-                            $_SESSION['userData_msg'] = 'Password modificata con successo'; // messaggio di successo
-                            unset($_SESSION['section']); // non serve mostrare la sezione di modifica
+                            if(update_DB($conn, $query, $new_crypted, $matricola)){ // modifica la password dell'utente
+                                $_SESSION['userData_msg'] = 'Password modificata con successo'; // messaggio di successo
+                                unset($_SESSION['section']); // non serve mostrare la sezione di modifica
+                            }else{
+                                $_SESSION['userData_msg'] = 'Non è stato possibile modificare la password';
+                            }
                             // seguono messaggi di errore
                         }else{
                             $_SESSION['userData_msg'] = 'Password errata';

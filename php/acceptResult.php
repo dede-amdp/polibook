@@ -3,8 +3,8 @@
     if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once '../php/dbh.inc.php';
     $inputs = json_decode(file_get_contents('php://input'), true);
-    $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']); 
     $conn = open_conn();
+    $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']); 
     $id = explode(',', mysqli_real_escape_string($conn, $inputs['dataString']));
     if(verify($conn, $id)){
     $status = $inputs['status'];

@@ -18,7 +18,7 @@ request('../php/fetchResults.php').then(result => {
             ids.forEach(id => assignCallback(id));
         } else {
             var div = document.getElementById('exam-result-div');
-            div.innerHTML = `<p>Non ci sono risultati da mostrare</p><img class='no-result' width=250 src='../assets/nonPidove.svg'></img>`; // mostra un immagine in caso di assenza di risultati
+            div.innerHTML = `<p>Non ci sono risultati da mostrare</p><img alt='Nessun risultato' class='no-result' width=250 src='../assets/NonPidove.svg'></img>`; // mostra un immagine in caso di assenza di risultati
         }
     }
 }).catch(error => alert('C\'è stato un errore imprevisto'));

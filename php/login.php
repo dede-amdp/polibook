@@ -30,7 +30,6 @@
                 $result = fetch_DB($conn, $query, $matricola);
                 $conn -> close();
                 if($result && $pss = mysqli_fetch_assoc($result)){
-
                     if (password_verify($password, $pss['password'])) {
                         // se la password è corretta
                         $_SESSION['id'] = session_id();
@@ -40,10 +39,17 @@
                         $_SESSION['error_msg'] = 'La matricola o la password inserite non sono valide!';
                         header('Location: ../index.php');
                     }
+                }else{
+                    $_SESSION['error_msg'] = 'La matricola o la password inserite non sono valide!';
+                    header('Location: ../index.php');
                 }
+            }else{
+                $_SESSION['error_msg'] = 'Errore di connessione al server, la preghiamo di riprovare più tardi';
+                header('Location: ../index.php');
             }
         }
     }else{
+        $_SESSION['error_msg'] = 'Sembra che alcuni dati non siano stati inseriti correttamente';
         header('Location: ../index.php');
     }
 

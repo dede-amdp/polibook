@@ -15,9 +15,12 @@
                 $fromdb = mysqli_fetch_assoc($result)['password'];
                 if(password_verify($password, $fromdb)){ // verifica che la password sia corretta
                     $query = 'UPDATE studente SET email=? WHERE matricola=?;';
-                    update_DB($conn, $query, $email, $matricola); // modifico l'email dell'utente
-                    $_SESSION['userData_msg'] = 'Email modificata con successo'; // messaggio di successo
-                    unset($_SESSION['section']); // non serve mostrare la sezione di modifica
+                    if(update_DB($conn, $query, $email, $matricola)){ // modifico l'email dell'utente
+                        $_SESSION['userData_msg'] = 'Email modificata con successo'; // messaggio di successo
+                        unset($_SESSION['section']); // non serve mostrare la sezione di modifica
+                    }else{
+                        $_SESSION['userData_msg'] = 'Non è stato possibile modificare l\'email';
+                    }
                     // seguono vari messaggi di errore
                 }else{
                     $_SESSION['userData_msg'] = 'Password errata';
