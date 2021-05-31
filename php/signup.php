@@ -14,7 +14,7 @@
   $data_n = mysqli_real_escape_string($conn,$_POST['data_n']);
   if(isset($_FILES['foto']['tmp_name'])){
     $foto = file_get_contents($_FILES['foto']['tmp_name']);
-  }else {
+  }else{
     session_start();
     $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
     header('Location: ../index.php');
@@ -31,6 +31,14 @@
   $pwdLenght= mb_strlen($password);
   $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
+// controlla che lo studente non sia già iscritto
+  $query = 'SELECT cf FROM studente WHERE cf=?';
+  $result = fetch_DB($conn, $query, $cf);
+  if($result && $studente = mysqli_fetch_assoc($result)){ // se c'è un risultato
+    session_start();
+    $_SESSION['error_msg'] = 'Uno studente con questo codice fiscale risulta già iscritto';
+    header('Location: ../index.php');
+  }
 
 
 // Assegna una nuova matricola allo studente basandosi sull'ultima inserita nel database
@@ -46,21 +54,21 @@
     if($pwdLenght<6 || $pwdLenght>50){
       echo 'Inserire una password con minimo 6 e massimo 50 caratteri';
     }
-   else {
-     //inserimento del nuovo studente nel database: lo studente NON è iscritto all'università al momento dell'iscrizione
-      $table = 'studente (matricola,password,email,nome,cognome,cf,data_nascita,indirizzo,foto)';
-      $risultati = insert_DB($conn,$table,$matricola,$password_hash, $email,$nome,$cognome,$cf,$data_n,$indirizzo,$foto);
-      $conn ->close();
-      session_start();
-      $_SESSION['error_msg'] = 'La registrazione è avvenuta con successo';
-      header('Location: ../index.php');
+    else {
+      //inserimento del nuovo studente nel database: lo studente NON è iscritto all'università al momento dell'iscrizione
+        $table = 'studente (matricola,password,email,nome,cognome,cf,data_nascita,indirizzo,foto)';
+        $risultati = insert_DB($conn,$table,$matricola,$password_hash, $email,$nome,$cognome,$cf,$data_n,$indirizzo,$foto);
+        $conn ->close();
+        session_start();
+        $_SESSION['error_msg'] = 'La registrazione è avvenuta con successo';
+        //header('Location: ../index.php');
+      }
     }
+  }else{
+    // errore nella connessione al database
+    session_start();
+    $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
+    header('Location: ../index.php');
   }
-}else{
-  // errore nella connessione al database
-  session_start();
-  $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
-  header('Location: ../index.php');
-}
 ?>
 

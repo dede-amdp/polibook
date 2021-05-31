@@ -41,10 +41,7 @@
         
             <br><button type="submit"> Login </button>
             <button type="button" onclick="document.getElementById('id01').style.display='block'"> Registrati </button>
-            
-            <br><label>
-                <input type="checkbox" checked="checked" name="remember"> Ricordami
-            </label>
+
             <br><span class="psw">Forgot <a href="/php/resetPassword.php">password?</a></span>
         
         </div>
@@ -56,7 +53,7 @@
                                     <!-- form per la registrazione --> 
 
 <div id="id01" class="modal">
-    <form class="modal-content animate" action = "./php/registrazione.php" method="post" enctype="multipart/form-data" >
+    <form class="modal-content animate" action = "./php/signup.php" method="post" enctype="multipart/form-data" >
         <div class="imgcontainer">
            <img src="./assets/poliba_logo.svg" alt="logo" class="logo">
            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
