@@ -1,5 +1,4 @@
-var lang = 'ita'; // !!DA CAMBIARE
-var tabella = document.getElementById('exam-result-table'); // !! inserire l'id della tabella nel documento che ancora non esiste
+var tabella = document.getElementById('exam-result-table');
 request('../php/fetchResults.php').then(result => {
     if (result != undefined && result != null) {
         if (result.length > 0) {
@@ -10,7 +9,7 @@ request('../php/fetchResults.php').then(result => {
                 var idoneo = exam.status == 'IDONEO' || exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO'; // verifica se il voto può essere accettato/rifiutato
                 var grade = idoneo ? (exam.risultato) + 'L'.repeat(exam.lode) : exam.status; // mostra voto
                 var gradeToShow = grade + (exam.status == 'ACCETTATO' || exam.status == 'RIFIUTATO' ? ` <img alt='${exam.status}' src='../assets/icons/${exam.status == 'ACCETTATO' ? 'green' : 'red'}.svg' width=20></img>` : ''); // mostra icona green.svg o red.svg nel caso il voto sia stato accettato o rifiutato
-                htmlString += `<tr id='${id}' class='exam${idoneo ? '-selectable' : ''}'><td>${exam.id}</td><td>${translated(lang, exam.nome)}</td><td>${exam.data_svolgimento}</td><td>${exam.data_scadenza}</td><td>${gradeToShow}</td></tr>`; // costruisci la riga
+                htmlString += `<tr id='${id}' class='exam${idoneo ? '-selectable' : ''}'><td>${exam.id}</td><td>${exam.nome}</td><td>${exam.data_svolgimento}</td><td>${exam.data_scadenza}</td><td>${gradeToShow}</td></tr>`; // costruisci la riga
                 htmlString += idoneo ? createModal(id, '<p><font color=#009999><b>Vuoi accettare il risultato?</b></font></p>') : ''; // crea il modal solo se lo studente può accettare/rifiutare il voto
                 ids.push(id);
             });

@@ -29,7 +29,7 @@
     ?>
     <section aria-label="Grafici esami">
     <h4><span style="font-weight:normal;">questo è il <b>libretto</b>, qui potrai vedere i risultati degli esami che hai superato e gli esami ancora da superare</span></h4>
-    <p class='statistics'></p>
+    <p id='statistics' class='statistics'></p>
         <div id ="Grafici" class='graphs'>
             <canvas id='grade-canvas'>Questo Elemento mostra l'andamento dei tuoi voti</canvas>
             <canvas id='cfu-canvas'>Questo Elemento mostra l'andamento dei tuoi CFU</canvas>

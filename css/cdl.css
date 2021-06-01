@@ -1,0 +1,15 @@
+body.cdl {
+  position: absolute;
+  left: 210px;
+  font-family: "Century Goyhic";
+  font-size: 18px;
+}
+
+body.cdl a {
+  color: black;
+}
+
+body.cdl div.info a,
+body.cdl div.programma a {
+  color: #009999;
+}

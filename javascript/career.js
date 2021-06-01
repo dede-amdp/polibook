@@ -1,6 +1,4 @@
-// !! VERIFICARE CHE I 3 PASSAGGI SIANO ESEGUITI SEMPRE UNO DOPO L'ALTRO E NON IN MODO CASUALE A CAUSA DELL'ASYNC
 var tabella = document.getElementById('career-table'); // seleziona carrer-table dal document
-var lang = 'ita'; // !! DA CAMBIARE
 var cfuConseguiti = 0; // i cfu conseguiti in tutta la carriera
 var cfuMancanti = 0; // i cfu mancanti al completamento della carriera
 var cfuTotali = 0; // cfu totali da avere per il conseguimento della carriera
@@ -51,7 +49,7 @@ function buildSection(data, title) {
                 cfuTotali += exam.cfu;
                 if (exam.superato) cfuConseguiti += exam.cfu;
                 else cfuMancanti += exam.cfu;
-                htmlData += `<tr><td>${exam.SSD} - ${translated(lang, exam.nome)} (${exam.id})</td><td>${exam.cfu}</td><td>${exam.superato ? exam.cfu : 0}</td><td>${exam.superato ? 0 : exam.cfu}</td><td><img width=20 alt='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' title='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${exam.superato ? 'green' : 'red'}.svg'></img></td></tr>`;
+                htmlData += `<tr><td>${exam.SSD} - ${exam.nome} (${exam.id})</td><td>${exam.cfu}</td><td>${exam.superato ? exam.cfu : 0}</td><td>${exam.superato ? 0 : exam.cfu}</td><td><img width=20 alt='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' title='${exam.superato ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${exam.superato ? 'green' : 'red'}.svg'></img></td></tr>`;
             });
             htmlHeader = `<tr><td><b>${title}</b></td><td>${cfuTotali}</td><td>${cfuConseguiti}</td><td>${cfuMancanti}</td><td><img width=20 alt='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' title='${cfuMancanti == 0 ? 'Attività superata' : 'Attività Programmata'}' src='../assets/icons/${cfuMancanti == 0 ? 'green' : 'red'}.svg'></img></td></tr>`;
             htmlString += htmlHeader + htmlData; // aggiungi subheader e dati alla sezione

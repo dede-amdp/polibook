@@ -15,7 +15,7 @@
         session_start();
         if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
-        require_once '../php/dbh.inc.php';
+        /*require_once '../php/dbh.inc.php';
         $matricola = $_SESSION['matricola'];
         $conn = open_conn();
         if($conn){
@@ -25,11 +25,12 @@
             if($result && $row = mysqli_fetch_assoc($result)){
                 echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
             }
-        }
+        }*/
     ?>
     <section aria-label="Questionario">
     <h2><span style="font-weight:normal;"> Questionario di automazione industriale </span></h2>
-    <form class="domande">
+    <form class="domande" action=''>
+        <input type='hidden' name='id' value=<?phpecho '\''.$_GET['id'].'\'';?>>
         <div class='form-element radio-buttons'>
             <span> Le attivita didattiche (lezioni, esercitazioni, laboratori, ecc) online per questo insegnamento sono di facile utilizzo</span></br>
             <label for='firstAnswer'> 

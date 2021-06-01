@@ -4,19 +4,18 @@ var superatiButton = document.getElementById('superati');  // recupera i pulsant
 var pianificatiButton = document.getElementById('pianificati');
 var statsDiv = document.getElementById('statistics'); // recupera il div che conterrà media e cfu
 
-var lang = 'ita'; // !! TODO temporaneo: Prendi il settaggio della lingua dalla pagina
 var cfuCount;
 
 //richiede gli esami superati
 request('../php/fetchPassedExams.php', { type: 'grades', passed: true }).then(examData => {
     cfuCount = 0; //serve per l'areogramma dei cfu: conta i cfu degli esami superati
     if (examData != undefined && examData != null && examData.length > 0) { //se la richiesta non ha fallito e ha un numero di esami > 0
-        graphs(examData, lang); // disegna i grafici (dato che non è collegato al resto, la funzione è asincrona quindi non bloccante)
+        graphs(examData); // disegna i grafici (dato che non è collegato al resto, la funzione è asincrona quindi non bloccante)
 
         // inizia a comporre la tabella dei risultati degli esami superati
         var examListString = '<tr><th>ID</th><th>Attività Didattica</th><th>CFU</th><th>Docente</th><th>Data</th><th>Voto</th></tr>'; // crea gli header della tabella
         examData.forEach(exam => {
-            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td><td>${exam.data}</td><td>${(exam.voto || 'IDN') + 'L'.repeat(exam.lode)}</td></tr>`; //aggiungi le inforazioni dell'esame alla tabella
+            examListString += `<tr><td><a href='../pages/activity.php?atd=${exam.id}&ord=${exam.ordinamento}&cdl=${exam.id_cdl}&doc=${exam.id_docente}'>${exam.id}</a></td><td>${exam.nome}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td><td>${exam.data}</td><td>${(exam.voto || 'IDN') + 'L'.repeat(exam.lode)}</td></tr>`; //aggiungi le inforazioni dell'esame alla tabella
             // il link associato all'id dell'esame serve per poter visualizzare le informazioni dell'esame con un click
         });
         superatiTab.innerHTML = `<table border=2px id='grades-table' class='exam-table'>${examListString}</table>`; // inserisce la tabella nel div selezionato prima
@@ -36,7 +35,7 @@ request('../php/fetchPassedExams.php', { type: 'grades', passed: false }).then(e
         // inizia a comporre la tabella degli esami pianificati
         var examListString = '<tr><th>ID</th><th>Attività Didattica</th><th>CFU</th><th>Docente</th></tr>'; //crea gli header
         examData.forEach(exam => {
-            examListString += `<tr><td><a href='../pages/activity?id=${exam.id}'>${exam.id}</a></td><td>${translated(lang, exam.nome)}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td></tr>`; // popolo la tabella
+            examListString += `<tr><td><a href='../pages/activity.php?atd=${exam.id}&ord=${exam.ordinamento}&cdl=${exam.id_cdl}&doc=${exam.id_docente}'>${exam.id}</a></td><td>${exam.nome}</td><td>${exam.cfu}</td><td>${exam.cognome + '\n' + exam.docente}</td></tr>`; // popolo la tabella
             // come prima: il link serve per accedere all'informazioni dell'esame
         });
         pianificatiTab.innerHTML = `<table border=2px id='programmed-table' class='exam-table'>${examListString}</table>`; // inserisce la tabella nel div selezionato prima
@@ -64,7 +63,7 @@ pianificatiButton.onclick = function () {
 }
 
 
-async function graphs(examData, lang) {
+async function graphs(examData) {
     var gradesGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento dei voti
     var meanGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento della media
     var sum = 0; //per il calcolo della media
@@ -72,7 +71,7 @@ async function graphs(examData, lang) {
     var mean = 0;
     examData.forEach(exam => {
         // inserisce il voto di ogni esame nel grafico
-        var nome = translated(lang, exam.nome);
+        var nome = exam.nome;
         nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
         gradesGraphData.push({
             value: exam.voto,

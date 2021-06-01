@@ -7,8 +7,8 @@
     if($conn){
         $matricola = mysqli_real_escape_string($conn, $_SESSION['matricola']);
         if($input['type'] == 'grades'){ //se la richiesta chiede i voti
-            $query = 'SELECT a.id, a.nome, cfu, data_svolgimento as data, voto, lode, d.nome as docente, d.cognome
-                        from frequentato f JOIN attivita_didattica a JOIN docente d ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id AND f.id_docente_esame = d.id
+            $query = 'SELECT a.id, a.nome, cfu, data_svolgimento as data, voto, lode, ordinamento, id_cdl, d.nome as docente, d.cognome, d.id as id_docente
+                        from frequentato f JOIN attivita_didattica a JOIN docente d JOIN studente ON f.ord_attdid_esame=a.ordinamento AND f.id_attdid_esame=a.id AND f.id_docente_esame = d.id
                         WHERE matricola_studente=? AND superato=?';
             // seleziona i dati degli esami da mostrare nel libretto
             $superato = mysqli_real_escape_string($conn, $input['passed']);

@@ -75,10 +75,15 @@ table th {
   border-bottom-color: #000000;
 }
 
-p table {
+p.statistics {
   text-align: center;
 }
+p.statistics table {
+  width: unset;
+}
 
-p table td {
-  padding: 0px 10px;
+p.statistics table td,
+p.statistics table th {
+  padding-right: 1em;
+  padding-left: 1em;
 }

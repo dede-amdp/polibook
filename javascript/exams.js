@@ -3,7 +3,6 @@ let prenotatiButton = document.getElementById('prenotati');
 let prenotabiliTab = document.getElementById('prenotabili-tab');
 let prenotatiTab = document.getElementById('prenotati-tab');
 
-var lang = 'ita'; // !! Da cambiare
 // richiesta degli esami prenotabili
 request('../php/fetchPrenotabiliData.php').then(result => {
     if (result != undefined && result != null) {
@@ -16,7 +15,7 @@ request('../php/fetchPrenotabiliData.php').then(result => {
             result.forEach(row => {
                 var id = createId(row);
                 htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
-                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${translated(lang, row.nome)}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.scadenza}</td><td>${row.aula}</td><td>${row.iscritti + (row.max_iscritti > 0 ? (' su ' + row.max_iscritti) : '')}</td></tr>`;
+                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${row.nome}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.scadenza}</td><td>${row.aula}</td><td>${row.iscritti + (row.max_iscritti > 0 ? (' su ' + row.max_iscritti) : '')}</td></tr>`;
                 var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
                 var msg = '';
                 var legal = isLegal(row);
@@ -30,7 +29,6 @@ request('../php/fetchPrenotabiliData.php').then(result => {
                 htmlString += createModal(id, msg);
             });
             prenotabiliTab.innerHTML = `<table border=2px>${header + htmlString}</table>`; // costruisce effettivamente la tabella
-            //ids = createTable(result, prenotabiliTab, '</br><font color=\'#009999\'>Confermi l\'iscrizione all\'esame?</font>', lang);
             if (ids != null) {
                 ids.forEach(id => {
                     assignCallback(id, insertExam);
@@ -60,7 +58,7 @@ request('../php/fetchPrenotatiData.php').then(result => {
             result.forEach(row => {
                 var id = createId(row);
                 htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
-                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${translated(lang, row.nome)}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.aula}</td></tr>`;
+                htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${row.nome}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.aula}</td></tr>`;
                 var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
                 var msg = '';
                 var legal = isLegal(row);
@@ -74,7 +72,6 @@ request('../php/fetchPrenotatiData.php').then(result => {
                 htmlString += createModal(id, msg);
             });
             prenotatiTab.innerHTML = `<table border=2px>${header + htmlString}</table>`; // costruisce effettivamente la tabella
-            //ids = createTable(result, prenotatiTab, '</br><font color=\'#009999\'>Sei sicuro di voler annullare l\' iscrizione?</font>', lang);
             if (ids != null) { //per ciascuna riga selezionabile
                 ids.forEach(id => {
                     assignCallback(id, deleteExam);
