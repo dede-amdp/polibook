@@ -2,6 +2,12 @@
 <html lang='it'>
 
 <head>
+    <title> Valutazione didattica </title>
+    <link href='../css/questionnaires.css' type='text/css' rel='Stylesheet'/>
+    <meta name='viewport' 
+          content='width=device-width, initial-scale=1.0' >
+    <meta name="description" 
+          content="Questa pagina permette di visualizzare i questionari delle attività didattiche a cui si è iscritti">
     <?php
         session_start();
         if(isset($_SESSION['error_msg'])){ // se contiene un messaggio
@@ -10,16 +16,9 @@
             echo "<script type='text/javascript'>window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
         }
     ?>
-    <title> Valutazione didattica </title>
-    <link href='../css/questionnaires.css' type='text/css' rel='Stylesheet'/>
-    <meta name='viewport' 
-          content='width=device-width, initial-scale=1.0' >
-    <meta name="description" 
-          content="Questa pagina permette di visualizzare i questionari delle attività didattiche a cui si è iscritti">
 </head>
 <body class='questionnaires'>
 <?php
-        session_start();
         if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
         require_once '../php/dbh.inc.php';

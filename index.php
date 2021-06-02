@@ -15,7 +15,7 @@
     <meta name="description" 
           content="Questa pagina permette di effettuare il login e la registrazione al sito">
 </head>
-<body src="./assets/poliba_backgr.png">
+<body >
     <!-- prima pagina del login al portale -->
  <div class = "box">
      
@@ -33,10 +33,10 @@
 
         <div class = 'container'>
             <!--Campi necessari pe inseirire i dati-->
-            <br><label for="matricola"><b>Matricola</b></label>
+            <br><label><b>Matricola</b></label>
             <input type="text" placeholder="Inserire la Matricola" name="matricola" required>
 
-            <br><label for="psw"><b>Password</b></label>
+            <br><label><b>Password</b></label>
             <input type="password" placeholder="Inserire la Password" name="password" maxlength=50 minlength=6 required>
         
             <br><button type="submit"> Login </button>
@@ -63,34 +63,34 @@
         </div>
         
     <div class="container">
-    <p align=center><font color=#009999><b>REGISTRATI A POLIBOOK</b></font></p>
-    <p>Compila i seguenti campi per eseguire la registrazione: tutti i campi sono <font color=#009999><b>obbligatori</b></font>.</br>
-    L'iscrizione a <font color=#009999><b>POLIBOOK</b></font> NON comporta l'iscrizione al <font color=#009999><b>Politecnico di Bari</b></font>: essa dovrà essere effettuata a seguito del superamento del <font color=#009999><b>test d'ingresso</b></font>.</br>
-    <b>Il trattamento dei dati personali richiesti è finalizzato alla gestione della carriera universitaria: il conferimento di tali dati è obbligatorio ai fini della gestione della carriera universitaria.</b></p>
-    <br><label><b>Nome </b></label>
-    <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlength=50 required>
-      
-    <br><label><b>Cognome</b></label>
-    <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlength=50 required>
-    
-    <br><label><b>Codice Fiscale</b></label>
-    <input type="text" id="cf" placeholder="Inserire il Codice Fiscale" name="cf" maxlength=16 minlength=16 required>
-      
-    <br><label><b>Password</b></label>
-    <input type="password" id="password" placeholder="Inserire la password" name="password" required>
-       
-    <br><label><b>Email</b></label>
-    <input type="email" id="email" placeholder="...@esempio.com" name="email" required>
-      
-    <br><label><b>Data di Nascita</b></label>
-    <input type="date" id="data_n" placeholder="Data di nascita" name="data_n" required>
-      
-    <br><label><b>Indirizzo di Residenza</b></label>
-    <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlength='100' required>
-      
-    <br><label><b>Foto Profilo (.jpeg,.jpg,.png massimo 2MB)</b></label>
-    <input type="file" accept='image' id="foto" name="foto" required>
-    <button type="submit" name ="registrati"> Registrati </button> 
+        <p class = "titolo"><b>REGISTRATI A POLIBOOK</b></p>
+        <p>Compila i seguenti campi per eseguire la registrazione: tutti i campi sono <b class = "evidenziato">obbligatori</b>.<br>
+        L'iscrizione a <b class = "evidenziato">POLIBOOK</b> NON comporta l'iscrizione al <b class = "evidenziato">Politecnico di Bari</b>: essa dovrà essere effettuata a seguito del superamento del <b class = "evidenziato">test d'ingresso</b>.<br>
+        <b>Il trattamento dei dati personali richiesti è finalizzato alla gestione della carriera universitaria: il conferimento di tali dati è obbligatorio ai fini della gestione della carriera universitaria.</b></p>
+        <br><label><b>Nome </b></label>
+        <input type="text" id="nome" placeholder="Inserire il nome" name="nome" maxlength=50 required>
+        
+        <br><label><b>Cognome</b></label>
+        <input type="text" id="cognome" placeholder="Inserire il cognome" name="cognome" maxlength=50 required>
+        
+        <br><label><b>Codice Fiscale</b></label>
+        <input type="text" id="cf" placeholder="Inserire il Codice Fiscale" name="cf" maxlength=16 minlength=16 required>
+        
+        <br><label><b>Password</b></label>
+        <input type="password" id="password" placeholder="Inserire la password" name="password" required>
+        
+        <br><label><b>Email</b></label>
+        <input type="email" id="email" placeholder="...@esempio.com" name="email" required>
+        
+        <br><label><b>Data di Nascita</b></label>
+        <input type="date" id="data_n" name="data_n" required>
+        
+        <br><label><b>Indirizzo di Residenza</b></label>
+        <input type="text" id="indirizzo" placeholder="Indirizzo" name="indirizzo" maxlength='100' required>
+        
+        <br><label><b>Foto Profilo (.jpeg,.jpg,.png massimo 2MB)</b></label>
+        <input type="file" accept='.jpeg,.jpg,.png' id="foto" name="foto" required>
+        <button type="submit" name ="registrati"> Registrati </button> 
     </div>
 
     </form>

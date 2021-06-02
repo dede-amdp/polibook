@@ -23,7 +23,7 @@
             $conn -> close();
             echo '<p>';
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo 'Risultati degli esami di <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</br>';
+                echo 'Risultati degli esami di <a class= "evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:<br>';
             }
             echo '<p>';
         }

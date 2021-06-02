@@ -96,3 +96,8 @@ body.examResult img.no-result {
     width: 100%; /*estendi per tutta la dimensione dello schermo*/
   }
 }
+
+.evidenziato {
+  color: #009999;
+  text-decoration: none;
+}

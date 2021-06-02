@@ -114,3 +114,8 @@ div.modal button:hover,
 div.modal button:focus {
   box-shadow: 2px 2px 3px 3px #88888855; /* aggiungi ombra quando il cursore è sopra al pulsante per comunicare interattività*/
 }
+
+.evidenziato {
+  color: #009999;
+  text-decoration: none;
+}

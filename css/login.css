@@ -167,3 +167,12 @@ span.psw {
     width: 100%;
   }
 }
+
+.titolo {
+  color: #009999;
+  text-align: center;
+}
+
+.evidenziato {
+  color: #009999;
+}
