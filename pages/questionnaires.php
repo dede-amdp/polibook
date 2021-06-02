@@ -2,6 +2,14 @@
 <html lang='it'>
 
 <head>
+    <?php
+        session_start();
+        if(isset($_SESSION['error_msg'])){ // se contiene un messaggio
+            $message = $_SESSION['error_msg'];
+            unset($_SESSION['error_msg']); // togle il messaggio dalla sessione
+            echo "<script type='text/javascript'>window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
+        }
+    ?>
     <title> Valutazione didattica </title>
     <link href='../css/questionnaires.css' type='text/css' rel='Stylesheet'/>
     <meta name='viewport' 
@@ -27,7 +35,7 @@
         echo '<p>';
     ?>
 
-    <section aria-label="Analisi della carriera">
+    <section aria-label="Questionari">
         <div class='text'>
             <p>Questa pagina consente di compilare il questionario di valutazione della didattica.</p>
             <h4><span style="font-weight:normal;">Elenco Attività didattiche da valutare </span></h4>

@@ -2,7 +2,8 @@
 <html lang='it'>
 
 <head>
-    <title> Domande </title>
+    <title> 
+        Domande </title>
     <link href='../css/question.css' rel='Stylesheet' type='text/css'>
     <meta name='viewport' 
           content='width=device-width, initial-scale=1.0' >
@@ -15,129 +16,118 @@
         session_start();
         if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
-        /*require_once '../php/dbh.inc.php';
-        $matricola = $_SESSION['matricola'];
-        $conn = open_conn();
-        if($conn){
-            $query = 'SELECT nome, cognome FROM studente WHERE matricola=?';
-            $result = fetch_DB($conn, $query, $matricola);
-            $conn -> close();
-            if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
-            }
-        }*/
     ?>
     <section aria-label="Questionario">
     <h2><span style="font-weight:normal;"> Questionario di automazione industriale </span></h2>
-    <form class="domande" action=''>
-        <input type='hidden' name='id' value=<?phpecho '\''.$_GET['id'].'\'';?>>
+    <form class="domande" id='quest' action='../php/insertAnswers.php' method='POST'>
+        <input type='hidden' name='id' value= <?php echo '\''.$_GET['id'].'\''; ?> >
         <div class='form-element radio-buttons'>
             <span> Le attivita didattiche (lezioni, esercitazioni, laboratori, ecc) online per questo insegnamento sono di facile utilizzo</span></br>
             <label for='firstAnswer'> 
-                <input type="radio" id='Answer1-1' name='risposta1' value='Decisamente no' required>
-                <span> Decisamente si </span>
+                <input type="radio" id='Answer1-1' name='dom1' value='4' required>
+                <span> Decisamente sì </span>
             </label>
             </br>
             <label for='secondAnswer'> 
-                <input type="radio" id='Answer1-2' name='risposta1' required>
-                <span> Più no che si </span>
+                <input type="radio" id='Answer1-2' name='dom1' value='3' required>
+                <span> Più sì che no </span>
             </label>
             </br>
-            <label for='firstAnswer'> 
-                <input type="radio" id='Answer1-3' name='risposta1' required> 
-                <span> Più si che no </span>
+            <label for='thirdAnswer'> 
+                <input type="radio" id='Answer1-3' name='dom1' value='2' required> 
+                <span> Più no che sì </span>
             </label>
             </br>
-            <label for='firstAnswer'> 
-                <input type="radio" id='Answer1-4' name='risposta1' required>
-                <span> Decisamente si </span>
+            <label for='fourthAnswer'> 
+                <input type="radio" id='Answer1-4' name='dom1' value='1' required>
+                <span> Decisamente no </span>
             </label>
         </div>
         <div class='form-element radio-buttons'>
             <span> Le lezioni in modalità a distanza per questo insegnamento consentono di seguire il corso in maniera appropriata ed efficace?</span></br>
             <label for='firstAnswer'> 
-                <input type="radio" id='Answer2-1' name='risposta2' required>
-                <span> Decisamente si </span>
+                <input type="radio" id='Answer2-1' name='dom2' value='4' required>
+                <span> Decisamente sì </span>
             </label>
             </br>
             <label for='secondAnswer'> 
-                <input type="radio" id='Answer2-2' name='risposta2' required>
+                <input type="radio" id='Answer2-2' name='dom2' value='3' required>
+                <span> Più sì che no </span>
+            </label>
+            </br>
+            <label for='thirdAnswer'> 
+                <input type="radio" id='Answer2-3' name='dom2' value='2' required>
                 <span> Più no che si </span>
             </label>
             </br>
-            <label for='firstAnswer'> 
-                <input type="radio" id='Answer2-3' name='risposta2' required>
-                <span> Più si che no </span>
-            </label>
-            </br>
-            <label for='firstAnswer'> 
-                <input type="radio" id='Answer2-4' name='risposta2' required>
-                <span> Decisamente si </span>
+            <label for='fourthAnswer'> 
+                <input type="radio" id='Answer2-4' name='dom2' value='1' required>
+                <span> Decisamente no </span>
             </label>
         </div>
         </br>
         <div class="form-element checkbox-button">
             <label for="answer">
             <span> Suggerimenti</span></p>
-            <input type="checkbox" id="choice1-1" name="choice1">
+            <input type="checkbox" id="choice1-1" name="choice1-1">
             <span class="checkbox-button">Alleggerire il carico didattico complessivo​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-2" name="choice2">
+            <input type="checkbox" id="choice1-2" name="choice1-2">
             <span class="checkbox-button">Aumentare l'attività di supporto didattico​​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-3" name="choice3">
+            <input type="checkbox" id="choice1-3" name="choice1-3">
             <span class="checkbox-button">Fornire più conoscenze di base​​​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-4" name="choice4">
+            <input type="checkbox" id="choice1-4" name="choice1-4">
             <span class="checkbox-button">Eliminare dal programma argomenti già trattati in altri insegnamenti​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-5" name="choice5">
+            <input type="checkbox" id="choice1-5" name="choice1-5">
             <span class="checkbox-button">Migliorare il coordinamento con altri insegnamenti </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-6" name="choice6">
+            <input type="checkbox" id="choice1-6" name="choice1-6">
             <span class="checkbox-button">Migliorare la qualità del materiale didattico​​​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-7" name="choice7">
+            <input type="checkbox" id="choice1-7" name="choice1-7">
             <span class="checkbox-button">Fornire in anticipo il materiale didattico​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-8" name="choice8">
+            <input type="checkbox" id="choice1-8" name="choice1-8" >
             <span class="checkbox-button">Inserire prove d'esame intermedie​​​ </span>
             </label>
             </br>
             <label>
-            <input type="checkbox" id="choice1-9" name="choice9">
+            <input type="checkbox" id="choice1-9" name="choice1-9">
             <span class="checkbox-button">Attivare insegnamenti serali </span>
             </label>
         </div>
         </br>
         <div class="form-element">
-            <label for='choise'>
+            <label for='choice'>
             <span>Hai qualche suggerimento per migliorare la didattica a distanza (DaD) di questo insegnamento?​ </span>
-            <textarea cols="100" rows="1"> </textarea>
+            <textarea cols="100" rows="1" form='quest' name='sugg1'> </textarea>
             </label>
         </div>
         </br>
         <div class="form-element">
-            <label for='choise'>
+            <label for='choice'>
             <span>Hai qualche suggerimento per migliorare l'erogazione della didattica (riferita a questo insegnamento​?​ </span>
-            <textarea cols="100" rows="1"> </textarea>
+            <textarea cols="100" rows="1" form='quest' name='sugg2'> </textarea>
             </label>
         </div>
-        <button class="pulsante" type='Invia'>Invia questionario</button> 
+        <button class="pulsante" type='submit'>Invia questionario</button> 
     </form>
     </region>
 </body>

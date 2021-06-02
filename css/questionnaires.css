@@ -28,6 +28,11 @@ table th {
   border-bottom-color: #000000;
 }
 
+table tr.row-selectable:hover {
+  cursor: pointer;
+  color: #009999;
+}
+
 @media only screen and (min-width: 800px) {
   table {
     width: 100%; /*estendi per tutta la dimensione dello schermo*/
