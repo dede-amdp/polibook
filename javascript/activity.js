@@ -30,4 +30,4 @@ request('../php/fetchActivity.php', param).then(result => {
 }).catch(error => {
     document.getElementById('content').innerHTML = '<p>Nessun dato</p>';
     alert('Non è stato possibile trovare i dati del corso di laurea, riprova più tardi');
-});* /
+});
