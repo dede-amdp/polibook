@@ -72,7 +72,7 @@ async function graphs(examData) {
     examData.forEach(exam => {
         // inserisce il voto di ogni esame nel grafico
         var nome = exam.nome;
-        nome = nome.replace('\<br\>', ' ').replace('\</br\>', ' ');
+        nome = nome.replace('\<br\>', ' ').replace('\<br\>', ' ');
         gradesGraphData.push({
             value: exam.voto,
             description: `Voto: ${exam.voto}${'L'.repeat(exam.lode)}\nAD: ${nome}\nCFU: ${exam.cfu}\nData: ${exam.data}`

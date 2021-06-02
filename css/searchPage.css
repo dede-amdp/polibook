@@ -1,0 +1,16 @@
+body.ricerca {
+  position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
+  left: 210px;
+  width: 78%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
+  font-size: 18px;
+}
+
+div.anno-div,
+div.facolta-div {
+  display: none;
+}
+
+div.anno-div.active,
+div.facolta-div.active {
+  display: block;
+}

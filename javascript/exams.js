@@ -16,7 +16,7 @@ request('../php/fetchPrenotabiliData.php').then(result => {
                 var id = createId(row);
                 htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
                 htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${row.nome}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.scadenza}</td><td>${row.aula}</td><td>${row.iscritti + (row.max_iscritti > 0 ? (' su ' + row.max_iscritti) : '')}</td></tr>`;
-                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
+                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b><br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
                 var msg = '';
                 var legal = isLegal(row);
                 if (legal.isLegal) {
@@ -59,7 +59,7 @@ request('../php/fetchPrenotatiData.php').then(result => {
                 var id = createId(row);
                 htmlString += `<tr id='${id}' class='exam'>`; // assegna l'id alla riga
                 htmlString += `<td>${row.corso}</td><td>${row.cognome + "\n" + row.docente}</td><td>${row.id}</td><td>${row.nome}</td><td>${row.ordinamento}</td><td>${row.data}</td><td>${row.aula}</td></tr>`;
-                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b></br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
+                var toShow = row.messaggio != null && row.messaggio != '' ? '<b>Messaggio:</b><br>' + row.messaggio : ''; // il messaggio da visualizzare nel modal prima della conferma dell'esame
                 var msg = '';
                 var legal = isLegal(row);
                 if (legal.isLegal) {
