@@ -23,7 +23,7 @@
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
+                echo '<p>Ciao <a class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:</p>';
             }
         }
     ?>

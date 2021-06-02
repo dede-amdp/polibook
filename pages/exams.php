@@ -12,7 +12,7 @@
 
 
 <body class='exams-body'>
-<?php
+    <?php
         session_start();
         if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se l'utente non ha eseguito il login torna alla pagina di login
         include '../sidenav.html';
@@ -24,13 +24,15 @@
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
+                echo '<p>Ciao <a class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:</p>';
             }
         }
     ?>
     <section aria-label="Analisi della carriera">
         <h4><span style="font-weight:normal;">La pagina mostra gli appelli e gli esoneri ai quali puoi prenotarti o ai quali ti sei già prenotatə.
-                </br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disiscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b><span></h4>
+                <br>Puoi prenotarti selezionando uno qualunque degli esami nella tabella sottostante e puoi disiscriverti selezionando uno qualunque degli esami nella sezione <b>PRENOTATI</b>
+            </span>
+        </h4>
         <div class='buttons'>
             <button id='prenotabili' class='prenotabili'>PRENOTABILI</button>
             <button id='prenotati' class='prenotati active'>PRENOTÀTI</button>

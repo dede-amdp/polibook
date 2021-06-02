@@ -22,38 +22,36 @@
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <font color=\'#009999\'>'.$row['nome'].' '.$row['cognome'].'</font>:</p>';
+                echo '<p>Ciao <a class="evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:</p>';
             }
         }
     ?>
     <section aria-label="Analisi della carriera">
-        <p>In questa sezione puoi accedere ai servizi di segreteria online offerti dal politecnico.</br>
+        <p>In questa sezione puoi accedere ai servizi di segreteria online offerti dal politecnico.<br>
             <b>NB: I servizi elencati non sono al momento disponibili ad eccezione di 'Visualizza Profilo'.</b></p>
         <!-- Lista di servizi offerti dal poliba -->
         <div class= 'options'>
-        <b>
         <ul>
-            <a href="../pages/profile.php"><li>Visualizza Profilo</li></a>
-            <a href="#"><li>Iscrizioni</li></a>
-            <a href="#"><li>Test di ammissione/concorsi</li></a>
-            <a href="#"><li>Test di valutazione</li></a>
-            <a href="#"><li>Esami di Stato</li></a>
-            <a href="#"><li>Immatricolazione</li></a>
-            <a href="#"><li>Esoneri</li></a>
-            <a href="#"><li>Autocertificazione</li></a>
-            <a href="#"><li>Pagamenti</li></a>
-            <a href="#"><li>Certificati</li></a>
-            <a href="#"><li>Trasferimento</li></a>
-            <a href="#"><li>Chiusura Carriera</li></a>
-            <a href="#"><li>Collaborazioni Studentesche</li></a>
-            <a href="#"><li>Borse di Studio</li></a>
-            <a href="#"><li>Dichiarazione di Invalidità</li></a>
-            <a href="#"><li>Documenti d’identità</li></a>
-            <a href="#"><li>Richiesta Carta Enjoy</li></a>
-            <a href="#"><li>Mobilità Internazionale</li></a>
-            <a href="#"><li>Conseguimento titolo di studio</li></a>
+                <a href="../pages/profile.php"><li><b>Visualizza Profilo</b></li></a>
+                <a href="#"><li><b>Iscrizioni</b></li></a>
+                <a href="#"><li><b>Test di ammissione/concorsi</b></li></a>
+                <a href="#"><li><b>Test di valutazione</b></li></a>
+                <a href="#"><li><b>Esami di Stato</b></li></a>
+                <a href="#"><li><b>Immatricolazione</b></li></a>
+                <a href="#"><li><b>Esoneri</b></li></a>
+                <a href="#"><li><b>Autocertificazione</b></li></a>
+                <a href="#"><li><b>Pagamenti</b></li></a>
+                <a href="#"><li><b>Certificati</b></li></a>
+                <a href="#"><li><b>Trasferimento</b></li></a>
+                <a href="#"><li><b>Chiusura Carriera</b></li></a>
+                <a href="#"><li><b>Collaborazioni Studentesche</b></li></a>
+                <a href="#"><li><b>Borse di Studio</b></li></a>
+                <a href="#"><li><b>Dichiarazione di Invalidità</b></li></a>
+                <a href="#"><li><b>Documenti d’identità</b></li></a>
+                <a href="#"><li><b>Richiesta Carta Enjoy</b></li></a>
+                <a href="#"><li><b>Mobilità Internazionale</b></li></a>
+                <a href="#"><li><b>Conseguimento titolo di studio</b></li></a>
         </ul>
-        </b>
         </div>
     </section>
 </body>

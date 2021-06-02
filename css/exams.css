@@ -79,7 +79,8 @@ div.modal {
 
 div.modal-content {
   text-align: center; /* allinea il contenuto al centro*/
-  font: "Century-Gothic" 18px;
+  font-family: "Century Goyhic";
+  font-size: 18px;
   border-radius: 5px;
   background-color: #fefefe; /* sfondo bianco */
   margin: 15% auto; /* 15% from the top and centered */
@@ -113,4 +114,9 @@ div.modal button.cancel-button {
 div.modal button:hover,
 div.modal button:focus {
   box-shadow: 2px 2px 3px 3px #88888855; /* aggiungi ombra quando il cursore è sopra al pulsante per comunicare interattività*/
+}
+
+.evidenziato {
+  color: #009999;
+  text-decoration: none;
 }

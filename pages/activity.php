@@ -23,9 +23,9 @@
         <div class='titolo' id='titolo'>
 
         </div>
-        ↓ <a href="#geninf">Informazioni Generali</a></br>
-        ↓ <a href="#desc">Descrizione</a></br>
-        ↓ <a href="#prog">Programma</a></br>
+        ↓ <a href="#geninf">Informazioni Generali</a><br>
+        ↓ <a href="#desc">Descrizione</a><br>
+        ↓ <a href="#prog">Programma</a><br>
         <a name='geninf'><h4>Informazioni Generali</h4></a>
         <div class='info' id='info-generali'>
             

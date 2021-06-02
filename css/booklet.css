@@ -87,3 +87,8 @@ p.statistics table th {
   padding-right: 1em;
   padding-left: 1em;
 }
+
+.evidenziato {
+  color: #009999;
+  text-decoration: none;
+}
