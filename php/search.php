@@ -7,16 +7,10 @@ function getRisultati() {
     $conn= open_conn();
     if($conn){
         $inputs = json_decode(file_get_contents('php://input'), true);
-        $anno = mysqli_real_escape_string($conn,$inputs['anno']);
-        $dipartimento = mysqli_real_escape_string($conn,$inputs['dipartimento']);
-        $docente = mysqli_real_escape_string($conn,$inputs['docente']);
-        $attDid = mysqli_real_escape_string($conn,$inputs['attDid']);
-        $isAnnoValid =  filter_var( $anno, 
-        FILTER_VALIDATE_REGEXP, [
-            "options" => [ "regexp" => "/^[1-3]{1}$/i"
-            ]
-        ]
-        );
+        $anno = mysqli_real_escape_string($conn, $inputs['anno']);
+        $dipartimento = mysqli_real_escape_string($conn, $inputs['dipartimento']);
+        $docente = mysqli_real_escape_string($conn, $inputs['docente']);
+        $attDid = mysqli_real_escape_string($conn, $inputs['attDid']);
         
         //dichiaro una variabile di tipo array che conterrà tutti i cdl e gli esami
         $risultati = array();
@@ -49,7 +43,7 @@ function getRisultati() {
                                         esame.id_attdid = attivita_didattica.id AND 
                                         esame.ord_attdid = attivita_didattica.ordinamento AND 
                                         esame.id_docente = docente.id 
-                    WHERE anno = ? OR 
+                    WHERE ordinamento = ? OR 
                         facolta.nome = ? OR 
                         CONCAT(docente.nome, docente.cognome) = ? OR 
                         CONCAT(docente.cognome, docente.nome) = ? OR 

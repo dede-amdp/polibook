@@ -19,10 +19,6 @@
            include '../sidenav.html';
        }
     ?>
- 
-  <div class="heading-ricerca">
-  <img src="./assets/poliba_logo.svg" alt="logo" class="logo"> <a href="index.php" > Torna su <span style= 'color:#058394'> POLIBOOK </span>  </a>
-  </div>
 
    <!-- costruzione della barra di ricerca -->
 
@@ -31,27 +27,28 @@
   
 
     <div class="form-ricerca">
-    Ricerca insegnamenti: <br>
+    <h1>Ricerca insegnamenti: </h1><br>
       
-    <br><label><b>Anno Ordinamento:</b></label>
+    <br><label><b>Anno Ordinamento:</b></label><br>
     <!--input type="text" id="anno" name="anno">-->
     <button id="annobt"> --- </button>
     <div id='anno-div' class='anno-div'></div>
-    <input class="input" type="hidden" name="anno" id="anno">
+    <input class="input" type="hidden" name="anno" id="anno"><br>
     
-    <br><label><b>Facoltà/Dipartimento:</b></label>
+    <br><label><b>Facoltà/Dipartimento:</b></label><br>
     <!--input type="text" id="dipartimento"  name="dipartimento"-->
     <button id="facoltabt"> --- </button>
     <div id='facolta-div' class='facolta-div'></div>
-    <input class="input" type="hidden" name="dipartimento" id="dipartimento">
+    <input class="input" type="hidden" name="dipartimento" id="dipartimento"><br>
       
-    <br><label><b>Docente:</b></label>
-    <input type="text" id="docente" name="docente" class="input">
+    <br><label><b>Docente:</b></label><br>
+    <input type="text" id="docente" name="docente" class="input"><br>
        
-    <br><label><b>Attività Didattica</b></label>
-    <input type="text" id="attDid" name="attDid" class="input">
+    <br><label><b>Attività Didattica</b></label><br>
+    <input type="text" id="attDid" name="attDid" class="input"><br>
 
-    <button type="submit" id ="search-button"> Inizia la ricerca </button>
+    <button type="submit" id ="search-button"> <b>Inizia la ricerca</b> </button>
+    <button id='clear'> <b>Resetta</b> </button>
   
     </div>
 

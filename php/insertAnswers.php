@@ -25,6 +25,7 @@
         }else{
             $_SESSION['error_msg'] = 'Questa attività didattica non è presente nel tuo percorso di studi ancora';
         }
+        $conn -> close();
     }else{
         $_SESSION['error_msg'] = 'Errore nella compilazione del questionario';
     }

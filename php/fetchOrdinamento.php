@@ -8,6 +8,7 @@
         while($result && $ord = mysqli_fetch_assoc($result)){
             array_push($data, $ord);
         }
+        $conn -> close();
         echo json_encode($data);
     }else{
         echo json_encode(null);

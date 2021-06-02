@@ -14,3 +14,23 @@ div.anno-div.active,
 div.facolta-div.active {
   display: block;
 }
+
+.form-ricerca .input,
+.form-ricerca button {
+  width: auto;
+  min-width: 10em;
+}
+
+.form-ricerca button {
+  border-radius: 5px;
+  height: 2em;
+  border-color: transparent;
+}
+
+.form-ricerca #search-button,
+.form-ricerca #clear {
+  background-color: #009999;
+  color: white;
+  cursor: pointer;
+  height: 3em;
+}

@@ -1,15 +1,30 @@
 var searchButton = document.getElementById('search-button');
 var annoBt = document.getElementById('annobt');
 var facBt = document.getElementById('facoltabt');
+var clear = document.getElementById('clear');
+
+clear.addEventListener('click', () => {
+    var inputs = document.getElementsByClassName('input');
+    Array.from(inputs).forEach(element => {
+        element.value = '';
+    });
+    document.getElementById('annobt').innerHTML = ' --- ';
+    document.getElementById('facoltabt').innerHTML = ' --- ';
+});
 
 annoBt.addEventListener('click', () => {
     var annoDiv = document.getElementById('anno-div');
     annoDiv.classList.toggle('active');
     if (annoDiv.classList.contains('active')) {
         request('../php/fetchOrdinamento.php').then(res => {
-            annoDiv.innerHTML = '';
+            annoDiv.innerHTML = `<button id='clear-anno'> --- </button>`;
             res.forEach(element => {
                 annoDiv.innerHTML += `<button id='${element.ordinamento}'>${element.ordinamento}</button>`;
+            });
+            document.getElementById('clear-anno').addEventListener('click', () => {
+                var annoBt = document.getElementById('annobt');
+                annoBt.innerHTML = ' --- ';
+                document.getElementById('anno').value = '';
             });
             res.forEach(element => {
                 document.getElementById(element.ordinamento).addEventListener('click', () => {
@@ -27,9 +42,14 @@ facBt.addEventListener('click', () => {
     facDiv.classList.toggle('active');
     if (facDiv.classList.contains('active')) {
         request('../php/fetchFacolta.php').then(res => {
-            facDiv.innerHTML = '';
+            facDiv.innerHTML = `<button id='clear-fac'> --- </button>`;
             res.forEach(element => {
                 facDiv.innerHTML += `<button id='${element.nome}'>${element.nome}</button>`;
+            });
+            document.getElementById('clear-fac').addEventListener('click', () => {
+                var annoBt = document.getElementById('facoltabt');
+                annoBt.innerHTML = ' --- ';
+                document.getElementById('dipartimento').value = '';
             });
             res.forEach(element => {
                 document.getElementById(element.nome).addEventListener('click', () => {
@@ -52,7 +72,7 @@ searchButton.addEventListener('click', () => {
     search(data.anno, data.attDid, data.dipartimento, data.docente.replace(/\s/g, ''));
 });
 
-function search(anno, attdid, doc, fac) {
+function search(anno, attdid, fac, doc) {
     request('../php/search.php', { "anno": anno, "attDid": attdid, "dipartimento": fac, "docente": doc }).then(result => {
         console.log(result);
         if (result != undefined && result != null && result.length > 0) {

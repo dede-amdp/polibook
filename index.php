@@ -43,7 +43,7 @@
                     <br><button type="submit"> Login </button>
                     <button type="button" onclick="document.getElementById('id01').style.display='block'"> Registrati </button>
 
-                    <br><span class="psw"><a href="../php/resetPassword.php">Password dimenticata?</a></span>
+                    <br><span class="psw"><a href="./pages/resetPage.php">Password dimenticata?</a></span>
                 
                 </div>
 

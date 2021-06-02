@@ -28,15 +28,12 @@
         ↓ <a href="#prog">Programma</a><br>
         <a name='geninf'><h4>Informazioni Generali</h4></a>
         <div class='info' id='info-generali'>
-            
         </div>
         <a name='desc'><h4>Descrizione</h4></a>
         <div class='info' id='descrizione'>
-            
         </div>
         <a name='prog'><h4>Programma</h4></a>
         <div class='programma' id='programma'>
-            
         </div>
     </section>
     </div>

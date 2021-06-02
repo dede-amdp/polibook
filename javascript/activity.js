@@ -18,7 +18,7 @@ request('../php/fetchActivity.php', param).then(result => {
         const caratt = 'Caratterizzante:\t' + (data.caratterizzante ? 'Sì' : 'No') + '<br>';
         const cfu = 'Peso in CFU:\t' + data.cfu + '<br>';
         document.getElementById('titolo').innerHTML = `<h1><font color='#009999'>${titolo}</font></h1><br>
-                                                        <a href='../pages/cdl.php?id=${data.id_cdl}'>${cdl}</a>`;
+                                                        <a href='../pages/cdl.php?cdl=${data.id_cdl}'>${cdl}</a>`;
         document.getElementById('info-generali').innerHTML = annocorso + ordinamento + semestre + docente + caratt + cfu;
         //costuisce descrizione
         document.getElementById('descrizione').innerHTML = data.descrizione;
@@ -27,7 +27,7 @@ request('../php/fetchActivity.php', param).then(result => {
     } else {
         document.getElementById('content').innerHTML = '<p>Non ci sono dati riguardanti questa Attività didattica</p>';
     }
-}).catch(error => {
+})/*.catch(error => {
     document.getElementById('content').innerHTML = '<p>Nessun dato</p>';
     alert('Non è stato possibile trovare i dati del corso di laurea, riprova più tardi');
-});
+});*/
