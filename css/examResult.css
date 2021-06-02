@@ -12,7 +12,6 @@ div.text {
 }
 
 table {
-  display: box;
   width: 80vw;
   margin-left: 10px;
   margin-top: 20px;
@@ -48,7 +47,8 @@ div.modal {
 
 div.modal-content {
   text-align: center; /* allinea il contenuto al centro*/
-  font: "Century-Gothic" 18px;
+  font-family: "Century Goyhic";
+  font-size: 18px;
   border-radius: 5px;
   background-color: #fefefe; /* sfondo bianco */
   margin: 15% auto; /* 15% from the top and centered */
