@@ -73,6 +73,7 @@ searchButton.addEventListener('click', () => {
 });
 
 function search(anno, attdid, fac, doc) {
+    document.getElementById('search-res').innerHTML = '';
     request('../php/search.php', { "anno": anno, "attDid": attdid, "dipartimento": fac, "docente": doc }).then(result => {
         console.log(result);
         if (result != undefined && result != null && result.length > 0) {
@@ -99,5 +100,5 @@ function search(anno, attdid, fac, doc) {
         } else {
             document.getElementById('search-res').innerHTML = '<p>Nessun risultato trovato</p>';
         }
-    }).catch();
+    })//.catch();
 }

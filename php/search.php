@@ -17,7 +17,7 @@ function getRisultati() {
 
         //verifico che almeno uno dei valori sia stato inserito per effettuare la ricerca
         if (isset($anno) || isset($dipartimento) || isset($docente) || isset($attDid)){
-            $query = 'SELECT cdl.id as id_cdl, 
+            $tabellone = 'SELECT cdl.id as id_cdl, 
                             id_corso,
                             attivita_didattica.id,
                             ordinamento,
@@ -29,27 +29,60 @@ function getRisultati() {
                             facolta.nome as nome_facolta,
                             attivita_didattica.nome as nome_attdid,
                             cdl.nome as nome_cdl
-                            
-
-                    FROM attdid_cdl JOIN attivita_didattica 
-                                    JOIN esame 
-                                    JOIN facolta 
-                                    JOIN cdl 
-                                    JOIN docente 
-                                    ON attivita_didattica.id = attdid_cdl.id_attdid AND
-                                        attivita_didattica.ordinamento = attdid_cdl.ord_attdid AND 
-                                        attdid_cdl.id_cdl = cdl.id AND
-                                        cdl.id_facolta = facolta.id AND 
-                                        esame.id_attdid = attivita_didattica.id AND 
-                                        esame.ord_attdid = attivita_didattica.ordinamento AND 
-                                        esame.id_docente = docente.id 
-                    WHERE ordinamento = ? OR 
-                        facolta.nome = ? OR 
-                        CONCAT(docente.nome, docente.cognome) = ? OR 
-                        CONCAT(docente.cognome, docente.nome) = ? OR 
-                        attivita_didattica.nome = ?';
-        
-        $risultati = fetch_DB($conn, $query, $anno, $dipartimento, $docente, $docente, $attDid);
+                            FROM attdid_cdl JOIN attivita_didattica 
+                                            JOIN esame 
+                                            JOIN facolta 
+                                            JOIN cdl 
+                                            JOIN docente 
+                                            ON attivita_didattica.id = attdid_cdl.id_attdid AND
+                                                attivita_didattica.ordinamento = attdid_cdl.ord_attdid AND 
+                                                attdid_cdl.id_cdl = cdl.id AND
+                                                cdl.id_facolta = facolta.id AND 
+                                                esame.id_attdid = attivita_didattica.id AND 
+                                                esame.ord_attdid = attivita_didattica.ordinamento AND 
+                                                esame.id_docente = docente.id ';
+        $query_ord = 'LOWER(ordinamento) = LOWER(?)'; 
+        $query_dip = 'LOWER(facolta.nome) = LOWER(?)';
+        $query_doc = 'LOWER(CONCAT(docente.nome, docente.cognome)) = LOWER(?)  OR
+                        LOWER(CONCAT(docente.cognome, docente.nome)) = LOWER(?)';
+        $query_attdid = 'LOWER(attivita_didattica.nome) = LOWER(?)';
+        $query = '';
+        $vals = array();
+        //costruisco la query
+        if ($anno != ''){
+            if(strlen($query) <= 0){
+                $query = $tabellone.' WHERE '.$query_ord;
+            }else{
+                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_ord.')';
+            }
+            array_push($vals, $anno);
+        }
+        if ($dipartimento != ''){
+            if(strlen($query) <= 0){
+                $query = $tabellone.' WHERE '.$query_dip;
+            }else{
+                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_dip.')';
+            }
+            array_push($vals, $dipartimento);
+        }
+        if ($docente != ''){
+            if(strlen($query) <= 0){
+                $query = $tabellone.' WHERE '.$query_doc;
+            }else{
+                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_doc.')';
+            }
+            array_push($vals, $docente, $docente);
+        }
+        if ($attDid != ''){
+            if(strlen($query) <= 0){
+                $query = $tabellone.' WHERE '.$query_attdid;
+            }else{
+                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_attdid.')';
+            }
+            array_push($vals, $attDid);
+        }
+        // eseguo la query
+        $risultati = fetch_DB($conn, $query, ...$vals);
         $data = array();
         while($risultati && $row = mysqli_fetch_assoc($risultati)){
             array_push($data, $row);
