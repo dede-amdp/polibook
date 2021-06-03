@@ -1,8 +1,9 @@
 <?php
+// restituisco i dati del corso di laurea
     require_once '../php/dbh.inc.php';
     $conn = open_conn();
     if($conn){
-        $query = 'SELECT * from cdl';
+        $query = 'SELECT nome from cdl';
         $result = fetch_DB($conn, $query);
         $data = array();
         while($result && $cdl = mysqli_fetch_assoc($result)){

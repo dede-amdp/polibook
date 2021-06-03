@@ -1,7 +1,8 @@
 <?php
+// prende gli esami per i quali non sono stati compilati i questionari
     require_once '../php/dbh.inc.php';
     session_start();
-    if(!isset($_SESSION['id'])) header('Location: ../index.php');
+    if(!isset($_SESSION['id'])) header('Location: ../index.php'); // se non è satto eseguito l'accesso
     $conn = open_conn();
     if($conn){
         $data = array();

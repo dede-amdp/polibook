@@ -1,4 +1,5 @@
 <?php
+// recupero i dati delle facolta
     require_once '../php/dbh.inc.php';
     $conn = open_conn();
     if($conn){

@@ -1,4 +1,5 @@
 <?php
+// prendi i dati degli esiti da verbalizzare
     session_start();
     if(!isset($_SESSION['id'])) header('Location: ../index.php');
     require_once '../php/dbh.inc.php';

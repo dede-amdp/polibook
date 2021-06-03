@@ -9,7 +9,7 @@ async function request(url = '', data = {}) {
                 throw new Error('No result'); //ho un errore
             }
             return result.json(); //se ho risposta corretta
-        })//.catch(error => alert('Errore nell\'esecuzione della richiesta, riprova più tardi')); //errore è loggato e non è mostrato all'utente
+        }).catch(error => alert('Errore nell\'esecuzione della richiesta, riprova più tardi')); //errore è loggato e non è mostrato all'utente
 }
 // * Questo metodo per ora non è utilizzabile *
 /*

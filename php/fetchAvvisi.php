@@ -23,12 +23,4 @@
         }
         return [];
     }
-    //funzione che mi restituisce il numero di avvisi 
-    /*
-    function countAvvisi(){
-        $avvisi = getAvvisi();
-        $numAvv = count($avvisi);
-        return $numAvv;
-    }
-    */
 ?>

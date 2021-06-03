@@ -86,7 +86,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     session_start();
     $_SESSION['error_msg'] = 'Errore durante la registrazione, riprova più tardi';
   }finally{
-    //header('Location: ../index.php');
+    header('Location: ../index.php');
   }
 ?>
 

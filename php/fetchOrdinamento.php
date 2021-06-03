@@ -1,4 +1,5 @@
 <?php
+    // restituisco i dati degli ordinamenti
     require_once '../php/dbh.inc.php';
     $conn = open_conn();
     if($conn){

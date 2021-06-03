@@ -6,6 +6,7 @@ function getRisultati() {
     require_once '../php/dbh.inc.php';
     $conn= open_conn();
     if($conn){
+        //prende i dati inseriti in input alla richiesta
         $inputs = json_decode(file_get_contents('php://input'), true);
         $anno = mysqli_real_escape_string($conn, $inputs['anno']);
         $dipartimento = mysqli_real_escape_string($conn, $inputs['dipartimento']);
@@ -42,81 +43,79 @@ function getRisultati() {
                                                 esame.id_attdid = attivita_didattica.id AND 
                                                 esame.ord_attdid = attivita_didattica.ordinamento AND 
                                                 esame.id_docente = docente.id ';
-        $query_ord = 'LOWER(ordinamento) = LOWER(?)'; 
-        $query_dip = 'LOWER(facolta.nome) = LOWER(?)';
-        $query_doc = 'LOWER(CONCAT(docente.nome, docente.cognome)) = LOWER(?)  OR
-                        LOWER(CONCAT(docente.cognome, docente.nome)) = LOWER(?)';
-        $query_attdid = 'LOWER(attivita_didattica.nome) = LOWER(?)';
-        $query_cdl = 'LOWER(cdl.nome) = LOWER(?)';
-        $query = '';
-        $vals = array();
-        //costruisco la query
-        if ($anno != ''){
-            if(strlen($query) <= 0){
-                $query = $tabellone.' WHERE '.$query_ord;
-            }else{
-                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_ord.')';
+            $query_ord = 'LOWER(ordinamento) = LOWER(?)'; 
+            $query_dip = 'LOWER(facolta.nome) = LOWER(?)';
+            $query_doc = 'LOWER(CONCAT(docente.nome, docente.cognome)) = LOWER(?)  OR
+                            LOWER(CONCAT(docente.cognome, docente.nome)) = LOWER(?)';
+            $query_attdid = 'LOWER(attivita_didattica.nome) = LOWER(?)';
+            $query_cdl = 'LOWER(cdl.nome) = LOWER(?)';
+            $query = '';
+            $vals = array();
+            //costruisco la query a seconda dei dati che mi servono
+            if ($anno != ''){
+                if(strlen($query) <= 0){
+                    $query = $tabellone.' WHERE '.$query_ord;
+                }else{
+                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_ord.')'; // se ho già una parte di query (ovvero l'utente ha inserito più di un dato) allora fai l'intersezione tra i risultati
+                }
+                array_push($vals, $anno);
             }
-            array_push($vals, $anno);
-        }
-        if ($dipartimento != ''){
-            if(strlen($query) <= 0){
-                $query = $tabellone.' WHERE '.$query_dip;
-            }else{
-                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_dip.')';
+            if ($dipartimento != ''){
+                if(strlen($query) <= 0){
+                    $query = $tabellone.' WHERE '.$query_dip;
+                }else{
+                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_dip.')';
+                }
+                array_push($vals, $dipartimento);
             }
-            array_push($vals, $dipartimento);
-        }
-        if ($docente != ''){
-            if(strlen($query) <= 0){
-                $query = $tabellone.' WHERE '.$query_doc;
-            }else{
-                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_doc.')';
+            if ($docente != ''){
+                if(strlen($query) <= 0){
+                    $query = $tabellone.' WHERE '.$query_doc;
+                }else{
+                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_doc.')';
+                }
+                array_push($vals, $docente, $docente);
             }
-            array_push($vals, $docente, $docente);
-        }
-        if ($attDid != ''){
-            if(strlen($query) <= 0){
-                $query = $tabellone.' WHERE '.$query_attdid;
-            }else{
-                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_attdid.')';
+            if ($attDid != ''){
+                if(strlen($query) <= 0){
+                    $query = $tabellone.' WHERE '.$query_attdid;
+                }else{
+                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_attdid.')';
+                }
+                array_push($vals, $attDid);
             }
-            array_push($vals, $attDid);
-        }
-        if ($cdl != ''){
-            if(strlen($query) <= 0){
-                $query = $tabellone.' WHERE '.$query_cdl;
-            }else{
-                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_cdl.')';
+            if ($cdl != ''){
+                if(strlen($query) <= 0){
+                    $query = $tabellone.' WHERE '.$query_cdl;
+                }else{
+                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_cdl.')';
+                }
+                array_push($vals, $cdl);
             }
-            array_push($vals, $cdl);
-        }
-        // eseguo la query
-        $risultati = fetch_DB($conn, $query, ...$vals);
-        $data = array();
-        while($risultati && $row = mysqli_fetch_assoc($risultati)){
-            array_push($data, $row);
-        }
-
-        if (isset($cdl) || isset($dipartimento)){
-            $query = 'SELECT facolta.nome as nome_facolta,
-                                cdl.nome as nome_cdl,
-                                facolta.id as id_facolta,
-                                cdl.id as id_cdl
-                        FROM cdl JOIN facolta ON id_facolta = facolta.id WHERE LOWER(cdl.nome)=LOWER(?) OR LOWER(facolta.nome) = LOWER(?);';
-            $risultati = fetch_DB($conn, $query, $cdl, $dipartimento);
+            // eseguo la query
+            $risultati = fetch_DB($conn, $query, ...$vals);
+            $data = array();
             while($risultati && $row = mysqli_fetch_assoc($risultati)){
                 array_push($data, $row);
             }
-        }
-        $conn -> close();
-        return $data;
-    }else{
-        return null;
-    }
-}
 
-   
+            if (isset($cdl) || isset($dipartimento)){ // cerca solo i cdl e aggiungili in coda
+                $query = 'SELECT facolta.nome as nome_facolta,
+                                    cdl.nome as nome_cdl,
+                                    facolta.id as id_facolta,
+                                    cdl.id as id_cdl
+                            FROM cdl JOIN facolta ON id_facolta = facolta.id WHERE LOWER(cdl.nome)=LOWER(?) OR LOWER(facolta.nome) = LOWER(?);';
+                $risultati = fetch_DB($conn, $query, $cdl, $dipartimento);
+                while($risultati && $row = mysqli_fetch_assoc($risultati)){
+                    array_push($data, $row);
+                }
+            }
+            $conn -> close();
+            return $data;
+        }else{
+            return null;
+        }
+    }  
 }//fine funzione 
 
 ?>
