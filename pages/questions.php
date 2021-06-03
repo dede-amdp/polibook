@@ -20,6 +20,9 @@
         <section aria-label="Questionario">
             <h2><span style="font-weight:normal;"> Questionario di automazione industriale </span></h2>
             <form class="domande" id='quest' action='../php/insertAnswers.php' method='POST'>
+            <?php
+                if(!isset($_GET['id'])) header('Location: ../pages/questionnaires.php');
+            ?>
                 <input type='hidden' name='id' value= <?php echo '\''.$_GET['id'].'\''; ?> >
                 <div class='form-element radio-buttons'>
                     <span> Le attivita didattiche (lezioni, esercitazioni, laboratori, ecc) online per questo insegnamento sono di facile utilizzo</span><br>
