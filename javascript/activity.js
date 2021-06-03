@@ -17,8 +17,7 @@ request('../php/fetchActivity.php', param).then(result => {
         const docente = param.doc ? 'Docente:\t' + data.cognome_docente + ' ' + data.nome_docente + '<br>' : '';
         const caratt = 'Caratterizzante:\t' + (data.caratterizzante ? 'Sì' : 'No') + '<br>';
         const cfu = 'Peso in CFU:\t' + data.cfu + '<br>';
-        document.getElementById('titolo').innerHTML = `<h1><font color='#009999'>${titolo}</font></h1><br>
-                                                        <a href='../pages/cdl.php?cdl=${data.id_cdl}'>${cdl}</a>`;
+        document.getElementById('titolo').innerHTML = `<h1><font color='#009999'>${titolo}</font></h1><a href='../pages/cdl.php?cdl=${data.id_cdl}'>${cdl}</a>`;
         document.getElementById('info-generali').innerHTML = annocorso + ordinamento + semestre + docente + caratt + cfu;
         //costuisce descrizione
         document.getElementById('descrizione').innerHTML = data.descrizione;

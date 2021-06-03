@@ -14,8 +14,7 @@ request('../php/fetchCdl.php', param).then(result => {
         const durata = 'Durata:\t' + data.durata + '<br>';
         const cfu = 'CFU Totali:\t' + data.cfu_totali + '<br>';
         const tipologia = 'Tipologia:\t' + data.tipologia + '<br>';
-        document.getElementById('titolo').innerHTML = `<h1><font color='#009999'>${titolo}</font></h1><br>
-                                                        <p>${facolta}</p>`;
+        document.getElementById('titolo').innerHTML = `<h1><font color='#009999'>${titolo}</font></h1><p>${facolta}</p>`;
         document.getElementById('info-generali').innerHTML = durata + cfu + tipologia;
         //costuisce descrizione
         document.getElementById('descrizione').innerHTML = data.descrizione;

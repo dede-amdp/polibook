@@ -13,3 +13,8 @@ body.cdl div.info a,
 body.cdl div.programma a {
   color: #009999;
 }
+
+.info {
+  border-radius: 10px;
+  border: 2px solid #EFEFEF;
+}

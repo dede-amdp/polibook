@@ -1,8 +1,9 @@
 body.ricerca {
   position: absolute; /*Serve perchè se no va sotto la barra di navigazione laterale*/
-  left: 210px;
+  left: 130px;
   width: 78%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
   font-size: 18px;
+  font-family: "Century Gothic";
 }
 
 div.anno-div,
@@ -42,4 +43,43 @@ div.cdl-div.active {
   color: white;
   cursor: pointer;
   height: 3em;
+}
+
+.form-ricerca {
+  margin-top: 1em;
+  text-align: center;
+  margin-left: auto;
+  border-radius: 10px;
+  margin-right: 0;
+  background-color: white;
+  border: 2px solid #EFEFEF;
+  box-shadow: 3px 3px 4px 4px #88888855;
+  width: 80%;
+  margin-bottom: 4em;
+  padding-bottom: 2em;
+}
+
+.risultati-ricerca {
+  margin-left: auto;
+  margin-right: 0;
+  border-radius: 10px;
+  list-style-type: none;
+  margin-bottom: 4em;
+  background-color: #EFEFEF;
+  width: 80%;
+  padding-top: 3em;
+  padding-bottom: 1em;
+}
+
+.risultati-ricerca ul {
+  padding: unset;
+}
+
+.risultati-ricerca li {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.risultati-ricerca a {
+  color: #009999;
 }

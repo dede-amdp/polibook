@@ -78,7 +78,7 @@
         </br>
         <div class="form-element checkbox-button">
             <label for="answer">
-            <span> Suggerimenti</span></p>
+            <span> Suggerimenti</span><br>
             <input type="checkbox" id="choice1-1" name="choice1">
             <span class="checkbox-button">Alleggerire il carico didattico complessivo​ </span>
             </label>
