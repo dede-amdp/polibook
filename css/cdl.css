@@ -14,7 +14,13 @@ body.cdl div.programma a {
   color: #009999;
 }
 
-.info {
+.info, .programma {
   border-radius: 10px;
   border: 2px solid #EFEFEF;
+  padding: 1em;
+}
+
+.programma ul {
+  list-style-type: none;
+  padding: unset;
 }

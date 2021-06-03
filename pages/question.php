@@ -78,59 +78,59 @@
         </br>
         <div class="form-element checkbox-button">
             <label for="answer">
-            <span> Suggerimenti</span><br>
-            <input type="checkbox" id="choice1-1" name="choice1">
-            <span class="checkbox-button">Alleggerire il carico didattico complessivo​ </span>
+                <span> Suggerimenti</span><br>
+                <input type="checkbox" id="choice1-1" name="choice1">
+                <span class="checkbox-button">Alleggerire il carico didattico complessivo​ </span>
             </label>
-            </br>
+            <br>
             <label>
-            <input type="checkbox" id="choice1-2" name="choice2">
-            <span class="checkbox-button">Aumentare l'attività di supporto didattico​​ </span>
+                <input type="checkbox" id="choice1-2" name="choice2">
+                <span class="checkbox-button">Aumentare l'attività di supporto didattico​​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-3" name="choice3">
             <span class="checkbox-button">Fornire più conoscenze di base​​​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-4" name="choice4">
             <span class="checkbox-button">Eliminare dal programma argomenti già trattati in altri insegnamenti​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-5" name="choice5">
             <span class="checkbox-button">Migliorare il coordinamento con altri insegnamenti </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-6" name="choice6">
             <span class="checkbox-button">Migliorare la qualità del materiale didattico​​​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-7" name="choice7">
             <span class="checkbox-button">Fornire in anticipo il materiale didattico​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-8" name="choice8">
             <span class="checkbox-button">Inserire prove d'esame intermedie​​​ </span>
             </label>
-            </br>
+            <br>
             <label>
             <input type="checkbox" id="choice1-9" name="choice9">
             <span class="checkbox-button">Attivare insegnamenti serali </span>
             </label>
         </div>
-        </br>
+        <br>
         <div class="form-element">
             <label for='choise'>
             <span>Hai qualche suggerimento per migliorare la didattica a distanza (DaD) di questo insegnamento?​ </span>
             <textarea cols="100" rows="1"> </textarea>
             </label>
         </div>
-        </br>
+        <br>
         <div class="form-element">
             <label for='choise'>
             <span>Hai qualche suggerimento per migliorare l'erogazione della didattica (riferita a questo insegnamento​?​ </span>
