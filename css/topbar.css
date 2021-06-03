@@ -1,0 +1,34 @@
+body.topbar {
+    font-family: "Century Gothic";
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+body.ricerca, body.activity, body.cdl {
+  left: 20px;
+}
+
+.link a {
+  text-decoration: none;
+  color: black;
+}
+  .evidenziato {
+    color: #009999;
+    text-decoration: none;
+  }
+
+  .testo{
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.link {
+  box-shadow: 5px 3px 30px 3px #888888BA;
+  background-color: white;
+  border-radius: 20px;
+  width: 45vh;
+}
+

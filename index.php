@@ -44,6 +44,8 @@
                     <button type="button" onclick="document.getElementById('id01').style.display='block'"> Registrati </button>
 
                     <br><span class="psw"><a href="./pages/resetPage.php">Password dimenticata?</a></span>
+
+                    <br><br><span class="ricerca"><a href="./pages/searchPage.php">Ricerca insegnamenti</a></span>
                 
                 </div>
 
