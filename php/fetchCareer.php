@@ -30,7 +30,8 @@ function getExams(){
     $att_dids = array();
     $superati = array();
     if ($result && $cdl=mysqli_fetch_assoc($result)){
-        $query = 'SELECT * FROM attivita_didattica JOIN attdid_cdl on id_attdid = id and ord_attdid = ordinamento WHERE (id_cdl=?) and (percorso=\'\' OR percorso = ?) ';
+        $query = 'SELECT attivita_didattica.id, attivita_didattica.nome, attivita_didattica.SSD, attivita_didattica.cfu, attivita_didattica.ordinamento
+                ,attdid_cdl.* FROM attivita_didattica JOIN attdid_cdl on id_attdid = id and ord_attdid = ordinamento WHERE (id_cdl=?) and (percorso=\'\' OR percorso = ?) ';
         $result = fetch_DB($conn,$query,$cdl['id_cdl'],$cdl['percorso']);
         while ($result && $row=mysqli_fetch_assoc($result)){
             $array = array_merge($row,['superato'=> false]); //false

@@ -35,29 +35,7 @@
                     Quando tutti i crediti richiesti sono ottenuti, lo studente può conseguire il titolo previsto dal corso di studio.</span>
                 </h4>
             </div> 
-                <!-- !! aggiungere metodo che inserica il totale dei CFU per ogni categoria,
-                            aggiungere controllo per il numero di CFU mancanti,
-                            aggiungere controllo per completamento categoria (check)
-                            aggiungere le categorie specifiche per il CdL  -->
                 <table id='career-table' class="table" border = 2px>
-                    <!--
-                    <tr><th>Regola</th><th>CFU Min</th><th>CFU Max</th><th>CFU Calcolati</th><th>CFU Validati</th><th>CFU Mancanti</th><th>Esito</th></tr>
-                
-                    <tr><td>TOTALE CFU</td><td>180</td><td>999</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>A - Base</td><td>42</td><td>78</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Matematica, informatica e statistica</td><td>30</td><td>48</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Fisica e chimica</td><td>12</td><td>30</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>B - Caratterizzante</td><td>45</td><td>138</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Caratterizzante 1</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Caratterizzante 2</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Caratterizzante 3</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Caratterizzante 4</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>C - attività formative affini o integrative</td><td>18</td><td>30</td><td></td><td></td><td></td><td></td></tr> 
-                    <tr><td>D - A scelta dello studente</td><td>12</td><td>18</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>E - lingua</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>F - Abilità informatiche e telematiche</td><td>6</td><td>6</td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>G - Stage e tirocini</td><td>0</td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>H - Prova finale</td><td>3</td><td>3</td><td></td><td></td><td></td><td></td></tr> -->
                 </table>
         </section>
     </body>

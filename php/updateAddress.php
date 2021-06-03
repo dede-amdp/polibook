@@ -16,7 +16,7 @@
                 if(password_verify($password, $fromdb)){ // verifica che la password inserita sia corretta
                     $query = 'UPDATE studente SET indirizzo=? WHERE matricola=?;';
                     if(update_DB($conn, $query, $email, $matricola)){ // aggiorna l'indirizzo email dell'utente
-                        $_SESSION['userData_msg'] = 'Indirizzo modificata con successo'; // messaggio da mostrare
+                        $_SESSION['userData_msg'] = 'Indirizzo modificato con successo'; // messaggio da mostrare
                         unset($_SESSION['section']); // rimuove questo valore perchè non serve che la sezione di modifica della email sia aperta
                     }else{
                         $_SESSION['userData_msg'] = 'Non è stato possibile modificare l\'indirizzo';

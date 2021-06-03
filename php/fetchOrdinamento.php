@@ -3,7 +3,7 @@
     require_once '../php/dbh.inc.php';
     $conn = open_conn();
     if($conn){
-        $query = 'SELECT ordinamento from attivita_didattica GROUP BY ordinamento';
+        $query = 'SELECT ordinamento FROM attivita_didattica GROUP BY ordinamento ORDER BY ordinamento';
         $result = fetch_DB($conn, $query);
         $data = array();
         while($result && $ord = mysqli_fetch_assoc($result)){

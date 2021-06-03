@@ -7,12 +7,13 @@
         <link href='./css/login.css' rel='Stylesheet' type='text/css'>
         <meta name="description" 
             content="Questa pagina permette di effettuare il login e la registrazione al sito">
+        
         <?php
             session_start();
             if(isset($_SESSION['error_msg'])){ // se contiene un messaggio
                 $message = $_SESSION['error_msg'];
                 unset($_SESSION['error_msg']); // togle il messaggio di errore dalla sessione
-                echo "<script type='text/javascript'>window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
+                echo "<script type='text/javascript'> window.onload = function() {alert('$message');};</script>"; // mostra il messaggio in alto
             }
         ?>
     </head>

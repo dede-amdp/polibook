@@ -1,0 +1,47 @@
+body.resetPage {
+    font-family: "Century Gothic";
+    width: 95%; /* serve a limitare la lunghezza della finestra in modo che non esca fuori dalla schermata*/
+    font-size: 16px;
+    
+  }
+
+.titolo {
+    margin-top: 5vh;
+}  
+
+.indicazioni {
+    text-align: center;
+    }
+
+.recupero {
+    text-align: center;
+}
+
+.placeholder {
+    min-width: 15em;
+    margin-top: 1em;
+    margin-right: 1em;
+    width: 10em;
+    height: 1.5em;
+}
+
+.pulsante {
+    border-radius: 5px;
+    border-color: transparent;
+    background-color: #009999;
+    color: white;
+    cursor: pointer;
+    height: 2em;
+}
+
+.contenitore {
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 80%;
+    background-color: #EFEFEF;
+    padding: 20px;
+    padding-bottom: 30px;
+}
