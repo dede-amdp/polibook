@@ -11,12 +11,13 @@ function getRisultati() {
         $dipartimento = mysqli_real_escape_string($conn, $inputs['dipartimento']);
         $docente = mysqli_real_escape_string($conn, $inputs['docente']);
         $attDid = mysqli_real_escape_string($conn, $inputs['attDid']);
+        $cdl = mysqli_real_escape_string($conn, $inputs['cdl']);
         
         //dichiaro una variabile di tipo array che conterrà tutti i cdl e gli esami
         $risultati = array();
 
         //verifico che almeno uno dei valori sia stato inserito per effettuare la ricerca
-        if (isset($anno) || isset($dipartimento) || isset($docente) || isset($attDid)){
+        if (isset($anno) || isset($dipartimento) || isset($docente) || isset($attDid) || isset($cdl)){
             $tabellone = 'SELECT cdl.id as id_cdl, 
                             id_corso,
                             attivita_didattica.id,
@@ -46,6 +47,7 @@ function getRisultati() {
         $query_doc = 'LOWER(CONCAT(docente.nome, docente.cognome)) = LOWER(?)  OR
                         LOWER(CONCAT(docente.cognome, docente.nome)) = LOWER(?)';
         $query_attdid = 'LOWER(attivita_didattica.nome) = LOWER(?)';
+        $query_cdl = 'LOWER(cdl.nome) = LOWER(?)';
         $query = '';
         $vals = array();
         //costruisco la query
@@ -81,11 +83,31 @@ function getRisultati() {
             }
             array_push($vals, $attDid);
         }
+        if ($cdl != ''){
+            if(strlen($query) <= 0){
+                $query = $tabellone.' WHERE '.$query_cdl;
+            }else{
+                $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_cdl.')';
+            }
+            array_push($vals, $cdl);
+        }
         // eseguo la query
         $risultati = fetch_DB($conn, $query, ...$vals);
         $data = array();
         while($risultati && $row = mysqli_fetch_assoc($risultati)){
             array_push($data, $row);
+        }
+
+        if (isset($cdl) || isset($dipartimento)){
+            $query = 'SELECT facolta.nome as nome_facolta,
+                                cdl.nome as nome_cdl,
+                                facolta.id as id_facolta,
+                                cdl.id as id_cdl
+                        FROM cdl JOIN facolta ON id_facolta = facolta.id WHERE LOWER(cdl.nome)=LOWER(?) OR LOWER(facolta.nome) = LOWER(?);';
+            $risultati = fetch_DB($conn, $query, $cdl, $dipartimento);
+            while($risultati && $row = mysqli_fetch_assoc($risultati)){
+                array_push($data, $row);
+            }
         }
         $conn -> close();
         return $data;

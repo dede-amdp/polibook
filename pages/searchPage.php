@@ -40,6 +40,12 @@
     <button id="facoltabt"> --- </button>
     <div id='facolta-div' class='facolta-div'></div>
     <input class="input" type="hidden" name="dipartimento" id="dipartimento"><br>
+
+    <br><label><b>Corso di Laurea:</b></label><br>
+    <!--input type="text" id="dipartimento"  name="dipartimento"-->
+    <button id="cdlbt"> --- </button>
+    <div id="cdl-div" class="cdl-div"></div>
+    <input class="input" type="hidden" name="cdl" id="cdl"><br>
       
     <br><label><b>Docente:</b></label><br>
     <input type="text" id="docente" name="docente" class="input"><br>

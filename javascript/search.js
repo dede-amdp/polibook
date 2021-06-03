@@ -1,6 +1,7 @@
 var searchButton = document.getElementById('search-button');
 var annoBt = document.getElementById('annobt');
 var facBt = document.getElementById('facoltabt');
+var cdlBt = document.getElementById('cdlbt');
 var clear = document.getElementById('clear');
 
 clear.addEventListener('click', () => {
@@ -10,6 +11,7 @@ clear.addEventListener('click', () => {
     });
     document.getElementById('annobt').innerHTML = ' --- ';
     document.getElementById('facoltabt').innerHTML = ' --- ';
+    document.getElementById('cdlbt').innerHTML = ' --- ';
 });
 
 annoBt.addEventListener('click', () => {
@@ -37,6 +39,31 @@ annoBt.addEventListener('click', () => {
     }
 });
 
+cdlBt.addEventListener('click', () => {
+    var cdlDiv = document.getElementById('cdl-div');
+    cdlDiv.classList.toggle('active');
+    if (cdlDiv.classList.contains('active')) {
+        request('../php/fetchCorsiDL.php').then(res => {
+            cdlDiv.innerHTML = `<button id='clear-cdl'> --- </button>`;
+            res.forEach(element => {
+                cdlDiv.innerHTML += `<button id='${element.nome}'>${element.nome}</button>`;
+            });
+            document.getElementById('clear-cdl').addEventListener('click', () => {
+                var cdlBt = document.getElementById('cdlbt');
+                cdlBt.innerHTML = ' --- ';
+                document.getElementById('cdl').value = '';
+            });
+            res.forEach(element => {
+                document.getElementById(element.nome).addEventListener('click', () => {
+                    var cdlBt = document.getElementById('cdlbt');
+                    cdlBt.innerHTML = element.nome;
+                    document.getElementById('cdl').value = element.nome;
+                });
+            });
+        });
+    }
+});
+
 facBt.addEventListener('click', () => {
     var facDiv = document.getElementById('facolta-div');
     facDiv.classList.toggle('active');
@@ -47,8 +74,8 @@ facBt.addEventListener('click', () => {
                 facDiv.innerHTML += `<button id='${element.nome}'>${element.nome}</button>`;
             });
             document.getElementById('clear-fac').addEventListener('click', () => {
-                var annoBt = document.getElementById('facoltabt');
-                annoBt.innerHTML = ' --- ';
+                var facBt = document.getElementById('facoltabt');
+                facBt.innerHTML = ' --- ';
                 document.getElementById('dipartimento').value = '';
             });
             res.forEach(element => {
@@ -69,12 +96,12 @@ searchButton.addEventListener('click', () => {
         data[element.id] = element.value;
     });
     console.log(data);
-    search(data.anno, data.attDid, data.dipartimento, data.docente.replace(/\s/g, ''));
+    search(data.anno, data.attDid, data.dipartimento, data.cdl, data.docente.replace(/\s/g, ''));
 });
 
-function search(anno, attdid, fac, doc) {
+function search(anno, attdid, fac, cdl, doc) {
     document.getElementById('search-res').innerHTML = '';
-    request('../php/search.php', { "anno": anno, "attDid": attdid, "dipartimento": fac, "docente": doc }).then(result => {
+    request('../php/search.php', { "anno": anno, "attDid": attdid, "dipartimento": fac, "docente": doc, 'cdl': cdl }).then(result => {
         console.log(result);
         if (result != undefined && result != null && result.length > 0) {
             var resdiv = document.getElementById('search-res');
@@ -90,7 +117,7 @@ function search(anno, attdid, fac, doc) {
                                         ${row.id_facolta} - ${row.nome_facolta}</li>`;
                 } else {
                     //cdl
-                    var href = `../pages/activity.php?cdl=${row.id_cdl}`;
+                    var href = `../pages/cdl.php?cdl=${row.id_cdl}`;
                     rowString = `<li><a href='${href}'>${row.id_cdl} - ${row.nome_cdl}</a><br>
                                         ${row.id_facolta} - ${row.nome_facolta}</li>`;
                 }

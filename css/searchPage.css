@@ -6,12 +6,14 @@ body.ricerca {
 }
 
 div.anno-div,
-div.facolta-div {
+div.facolta-div,
+div.cdl-div {
   display: none;
 }
 
 div.anno-div.active,
-div.facolta-div.active {
+div.facolta-div.active,
+div.cdl-div.active {
   display: block;
 }
 
