@@ -103,6 +103,7 @@ facBt.addEventListener('click', () => {
 // aggiungo al tasto di ricerca la funzione per eseguire la query
 searchButton.addEventListener('click', () => {
     // prendi gli input dai campi di ricerca
+    document.getElementById('search-res').classList.add('risultati-ricerca');
     var inputs = document.getElementsByClassName('input');
     var data = {};
     Array.from(inputs).forEach(element => {

@@ -61,7 +61,7 @@
     
 </div>
 
-<div class= "risultati ricerca" id='search-res'>
+<div class='' id='search-res'>
 </div>
 </body>
 <script src='../javascript/methods.js'></script>
