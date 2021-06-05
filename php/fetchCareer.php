@@ -18,9 +18,6 @@ if (isset($inputs['type'])){
     }
 }
 
-
-
-
 function getExams(){
     $conn = open_conn();
     if(!$conn) return array(); //se la connessione al database non avviene non fare fermare lo script
@@ -98,11 +95,5 @@ function getSezioneC(){
     }
     return $sez;
 }
-
-
-
-
-
-
 
 ?>

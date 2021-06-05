@@ -1,4 +1,3 @@
-
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); 
   // connessione al DB
@@ -37,7 +36,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
           $result = fetch_DB($conn, $query, $cf);
           if($result && $studente = mysqli_fetch_assoc($result)){ // se c'è un risultato
             $_SESSION['error_msg'] = 'Uno studente con questo codice fiscale risulta già iscritto';
-            //header('Location: ../index.php');
+            header('Location: ../index.php');
           }else{
           // Assegna una nuova matricola allo studente basandosi sull'ultima inserita nel database
             $query = 'SELECT max(matricola) as max FROM studente';
@@ -61,7 +60,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                   $risultati = insert_DB($conn,$table,$matricola,$password_hash, $email,$nome,$cognome,$cf,$data_n,$indirizzo,$foto);
                   $conn ->close();
                   $_SESSION['error_msg'] = 'La registrazione è avvenuta con successo.\nUna mail di conferma è stata inviata all\'indirizzo email inserito con la matricola per accedere al libretto online';
-                  //header('Location: ../index.php');
+                  header('Location: ../index.php');
                 }else{
                     $_SESSION['error_msg'] = 'Non è stato possibile inviare l\'email di conferma';
                 }
@@ -89,4 +88,3 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     header('Location: ../index.php');
   }
 ?>
-

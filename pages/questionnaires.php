@@ -41,7 +41,7 @@
         </div>
         <div id='questionnaires-div'>
         <table id='questionnaires-table' class="table" border = 2px>
-            <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Docente</th><th>Complilato</th></tr>
+            <tr><th>Anno di corso</th><th>Attivita didattica</th><th>Peso in crediti</th><th>Docente</th><th>Compilato</th></tr>
             <!--<tr><td>3</td><td><a href=http://localhost/polibook/pages/didacticUnit.php> 2633 - Automazione industriale </a></td><td>6</td><td>2020/2021</td><td>si</td></tr>-->
         </table>
         </div>

@@ -22,7 +22,6 @@ request('../php/fetchResults.php').then(result => {
     }
 }).catch(error => alert('C\'è stato un errore imprevisto'));
 
-
 function createModal(id, msg) {
     // costruisce il modal con l'id specificato e con il messaggio specificato nel corpo del modal
     return `<div id='modal-${id}' class='modal'><div class='modal-content'><p>${msg}</p><button id='confirm-button-${id}'>ACCETTA</button><button id='refuse-button-${id}'>RIFIUTA</button><button id='cancel-button-${id}' class='cancel-button'>ANNULLA</button></div></div>`;

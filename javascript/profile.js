@@ -10,13 +10,12 @@ request('../php/fetchUserData.php').then(result => { // richiesta per i dati del
     } else {
         document.getElementById('userData').innerHTML = '<p>Nessun Dato Trovato</p>';
     }
-})//.catch(error => alert('Non è stato possibile trovare i dati dell\'utente, riprova più tardi'));
+}).catch(error => alert('Non è stato possibile trovare i dati dell\'utente, riprova più tardi'));
 
 var passwordButton = document.getElementById('password'); // pulsante per mostrare la sezione di modifica della password
 var emailButton = document.getElementById('email'); // pulsante per mostrare la sezione di modifica della email
 var addressButton = document.getElementById('address'); // pulsante per mostrare la sezione di modifica dell'indirizzo
 var photoButton = document.getElementById('photo'); // pulsante per mostrare la sezione di modifica della foto profilo
-
 
 passwordButton.addEventListener('click', () => {
     // rende attivo il pulsante cliccato (così che il css possa cambiarne l'aspetto)
