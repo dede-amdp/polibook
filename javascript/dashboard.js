@@ -1,6 +1,5 @@
 request('../php/fetchAvvisi.php').then(result => { // richiesta degli avvisi
     if (result != undefined && result != null) {
-        console.log(result);
         if (result.length > 0) {
             var msgList = `<ul>`;
             result.forEach(avviso => {
