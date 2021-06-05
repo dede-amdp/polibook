@@ -21,20 +21,20 @@
     <div id='content'>
     <section aria-label="Descrizione del cdl">
         <div class='titolo' id='titolo'>
-
         </div>
+
         ↓ <a href="#geninf">Informazioni Generali</a><br>
         ↓ <a href="#desc">Descrizione</a><br>
         ↓ <a href="#prog">Programma</a><br>
-        <a name='geninf'><h4>Informazioni Generali</h4></a>
-        <div class='info' id='info-generali'>
-        </div>
-        <a name='desc'><h4>Descrizione</h4></a>
-        <div class='info' id='descrizione'>
-        </div>
-        <a name='prog'><h4>Programma</h4></a>
-        <div class='programma' id='programma'>
-        </div>
+        
+        <h2><a name='geninf'>Informazioni Generali</a></h2>
+        <div class='info' id='info-generali'></div>
+
+        <h2><a name='desc'>Descrizione</a></h2>
+        <div class='info' id='descrizione'></div>
+
+        <h2><a name='prog'>Programma</a></h2>
+        <div class='programma' id='programma'></div>
     </section>
     </div>
 </body>

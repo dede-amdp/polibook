@@ -26,6 +26,7 @@
             }
         }
     ?>
+    <main>
     <section aria-label="Analisi della carriera">
         <p>In questa sezione puoi accedere ai servizi di segreteria online offerti dal politecnico.<br>
             <b>NB: I servizi elencati non sono al momento disponibili ad eccezione di 'Visualizza Profilo'.</b></p>
@@ -54,5 +55,6 @@
         </ul>
         </div>
     </section>
+    </main>
 </body>
 </html>
