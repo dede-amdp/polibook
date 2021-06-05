@@ -28,6 +28,6 @@ request('../php/fetchCdl.php', param).then(result => {
         document.getElementById('content').innerHTML = '<p>Non ci sono dati riguardanti questo corso di laurea</p>';
     }
 }).catch(error => {
-document.getElementById('content').innerHTML = '<p>Nessun dato</p>';
-alert('Non è stato possibile trovare i dati del corso di laurea, riprova più tardi');
+    document.getElementById('content').innerHTML = '<p>Nessun dato</p>';
+    alert('Non è stato possibile trovare i dati del corso di laurea, riprova più tardi');
 });

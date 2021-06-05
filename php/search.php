@@ -53,42 +53,47 @@ function getRisultati() {
             $vals = array();
             //costruisco la query a seconda dei dati che mi servono
             if ($anno != ''){
+                $semiquery = '('.$tabellone.' WHERE '.$query_ord.') ordinamento';
                 if(strlen($query) <= 0){
-                    $query = $tabellone.' WHERE '.$query_ord;
+                    $query = 'SELECT DISTINCT ordinamento.* FROM '.$semiquery;
                 }else{
-                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_ord.')'; // se ho già una parte di query (ovvero l'utente ha inserito più di un dato) allora fai l'intersezione tra i risultati
+                    $query .= ' NATURAL JOIN '.$semiquery; // se ho già una parte di query (ovvero l'utente ha inserito più di un dato) allora fai l'intersezione tra i risultati
                 }
                 array_push($vals, $anno);
             }
             if ($dipartimento != ''){
+                $semiquery = '('.$tabellone.' WHERE '.$query_dip.') dipartimento';
                 if(strlen($query) <= 0){
-                    $query = $tabellone.' WHERE '.$query_dip;
+                    $query = 'SELECT DISTINCT dipartimento.* FROM '.$semiquery;
                 }else{
-                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_dip.')';
+                    $query .= ' NATURAL JOIN '.$semiquery;
                 }
                 array_push($vals, $dipartimento);
             }
             if ($docente != ''){
+                $semiquery = '('.$tabellone.' WHERE '.$query_doc.') prof';
                 if(strlen($query) <= 0){
-                    $query = $tabellone.' WHERE '.$query_doc;
+                    $query = 'SELECT DISTINCT prof.* FROM '.$semiquery;
                 }else{
-                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_doc.')';
+                    $query .= ' NATURAL JOIN '.$semiquery;
                 }
                 array_push($vals, $docente, $docente);
             }
             if ($attDid != ''){
+                $semiquery = '('.$tabellone.' WHERE '.$query_attdid.') attdid';
                 if(strlen($query) <= 0){
-                    $query = $tabellone.' WHERE '.$query_attdid;
+                    $query = 'SELECT DISTINCT attdid.* FROM '.$semiquery;
                 }else{
-                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_attdid.')';
+                    $query .= ' NATURAL JOIN '.$semiquery;
                 }
                 array_push($vals, $attDid);
             }
             if ($cdl != ''){
+                $semiquery = '('.$tabellone.' WHERE '.$query_cdl.') corsodl';
                 if(strlen($query) <= 0){
-                    $query = $tabellone.' WHERE '.$query_cdl;
+                    $query = 'SELECT DISTINCT corsodl.* FROM '.$semiquery;
                 }else{
-                    $query .= ' INTERSECT ('.$tabellone.' WHERE '.$query_cdl.')';
+                    $query .= ' NATURAL JOIN '.$semiquery;
                 }
                 array_push($vals, $cdl);
             }
