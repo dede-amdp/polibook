@@ -7,7 +7,6 @@
     }
     echo json_encode(getAvvisi());
 
-
     //funzione che genera un array contenente tutti gli avvisi
     function getAvvisi(){ 
         $conn = open_conn();

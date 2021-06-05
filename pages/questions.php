@@ -20,9 +20,6 @@
         <section aria-label="Questionario">
             <h2><span style="font-weight:normal;"> Questionario di automazione industriale </span></h2>
             <form class="domande" id='quest' action='../php/insertAnswers.php' method='POST'>
-            <?php
-                if(!isset($_GET['id'])) header('Location: ../pages/questionnaires.php');
-            ?>
                 <input type='hidden' name='id' value= <?php echo '\''.$_GET['id'].'\''; ?> >
                 <div class='form-element radio-buttons'>
                     <span> Le attivita didattiche (lezioni, esercitazioni, laboratori, ecc) online per questo insegnamento sono di facile utilizzo</span><br>
@@ -71,7 +68,7 @@
                 <br>
                 <div class="form-element checkbox-button">
                     <label for="choice1-1">
-                    <span> Suggerimenti</span> <br><br>
+                    <span> Suggerimenti</span><br>
                     <input type="checkbox" id="choice1-1" name="choice1-1">
                     <span class="checkbox-button">Alleggerire il carico didattico complessivo​ </span>
                     </label>

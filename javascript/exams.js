@@ -89,7 +89,6 @@ request('../php/fetchPrenotatiData.php').then(result => {
     }
 }).catch(error => alert('C\'è stato un errore imprevisto'));
 
-
 prenotatiButton.onclick = function () {
     // scambia il colore di testo e sfondo ai tasti delle schede e rendi visibile la div corretta
     prenotatiTab.style.display = 'block';

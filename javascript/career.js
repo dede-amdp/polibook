@@ -33,7 +33,6 @@ request('../php/fetchCareer.php', { type: 'A' }).then(result => {
     }).catch(error => alert('C\'è stato un errore imprevisto'));
 }).catch(error => alert('C\'è stato un errore imprevisto'));
 
-
 function buildSection(data, title) {
     /* Costruisce la sezione della tabella*/
     var toReturn = {}; // conterrà tutti i dati della sezione così da poterli usare nella tabella

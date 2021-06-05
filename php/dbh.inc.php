@@ -13,7 +13,6 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); // permette a mysqli 
         }
     }
 
-
     function fetch_DB($conn, $query, ...$vals){
         // fa una query parametrizzata per fare il fetch dei dati
         try{

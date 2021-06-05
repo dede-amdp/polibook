@@ -17,7 +17,6 @@ var emailButton = document.getElementById('email'); // pulsante per mostrare la 
 var addressButton = document.getElementById('address'); // pulsante per mostrare la sezione di modifica dell'indirizzo
 var photoButton = document.getElementById('photo'); // pulsante per mostrare la sezione di modifica della foto profilo
 
-
 passwordButton.addEventListener('click', () => {
     // rende attivo il pulsante cliccato (così che il css possa cambiarne l'aspetto)
     // disattiva gli altri due pulsanti

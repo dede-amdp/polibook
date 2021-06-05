@@ -62,7 +62,6 @@ pianificatiButton.onclick = function () {
     pianificatiButton.classList.remove('active');
 }
 
-
 async function graphs(examData) {
     var gradesGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento dei voti
     var meanGraphData = []; // serve per memorizzare i dati da mostrare nel grafico dell'andamento della media

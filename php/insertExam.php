@@ -20,7 +20,6 @@
         }
     }
 
-
     function verify($conn, $id){
         // verifica se i dati in ingresso sono coerenti (per evitare che l'utente possa inserire iscrizioni ad appelli di esami che non fanno parte del corso di studi)
         // !! VERIFICA LA DATA DI PRENOTAZIONE ANCHE, NEL CASO QUALCUNO VOGLIA ISCRIVERSI AD UN ESAME FUORI DAL PERIODO DI ISCRIZIONE
@@ -31,4 +30,3 @@
         return $result && mysqli_num_rows($result) == 1;
     }
 ?>
-
