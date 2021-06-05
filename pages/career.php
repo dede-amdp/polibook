@@ -23,7 +23,7 @@
                 $result = fetch_DB($conn, $query, $matricola);
                 $conn -> close();
                 if($result && $row = mysqli_fetch_assoc($result)){
-                    echo '<p> Analisi della carriera di: <a class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</a><br>';
+                    echo '<p> Analisi della carriera di: <span class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</span><br>';
                 }
             }
         ?>

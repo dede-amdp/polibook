@@ -1,7 +1,6 @@
 <!DOCTYPE html> 
 <html lang = 'it'>
 <head>
-
     <title> Dashboard </title>
     <link href = '../css/dashboard.css' type='text/css' rel='Stylesheet'/>
     <meta name = 'viewport' 
@@ -24,13 +23,17 @@
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <a class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:</p>';
+                echo '<p>Ciao <span class = "evidenziato">'.$row['nome'].' '.$row['cognome'].'</span>:</p>';
             }
         }
     ?>
+    <section aria-label="Descrizione della pagina">
     <p>In questa bacheca potrai trovare tutti gli avvisi che il politecnico ha rilasciato.<br>Clicca su un avviso per visualizzarne il contenuto.</p>
+    </section>
    <!-- costruzione della tabella degli avvisi -->
-  <div id = 'dashboard-table' class='db-table'></div>
+    <section aria-label="Sezione avvisi">
+        <div id = 'dashboard-table' class='db-table'></div>
+    </section>
 </body>
 <script src='../javascript/methods.js'></script>
 <script src='../javascript/dashboard.js'></script>

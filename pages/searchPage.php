@@ -27,28 +27,28 @@
     <div class="form-ricerca">
     <h1>Ricerca insegnamenti: </h1><br>
       
-    <br><label><b>Anno Ordinamento:</b></label><br>
+    <br><label for='anno'><b>Anno Ordinamento:</b></label><br>
     <!-- Pulsante per la scelta dell'ordinamento-->
     <button id="annobt"> --- </button>
     <div id='anno-div' class='anno-div'></div>
     <input class="input" type="hidden" name="anno" id="anno"><br>
     
-    <br><label><b>Facoltà/Dipartimento:</b></label><br>
+    <br><label for='dipartimento'><b>Facoltà/Dipartimento:</b></label><br>
     <!-- Pulsante per la scelta della facoltà-->
     <button id="facoltabt"> --- </button>
     <div id='facolta-div' class='facolta-div'></div>
     <input class="input" type="hidden" name="dipartimento" id="dipartimento"><br>
 
-    <br><label><b>Corso di Laurea:</b></label><br>
+    <br><label for='cdl'><b>Corso di Laurea:</b></label><br>
     <!-- Pulsante per la scelta del corso di laurea-->
     <button id="cdlbt"> --- </button>
     <div id="cdl-div" class="cdl-div"></div>
     <input class="input" type="hidden" name="cdl" id="cdl"><br>
       
-    <br><label><b>Docente:</b></label><br>
+    <br><label for='docente'><b>Docente:</b></label><br>
     <input type="text" id="docente" name="docente" class="input"><br>
        
-    <br><label><b>Attività Didattica</b></label><br>
+    <br><label for='attDid'><b>Attività Didattica</b></label><br>
     <input type="text" id="attDid" name="attDid" class="input"><br>
 
     <button type="submit" id ="search-button"> <b>Inizia la ricerca</b> </button>

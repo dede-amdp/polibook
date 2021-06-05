@@ -19,7 +19,7 @@ request('../php/fetchAvvisi.php').then(result => { // richiesta degli avvisi
 
 function createMsg(avviso) {
     // crea il pulsante di avviso ed il modal associato
-    var msgButton = `<button class='db-interact' id='${avviso.timestamp}'><img class='arrow' width=10 src = '../assets/icons/arrow.svg'/><b>${avviso.timestamp} - ${avviso.titolo}</b></button>`;
+    var msgButton = `<button class='db-interact' id='${avviso.timestamp}'><img class='arrow' alt='showing icon' width=10 src = '../assets/icons/arrow.svg'/><b>${avviso.timestamp} - ${avviso.titolo}</b></button>`;
     var msgModal = `<div class='msg-modal' id='modal-${avviso.timestamp}'><p>${avviso.contenuto}</p></div>`;
     return msgButton + '</li><li>' + msgModal;
 }

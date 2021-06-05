@@ -22,7 +22,7 @@
             $result = fetch_DB($conn, $query, $matricola);
             $conn -> close();
             if($result && $row = mysqli_fetch_assoc($result)){
-                echo '<p>Ciao <a class="evidenziato">'.$row['nome'].' '.$row['cognome'].'</a>:</p>';
+                echo '<p>Ciao <span class="evidenziato">'.$row['nome'].' '.$row['cognome'].'</span>:</p>';
             }
         }
     ?>
