@@ -31,9 +31,9 @@
     <p>In questa bacheca potrai trovare tutti gli avvisi che il politecnico ha rilasciato.<br>Clicca su un avviso per visualizzarne il contenuto.</p>
     </section>
    <!-- costruzione della tabella degli avvisi -->
-    <section aria-label="Sezione avvisi">
+    <main>
         <div id = 'dashboard-table' class='db-table'></div>
-    </section>
+    </main>
 </body>
 <script src='../javascript/methods.js'></script>
 <script src='../javascript/dashboard.js'></script>
