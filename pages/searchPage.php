@@ -24,25 +24,23 @@
 
   <div classe = "riceca-insegnamenti">
  
-  
-
     <div class="form-ricerca">
     <h1>Ricerca insegnamenti: </h1><br>
       
     <br><label><b>Anno Ordinamento:</b></label><br>
-    <!--input type="text" id="anno" name="anno">-->
+    <!-- Pulsante per la scelta dell'ordinamento-->
     <button id="annobt"> --- </button>
     <div id='anno-div' class='anno-div'></div>
     <input class="input" type="hidden" name="anno" id="anno"><br>
     
     <br><label><b>Facoltà/Dipartimento:</b></label><br>
-    <!--input type="text" id="dipartimento"  name="dipartimento"-->
+    <!-- Pulsante per la scelta della facoltà-->
     <button id="facoltabt"> --- </button>
     <div id='facolta-div' class='facolta-div'></div>
     <input class="input" type="hidden" name="dipartimento" id="dipartimento"><br>
 
     <br><label><b>Corso di Laurea:</b></label><br>
-    <!--input type="text" id="dipartimento"  name="dipartimento"-->
+    <!-- Pulsante per la scelta del corso di laurea-->
     <button id="cdlbt"> --- </button>
     <div id="cdl-div" class="cdl-div"></div>
     <input class="input" type="hidden" name="cdl" id="cdl"><br>
@@ -58,7 +56,6 @@
   
     </div>
 
-    
 </div>
 
 <div class='' id='search-res'>

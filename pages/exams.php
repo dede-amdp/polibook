@@ -10,7 +10,6 @@
           content="La pagina mostra gli appelli e gli esoneri ai quali ci si può prenotare">
 </head>
 
-
 <body class='exams-body'>
     <?php
         session_start();
