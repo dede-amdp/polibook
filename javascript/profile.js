@@ -10,7 +10,7 @@ request('../php/fetchUserData.php').then(result => { // richiesta per i dati del
     } else {
         document.getElementById('userData').innerHTML = '<p>Nessun Dato Trovato</p>';
     }
-})//.catch(error => alert('Non è stato possibile trovare i dati dell\'utente, riprova più tardi'));
+}).catch(error => alert('Non è stato possibile trovare i dati dell\'utente, riprova più tardi'));
 
 var passwordButton = document.getElementById('password'); // pulsante per mostrare la sezione di modifica della password
 var emailButton = document.getElementById('email'); // pulsante per mostrare la sezione di modifica della email

@@ -26,7 +26,7 @@ request('../php/fetchActivity.php', param).then(result => {
     } else {
         document.getElementById('content').innerHTML = '<p>Non ci sono dati riguardanti questa Attività didattica</p>';
     }
-})/*.catch(error => {
+}).catch(error => {
     document.getElementById('content').innerHTML = '<p>Nessun dato</p>';
     alert('Non è stato possibile trovare i dati del corso di laurea, riprova più tardi');
-});*/
+});
