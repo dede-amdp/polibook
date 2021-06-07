@@ -56,10 +56,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                 $messaggio =  "Ecco la matricola per accedere a POLIBOOK\nMATRICOLA:\t$matricola";
                 if(mail($email,$oggetto,$messaggio, 'From: noreply@polibooklet.com')){
                   $table = 'studente (matricola,password,email,nome,cognome,cf,data_nascita,indirizzo,foto)';
-                  echo 'email inviata';
                   $risultati = insert_DB($conn,$table,$matricola,$password_hash, $email,$nome,$cognome,$cf,$data_n,$indirizzo,$foto);
                   $conn ->close();
-                  $_SESSION['error_msg'] = 'La registrazione è avvenuta con successo.\nUna mail di conferma è stata inviata all\'indirizzo email inserito con la matricola per accedere al libretto online';
+                  $_SESSION['error_msg'] = 'La registrazione è avvenuta con successo.\nUna mail di conferma è stata inviata alla email inserita contenente la matricola per accedere al libretto online';
                   header('Location: ../index.php');
                 }else{
                     $_SESSION['error_msg'] = 'Non è stato possibile inviare l\'email di conferma';
